@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<column-models id="user">
+	<profile id="common" default="true" >
+		<column-model>
+			<header>用户ID</header>
+			<name>userId</name>
+			<width>50</width>
+			<align>center</align>
+		</column-model>
+		<column-model>
+			<header>用户名称</header>
+			<name>userName</name>
+			<width>50</width>
+			<align>center</align>
+		</column-model>
+	</profile>
+</column-models>

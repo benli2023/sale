@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- DBUnit flatXml DataFile -->
+<dataset>
+
+
+	  <procurementsale 
+			id='389' 
+			procurementId='241' 
+			saleId='389' 
+	  />	
+  
+</dataset>

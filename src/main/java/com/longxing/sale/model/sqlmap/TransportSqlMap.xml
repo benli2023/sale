@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<!-- 不使用namespace是由于sql搜索定位会比较方便 -->
+<sqlMap>
+
+    <resultMap id="RM.Transport" class="com.longxing.sale.model.Transport">
+         <result property="transportId" column="transportId"/>
+         <result property="driver" column="driver"/>
+         <result property="carNumber" column="carNumber"/>
+         <result property="driverTel" column="driverTel"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="Transport.columns">
+	    <![CDATA[
+         tra0.transportId , tra0.driver , tra0.carNumber , tra0.driverTel  
+        
+	    ]]>
+	</sql>
+	
+    <insert id="Transport.insert" >
+    <![CDATA[
+        INSERT INTO transport (
+        	transportId ,
+        	driver ,
+        	carNumber ,
+        	driverTel 
+        ) VALUES (
+        	#transportId# ,
+        	#driver# ,
+        	#carNumber# ,
+        	#driverTel# 
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    -->
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="transportId" >
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <update id="Transport.update" >
+    <![CDATA[
+        UPDATE transport SET
+	        driver = #driver# ,
+	        carNumber = #carNumber# ,
+	        driverTel = #driverTel# 
+        WHERE 
+	        transportId = #transportId# 
+    ]]>
+    </update>
+
+    <delete id="Transport.delete">
+    <![CDATA[
+        DELETE FROM transport WHERE
+        transportId = #transportId# 
+    ]]>
+    </delete>
+    
+    <select id="Transport.getById" resultMap="RM.Transport">
+	    SELECT <include refid="Transport.columns"/>
+	    <![CDATA[
+	        FROM transport AS tra0 
+	        WHERE 
+		        tra0.transportId = #transportId# 
+	    ]]>
+    </select>
+
+	<sql id="Transport.findPage.where">
+	    <dynamic prepend="WHERE">
+		       <isNotEmpty prepend="AND" property="transportId">
+		              tra0.transportId = #transportId#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="driver">
+		              tra0.driver = #driver#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="carNumber">
+		              tra0.carNumber = #carNumber#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="driverTel">
+		              tra0.driverTel = #driverTel#
+		       </isNotEmpty>
+	       	   <isNotEmpty prepend="AND" property="searchTerm">
+	        	(  tra0.driverTel like '%$searchTerm$%' or   tra0.carNumber like '%$searchTerm$%' or   tra0.driver like '%$searchTerm$%'   )
+	           </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="Transport.findPage.count" resultClass="long">
+        SELECT count(*) FROM  transport AS tra0 <include refid="Transport.findPage.where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="Transport.findPage" resultMap="RM.Transport">
+    	SELECT <include refid="Transport.columns"/> FROM transport AS tra0 
+		<include refid="Transport.findPage.where"/>
+		<isNotEmpty property="sortColumns">
+			ORDER BY tra0.$sortColumns$
+		</isNotEmpty>
+    </select>
+
+	
+</sqlMap>
+

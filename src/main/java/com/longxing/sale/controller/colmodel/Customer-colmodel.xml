@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<column-models id="customer">
+	<profile id="sale" default="true" >
+		<column-model>
+			<header>客户ID</header>
+			<name>custId</name>
+			<width>50</width>
+			<align>center</align>
+		</column-model>
+		<column-model>
+			<header>客户名称</header>
+			<name>custName</name>
+			<width>50</width>
+			<align>center</align>
+		</column-model>
+		<column-model>
+			<header>客户电话</header>
+			<name>telephone</name>
+			<width>100</width>
+			<align>center</align>
+		</column-model>
+	</profile>
+</column-models>

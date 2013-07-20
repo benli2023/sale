@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- DBUnit flatXml DataFile -->
+<dataset>
+
+
+	  <customer 
+			custId='883' 
+			custName='CustName030' 
+			telephone='Telephone842' 
+	  />	
+  
+</dataset>

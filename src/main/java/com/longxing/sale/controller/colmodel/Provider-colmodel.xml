@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<column-models id="provider">
+	<profile id="product" default="true" >
+		<column-model>
+			<header>供应商ID</header>
+			<name>providerId</name>
+			<width>50</width>
+			<align>center</align>
+		</column-model>
+		<column-model>
+			<header>供应商名称</header>
+			<name>provider</name>
+			<width>50</width>
+			<align>center</align>
+		</column-model>
+	</profile>
+</column-models>

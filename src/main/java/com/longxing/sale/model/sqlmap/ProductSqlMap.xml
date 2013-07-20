@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<!-- 不使用namespace是由于sql搜索定位会比较方便 -->
+<sqlMap>
+
+    <resultMap id="RM.Product" class="com.longxing.sale.model.Product">
+         <result property="prodId" column="prodId"/>
+        <result property="typeId" column="typeId"/>
+        <result property="typeIdTxt" column="pro1_name"/>
+        <result property="providerId" column="providerId"/>
+        <result property="providerIdTxt" column="pro2_provider"/>
+         <result property="productName" column="productName"/>
+         <result property="prodctDesc" column="prodctDesc"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="Product.columns">
+	    <![CDATA[
+         pro0.prodId , pro0.typeId , pro0.providerId , pro0.productName , pro0.prodctDesc  , pro1.name as pro1_name, pro2.provider as pro2_provider
+        
+	    ]]>
+	</sql>
+	
+    <insert id="Product.insert" >
+    <![CDATA[
+        INSERT INTO product (
+        	prodId ,
+        	typeId ,
+        	providerId ,
+        	productName ,
+        	prodctDesc 
+        ) VALUES (
+        	#prodId# ,
+        	#typeId# ,
+        	#providerId# ,
+        	#productName# ,
+        	#prodctDesc# 
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    -->
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="prodId" >
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <update id="Product.update" >
+    <![CDATA[
+        UPDATE product SET
+	        typeId = #typeId# ,
+	        providerId = #providerId# ,
+	        productName = #productName# ,
+	        prodctDesc = #prodctDesc# 
+        WHERE 
+	        prodId = #prodId# 
+    ]]>
+    </update>
+
+    <delete id="Product.delete">
+    <![CDATA[
+        DELETE FROM product WHERE
+        prodId = #prodId# 
+    ]]>
+    </delete>
+    
+    <select id="Product.getById" resultMap="RM.Product">
+	    SELECT <include refid="Product.columns"/>
+	    <![CDATA[
+	        FROM product AS pro0   Left Join producttype AS pro1 ON pro0.typeId=pro1.typeId  Left Join provider AS pro2 ON pro0.providerId=pro2.providerId
+	        WHERE 
+		        pro0.prodId = #prodId# 
+	    ]]>
+    </select>
+
+	<sql id="Product.findPage.where">
+	    <dynamic prepend="WHERE">
+		       <isNotEmpty prepend="AND" property="prodId">
+		              pro0.prodId = #prodId#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="typeId">
+		              pro0.typeId = #typeId#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="providerId">
+		              pro0.providerId = #providerId#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="productName">
+		              pro0.productName = #productName#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="prodctDesc">
+		              pro0.prodctDesc = #prodctDesc#
+		       </isNotEmpty>
+	       	   <isNotEmpty prepend="AND" property="searchTerm">
+	        	(  pro0.prodctDesc like '%$searchTerm$%' or   pro0.productName like '%$searchTerm$%'   )
+	           </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="Product.findPage.count" resultClass="long">
+        SELECT count(*) FROM  product AS pro0 <include refid="Product.findPage.where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="Product.findPage" resultMap="RM.Product">
+    	SELECT <include refid="Product.columns"/> FROM product AS pro0   Left Join producttype AS pro1 ON pro0.typeId=pro1.typeId  Left Join provider AS pro2 ON pro0.providerId=pro2.providerId
+		<include refid="Product.findPage.where"/>
+		<isNotEmpty property="sortColumns">
+			ORDER BY pro0.$sortColumns$
+		</isNotEmpty>
+    </select>
+
+	
+</sqlMap>
+

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- DBUnit flatXml DataFile -->
+<dataset>
+
+
+	  <procurement 
+			procurementId='233' 
+			procurementName='ProcurementName407' 
+			prodId='857' 
+			procurementDate='2013-07-21 00:58:32.167' 
+			amount='711' 
+			remainedAmount='828' 
+			unitPrice='913' 
+			freightage='910' 
+			loadFee='831' 
+			carNumber='CarNumber877' 
+			driver='Driver164' 
+			driverTel='DriverTel607' 
+			updateDate='2013-07-21 00:58:32.167' 
+			createdDate='2013-07-21 00:58:32.167' 
+			updateId='294' 
+			createId='476' 
+	  />	
+  
+</dataset>

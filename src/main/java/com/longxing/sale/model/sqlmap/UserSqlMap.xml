@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<!-- 不使用namespace是由于sql搜索定位会比较方便 -->
+<sqlMap>
+
+    <resultMap id="RM.User" class="com.longxing.sale.model.User">
+         <result property="userId" column="userId"/>
+         <result property="userName" column="userName"/>
+         <result property="password" column="password"/>
+         <result property="groupLevel" column="groupLevel"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="User.columns">
+	    <![CDATA[
+         use0.userId , use0.userName , use0.password , use0.groupLevel  
+        
+	    ]]>
+	</sql>
+	
+    <insert id="User.insert" >
+    <![CDATA[
+        INSERT INTO user (
+        	userId ,
+        	userName ,
+        	password ,
+        	groupLevel 
+        ) VALUES (
+        	#userId# ,
+        	#userName# ,
+        	#password# ,
+        	#groupLevel# 
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    -->
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="userId" >
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <update id="User.update" >
+    <![CDATA[
+        UPDATE user SET
+	        userName = #userName# ,
+	        password = #password# ,
+	        groupLevel = #groupLevel# 
+        WHERE 
+	        userId = #userId# 
+    ]]>
+    </update>
+
+    <delete id="User.delete">
+    <![CDATA[
+        DELETE FROM user WHERE
+        userId = #userId# 
+    ]]>
+    </delete>
+    
+    <select id="User.getById" resultMap="RM.User">
+	    SELECT <include refid="User.columns"/>
+	    <![CDATA[
+	        FROM user AS use0 
+	        WHERE 
+		        use0.userId = #userId# 
+	    ]]>
+    </select>
+
+	<sql id="User.findPage.where">
+	    <dynamic prepend="WHERE">
+		       <isNotEmpty prepend="AND" property="userId">
+		              use0.userId = #userId#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="userName">
+		              use0.userName = #userName#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="password">
+		              use0.password = #password#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="groupLevel">
+		              use0.groupLevel = #groupLevel#
+		       </isNotEmpty>
+	       	   <isNotEmpty prepend="AND" property="searchTerm">
+	        	(  use0.userName like '%$searchTerm$%'   )
+	           </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="User.findPage.count" resultClass="long">
+        SELECT count(*) FROM  user AS use0 <include refid="User.findPage.where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="User.findPage" resultMap="RM.User">
+    	SELECT <include refid="User.columns"/> FROM user AS use0 
+		<include refid="User.findPage.where"/>
+		<isNotEmpty property="sortColumns">
+			ORDER BY use0.$sortColumns$
+		</isNotEmpty>
+    </select>
+
+	
+</sqlMap>
+

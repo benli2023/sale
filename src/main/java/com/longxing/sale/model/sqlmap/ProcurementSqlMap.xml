@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<!-- 不使用namespace是由于sql搜索定位会比较方便 -->
+<sqlMap>
+
+    <resultMap id="RM.Procurement" class="com.longxing.sale.model.Procurement">
+         <result property="procurementId" column="procurementId"/>
+         <result property="procurementName" column="procurementName"/>
+        <result property="prodId" column="prodId"/>
+        <result property="prodIdTxt" column="pro1_prodctdesc"/>
+         <result property="procurementDate" column="procurementDate"/>
+         <result property="amount" column="amount"/>
+         <result property="remainedAmount" column="remainedAmount"/>
+         <result property="unitPrice" column="unitPrice"/>
+         <result property="freightage" column="freightage"/>
+         <result property="loadFee" column="loadFee"/>
+         <result property="carNumber" column="carNumber"/>
+         <result property="driver" column="driver"/>
+         <result property="driverTel" column="driverTel"/>
+         <result property="updateDate" column="updateDate"/>
+         <result property="createdDate" column="createdDate"/>
+        <result property="updateId" column="updateId"/>
+        <result property="updateIdTxt" column="use2_username"/>
+        <result property="createId" column="createId"/>
+        <result property="createIdTxt" column="use3_username"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="Procurement.columns">
+	    <![CDATA[
+         pro0.procurementId , pro0.procurementName , pro0.prodId , pro0.procurementDate , pro0.amount , pro0.remainedAmount , pro0.unitPrice , pro0.freightage , pro0.loadFee , pro0.carNumber , pro0.driver , pro0.driverTel , pro0.updateDate , pro0.createdDate , pro0.updateId , pro0.createId  , pro1.prodctDesc as pro1_prodctdesc, use2.userName as use2_username, use3.userName as use3_username
+        
+	    ]]>
+	</sql>
+	
+    <insert id="Procurement.insert" >
+    <![CDATA[
+        INSERT INTO procurement (
+        	procurementId ,
+        	procurementName ,
+        	prodId ,
+        	procurementDate ,
+        	amount ,
+        	remainedAmount ,
+        	unitPrice ,
+        	freightage ,
+        	loadFee ,
+        	carNumber ,
+        	driver ,
+        	driverTel ,
+        	updateDate ,
+        	createdDate ,
+        	updateId ,
+        	createId 
+        ) VALUES (
+        	#procurementId# ,
+        	#procurementName# ,
+        	#prodId# ,
+        	#procurementDate# ,
+        	#amount# ,
+        	#remainedAmount# ,
+        	#unitPrice# ,
+        	#freightage# ,
+        	#loadFee# ,
+        	#carNumber# ,
+        	#driver# ,
+        	#driverTel# ,
+        	#updateDate# ,
+        	#createdDate# ,
+        	#updateId# ,
+        	#createId# 
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    -->
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="procurementId" >
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <update id="Procurement.update" >
+    <![CDATA[
+        UPDATE procurement SET
+	        procurementName = #procurementName# ,
+	        prodId = #prodId# ,
+	        procurementDate = #procurementDate# ,
+	        amount = #amount# ,
+	        remainedAmount = #remainedAmount# ,
+	        unitPrice = #unitPrice# ,
+	        freightage = #freightage# ,
+	        loadFee = #loadFee# ,
+	        carNumber = #carNumber# ,
+	        driver = #driver# ,
+	        driverTel = #driverTel# ,
+	        updateDate = #updateDate# ,
+	        createdDate = #createdDate# ,
+	        updateId = #updateId# ,
+	        createId = #createId# 
+        WHERE 
+	        procurementId = #procurementId# 
+    ]]>
+    </update>
+
+    <delete id="Procurement.delete">
+    <![CDATA[
+        DELETE FROM procurement WHERE
+        procurementId = #procurementId# 
+    ]]>
+    </delete>
+    
+    <select id="Procurement.getById" resultMap="RM.Procurement">
+	    SELECT <include refid="Procurement.columns"/>
+	    <![CDATA[
+	        FROM procurement AS pro0   Left Join product AS pro1 ON pro0.prodId=pro1.prodId  Left Join user AS use2 ON pro0.updateId=use2.userId  Left Join user AS use3 ON pro0.createId=use3.userId
+	        WHERE 
+		        pro0.procurementId = #procurementId# 
+	    ]]>
+    </select>
+
+	<sql id="Procurement.findPage.where">
+	    <dynamic prepend="WHERE">
+		       <isNotEmpty prepend="AND" property="procurementId">
+		              pro0.procurementId = #procurementId#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="procurementName">
+		              pro0.procurementName = #procurementName#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="prodId">
+		              pro0.prodId = #prodId#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="procurementDateBegin">
+		              pro0.procurementDate >= #procurementDateBegin#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="procurementDateEnd">
+		              pro0.procurementDate &lt;= #procurementDateEnd#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="amount">
+		              pro0.amount = #amount#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="remainedAmount">
+		              pro0.remainedAmount = #remainedAmount#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="unitPrice">
+		              pro0.unitPrice = #unitPrice#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="freightage">
+		              pro0.freightage = #freightage#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="loadFee">
+		              pro0.loadFee = #loadFee#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="carNumber">
+		              pro0.carNumber = #carNumber#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="driver">
+		              pro0.driver = #driver#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="driverTel">
+		              pro0.driverTel = #driverTel#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="updateDateBegin">
+		              pro0.updateDate >= #updateDateBegin#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="updateDateEnd">
+		              pro0.updateDate &lt;= #updateDateEnd#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="createdDateBegin">
+		              pro0.createdDate >= #createdDateBegin#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="createdDateEnd">
+		              pro0.createdDate &lt;= #createdDateEnd#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="updateId">
+		              pro0.updateId = #updateId#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="createId">
+		              pro0.createId = #createId#
+		       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="Procurement.findPage.count" resultClass="long">
+        SELECT count(*) FROM  procurement AS pro0 <include refid="Procurement.findPage.where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="Procurement.findPage" resultMap="RM.Procurement">
+    	SELECT <include refid="Procurement.columns"/> FROM procurement AS pro0   Left Join product AS pro1 ON pro0.prodId=pro1.prodId  Left Join user AS use2 ON pro0.updateId=use2.userId  Left Join user AS use3 ON pro0.createId=use3.userId
+		<include refid="Procurement.findPage.where"/>
+		<isNotEmpty property="sortColumns">
+			ORDER BY pro0.$sortColumns$
+		</isNotEmpty>
+    </select>
+
+	
+</sqlMap>
+

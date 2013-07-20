@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<column-models id="producttype">
+	<profile id="product" default="true" >
+		<column-model>
+			<header>产品类型ID</header>
+			<name>typeId</name>
+			<width>50</width>
+			<align>center</align>
+		</column-model>
+		<column-model>
+			<header>产品类型编码</header>
+			<name>code</name>
+			<width>50</width>
+			<align>center</align>
+		</column-model>
+		<column-model>
+			<header>产品类型名称</header>
+			<name>name</name>
+			<width>100</width>
+			<align>center</align>
+		</column-model>
+	</profile>
+</column-models>

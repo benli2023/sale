@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- DBUnit flatXml DataFile -->
+<dataset>
+
+
+	  <sale 
+			saleId='249' 
+			custId='523' 
+			amount='964' 
+			custName='CustName502' 
+			custTel='CustTel162' 
+			unitPrice='253' 
+			paid='069' 
+			unPaid='365' 
+			otherFee='683' 
+			profit='853' 
+			paymentStatus='623' 
+			createId='741' 
+			carNumber='CarNumber844' 
+			driver='Driver255' 
+			driverTel='DriverTel711' 
+			updateDate='2013-07-21 00:58:34.119' 
+			createdDate='2013-07-21 00:58:34.119' 
+			updateId='713' 
+	  />	
+  
+</dataset>

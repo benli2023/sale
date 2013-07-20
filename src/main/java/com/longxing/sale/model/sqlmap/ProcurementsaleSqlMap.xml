@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<!-- 不使用namespace是由于sql搜索定位会比较方便 -->
+<sqlMap>
+
+    <resultMap id="RM.Procurementsale" class="com.longxing.sale.model.Procurementsale">
+         <result property="id" column="id"/>
+         <result property="procurementId" column="procurementId"/>
+         <result property="saleId" column="saleId"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="Procurementsale.columns">
+	    <![CDATA[
+         pro0.id , pro0.procurementId , pro0.saleId  
+        
+	    ]]>
+	</sql>
+	
+    <insert id="Procurementsale.insert" >
+    <![CDATA[
+        INSERT INTO procurementsale (
+        	id ,
+        	procurementId ,
+        	saleId 
+        ) VALUES (
+        	#id# ,
+        	#procurementId# ,
+        	#saleId# 
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    -->
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <update id="Procurementsale.update" >
+    <![CDATA[
+        UPDATE procurementsale SET
+	        procurementId = #procurementId# ,
+	        saleId = #saleId# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+
+    <delete id="Procurementsale.delete">
+    <![CDATA[
+        DELETE FROM procurementsale WHERE
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="Procurementsale.getById" resultMap="RM.Procurementsale">
+	    SELECT <include refid="Procurementsale.columns"/>
+	    <![CDATA[
+	        FROM procurementsale AS pro0 
+	        WHERE 
+		        pro0.id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="Procurementsale.findPage.where">
+	    <dynamic prepend="WHERE">
+		       <isNotEmpty prepend="AND" property="id">
+		              pro0.id = #id#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="procurementId">
+		              pro0.procurementId = #procurementId#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="saleId">
+		              pro0.saleId = #saleId#
+		       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="Procurementsale.findPage.count" resultClass="long">
+        SELECT count(*) FROM  procurementsale AS pro0 <include refid="Procurementsale.findPage.where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="Procurementsale.findPage" resultMap="RM.Procurementsale">
+    	SELECT <include refid="Procurementsale.columns"/> FROM procurementsale AS pro0 
+		<include refid="Procurementsale.findPage.where"/>
+		<isNotEmpty property="sortColumns">
+			ORDER BY pro0.$sortColumns$
+		</isNotEmpty>
+    </select>
+
+	
+</sqlMap>
+

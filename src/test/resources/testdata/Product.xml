@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- DBUnit flatXml DataFile -->
+<dataset>
+
+
+	  <product 
+			prodId='334' 
+			typeId='101' 
+			providerId='804' 
+			productName='ProductName908' 
+			prodctDesc='ProdctDesc001' 
+	  />	
+  
+</dataset>
