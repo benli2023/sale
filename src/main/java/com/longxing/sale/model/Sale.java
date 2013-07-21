@@ -57,6 +57,7 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 	public static final String ALIAS_PROFIT = "利润";
 	public static final String ALIAS_PAYMENT_STATUS = "状态";
 	public static final String ALIAS_CREATE_ID = "创建人ID";
+	public static final String ALIAS_TRANSPORT_ID = "运输ID";
 	public static final String ALIAS_CAR_NUMBER = "车牌号";
 	public static final String ALIAS_DRIVER = "司机";
 	public static final String ALIAS_DRIVER_TEL = "司机电话";
@@ -167,6 +168,10 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 	
 	private java.lang.Long createId;
 	private String createIdTxt;
+	
+	
+	private java.lang.Long transportId;
+	private String transportIdTxt;
 	
 	
     /**
@@ -326,6 +331,20 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 	public void setCreateIdTxt(String value) {
 		this.createIdTxt = value;
 	}
+	public void setTransportId(java.lang.Long value) {
+		this.transportId = value;
+	}
+	
+	public java.lang.Long getTransportId() {
+		return this.transportId;
+	}
+	public String getTransportIdTxt() {
+		return this.transportIdTxt;
+	}
+	
+	public void setTransportIdTxt(String value) {
+		this.transportIdTxt = value;
+	}
 	public void setCarNumber(java.lang.String value) {
 		this.carNumber = value;
 	}
@@ -399,6 +418,16 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 		return procurementsales;
 	}
 	
+	private Transport transport;
+	
+	public void setTransport(Transport transport){
+		this.transport = transport;
+	}
+	
+	public Transport getTransport() {
+		return transport;
+	}
+	
 	private Customer customer;
 	
 	public void setCustomer(Customer customer){
@@ -433,6 +462,7 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 			.append("Profit",getProfit())
 			.append("PaymentStatus",getPaymentStatus())
 			.append("CreateId",getCreateId())
+			.append("TransportId",getTransportId())
 			.append("CarNumber",getCarNumber())
 			.append("Driver",getDriver())
 			.append("DriverTel",getDriverTel())

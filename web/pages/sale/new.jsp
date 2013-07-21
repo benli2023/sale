@@ -34,6 +34,7 @@
 	 var popupOption={
 		 'sale_custId': {url:'${ctx}/customer/query',title:'选择客户',textColumn:'telephone',valueColumn:'custId'},
 		 'sale_createId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'},
+		 'sale_transportId': {url:'${ctx}/transport/query',title:'选择运输',textColumn:'driverTel',valueColumn:'transportId'},
 		 'sale_updateId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'}
 	 };
 	 PopupSelection.initOption(popupOption); 	

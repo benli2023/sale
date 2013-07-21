@@ -4,19 +4,19 @@
 		<column-model>
 			<header>客户ID</header>
 			<name>custId</name>
-			<width>50</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 		<column-model>
 			<header>客户名称</header>
 			<name>custName</name>
-			<width>50</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 		<column-model>
 			<header>客户电话</header>
 			<name>telephone</name>
-			<width>100</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 	</profile>

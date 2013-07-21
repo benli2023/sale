@@ -111,12 +111,12 @@
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Sale.ALIAS_CREATE_ID%>:
+			<%=Sale.ALIAS_TRANSPORT_ID%>:
 		</td>		
 		<td>
-		<yun:button-edit name="createIdTxt" hiddenName="createId" id="sale_createId" txtVal="${sale.createIdTxt}"  hiddenVal="${sale.createId}" width="130"  profileId="common"/> 
+		<yun:button-edit name="transportIdTxt" hiddenName="transportId" id="sale_transportId" txtVal="${sale.transportIdTxt}"  hiddenVal="${sale.transportId}" width="130"  profileId="common"/> 
 	
-		<font color='red'><form:errors path="createId"/></font>
+		<font color='red'><form:errors path="transportId"/></font>
 		</td>
 	</tr>	
 	
@@ -147,39 +147,6 @@
 		<td>
 		<form:input path="driverTel" id="driverTel" cssClass="" maxlength="32" />
 		<font color='red'><form:errors path="driverTel"/></font>
-		</td>
-	</tr>	
-	
-	<tr>	
-		<td class="tdLabel">
-			<%=Sale.ALIAS_UPDATE_DATE%>:
-		</td>		
-		<td>
-		<input value="${sale.updateDateString}" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_UPDATE_DATE%>'})" id="updateDateString" name="updateDateString"  maxlength="0" class="" />
-	
-		<font color='red'><form:errors path="updateDate"/></font>
-		</td>
-	</tr>	
-	
-	<tr>	
-		<td class="tdLabel">
-			<%=Sale.ALIAS_CREATED_DATE%>:
-		</td>		
-		<td>
-		<input value="${sale.createdDateString}" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_CREATED_DATE%>'})" id="createdDateString" name="createdDateString"  maxlength="0" class="" />
-	
-		<font color='red'><form:errors path="createdDate"/></font>
-		</td>
-	</tr>	
-	
-	<tr>	
-		<td class="tdLabel">
-			<%=Sale.ALIAS_UPDATE_ID%>:
-		</td>		
-		<td>
-		<yun:button-edit name="updateIdTxt" hiddenName="updateId" id="sale_updateId" txtVal="${sale.updateIdTxt}"  hiddenVal="${sale.updateId}" width="130"  profileId="common"/> 
-	
-		<font color='red'><form:errors path="updateId"/></font>
 		</td>
 	</tr>	
 	

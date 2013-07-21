@@ -21,19 +21,21 @@
          <result property="paymentStatus" column="paymentStatus"/>
         <result property="createId" column="createId"/>
         <result property="createIdTxt" column="use2_username"/>
+        <result property="transportId" column="transportId"/>
+        <result property="transportIdTxt" column="tra3_drivertel"/>
          <result property="carNumber" column="carNumber"/>
          <result property="driver" column="driver"/>
          <result property="driverTel" column="driverTel"/>
          <result property="updateDate" column="updateDate"/>
          <result property="createdDate" column="createdDate"/>
         <result property="updateId" column="updateId"/>
-        <result property="updateIdTxt" column="use3_username"/>
+        <result property="updateIdTxt" column="use4_username"/>
     </resultMap>
 
 	<!-- 用于select查询公用抽取的列 -->
 	<sql id="Sale.columns">
 	    <![CDATA[
-         sal0.saleId , sal0.custId , sal0.amount , sal0.custName , sal0.custTel , sal0.unitPrice , sal0.paid , sal0.unPaid , sal0.otherFee , sal0.profit , sal0.paymentStatus , sal0.createId , sal0.carNumber , sal0.driver , sal0.driverTel , sal0.updateDate , sal0.createdDate , sal0.updateId  , cus1.telephone as cus1_telephone, use2.userName as use2_username, use3.userName as use3_username
+         sal0.saleId , sal0.custId , sal0.amount , sal0.custName , sal0.custTel , sal0.unitPrice , sal0.paid , sal0.unPaid , sal0.otherFee , sal0.profit , sal0.paymentStatus , sal0.createId , sal0.transportId , sal0.carNumber , sal0.driver , sal0.driverTel , sal0.updateDate , sal0.createdDate , sal0.updateId  , cus1.telephone as cus1_telephone, use2.userName as use2_username, tra3.driverTel as tra3_drivertel, use4.userName as use4_username
         
 	    ]]>
 	</sql>
@@ -53,6 +55,7 @@
         	profit ,
         	paymentStatus ,
         	createId ,
+        	transportId ,
         	carNumber ,
         	driver ,
         	driverTel ,
@@ -72,6 +75,7 @@
         	#profit# ,
         	#paymentStatus# ,
         	#createId# ,
+        	#transportId# ,
         	#carNumber# ,
         	#driver# ,
         	#driverTel# ,
@@ -105,6 +109,7 @@
 	        profit = #profit# ,
 	        paymentStatus = #paymentStatus# ,
 	        createId = #createId# ,
+	        transportId = #transportId# ,
 	        carNumber = #carNumber# ,
 	        driver = #driver# ,
 	        driverTel = #driverTel# ,
@@ -126,7 +131,7 @@
     <select id="Sale.getById" resultMap="RM.Sale">
 	    SELECT <include refid="Sale.columns"/>
 	    <![CDATA[
-	        FROM sale AS sal0   Left Join customer AS cus1 ON sal0.custId=cus1.custId  Left Join user AS use2 ON sal0.createId=use2.userId  Left Join user AS use3 ON sal0.updateId=use3.userId
+	        FROM sale AS sal0   Left Join customer AS cus1 ON sal0.custId=cus1.custId  Left Join user AS use2 ON sal0.createId=use2.userId  Left Join transport AS tra3 ON sal0.transportId=tra3.transportId  Left Join user AS use4 ON sal0.updateId=use4.userId
 	        WHERE 
 		        sal0.saleId = #saleId# 
 	    ]]>
@@ -168,6 +173,9 @@
 		       <isNotEmpty prepend="AND" property="createId">
 		              sal0.createId = #createId#
 		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="transportId">
+		              sal0.transportId = #transportId#
+		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="carNumber">
 		              sal0.carNumber = #carNumber#
 		       </isNotEmpty>
@@ -204,7 +212,7 @@
     	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
     -->
     <select id="Sale.findPage" resultMap="RM.Sale">
-    	SELECT <include refid="Sale.columns"/> FROM sale AS sal0   Left Join customer AS cus1 ON sal0.custId=cus1.custId  Left Join user AS use2 ON sal0.createId=use2.userId  Left Join user AS use3 ON sal0.updateId=use3.userId
+    	SELECT <include refid="Sale.columns"/> FROM sale AS sal0   Left Join customer AS cus1 ON sal0.custId=cus1.custId  Left Join user AS use2 ON sal0.createId=use2.userId  Left Join transport AS tra3 ON sal0.transportId=tra3.transportId  Left Join user AS use4 ON sal0.updateId=use4.userId
 		<include refid="Sale.findPage.where"/>
 		<isNotEmpty property="sortColumns">
 			ORDER BY sal0.$sortColumns$

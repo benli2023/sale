@@ -4,13 +4,13 @@
 		<column-model>
 			<header>用户ID</header>
 			<name>userId</name>
-			<width>50</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 		<column-model>
 			<header>用户名称</header>
 			<name>userName</name>
-			<width>50</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 	</profile>

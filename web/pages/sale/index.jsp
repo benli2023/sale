@@ -84,12 +84,17 @@
 						<yun:button-edit name="createIdTxt" hiddenName="createId" id="sale_createId" txtVal="${query.createIdTxt}"  hiddenVal="${query.createId}" width="130"  profileId="common"/> 
 						
 					</td>
+					<td class="tdLabel"><%=Sale.ALIAS_TRANSPORT_ID%></td>		
+					<td>
+						<yun:button-edit name="transportIdTxt" hiddenName="transportId" id="sale_transportId" txtVal="${query.transportIdTxt}"  hiddenVal="${query.transportId}" width="130"  profileId="common"/> 
+						
+					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_CAR_NUMBER%></td>		
 					<td>
 						<input value="${query.carNumber}" id="carNumber" name="carNumber" maxlength="32"  class=""/>
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_DRIVER%></td>		
 					<td>
 						<input value="${query.driver}" id="driver" name="driver" maxlength="64"  class=""/>
@@ -103,13 +108,13 @@
 						<input value="<fmt:formatDate value='${query.updateDateBegin}' pattern='<%=Sale.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_UPDATE_DATE%>'})" id="updateDateBegin" name="updateDateBegin"   />
 						<input value="<fmt:formatDate value='${query.updateDateEnd}' pattern='<%=Sale.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_UPDATE_DATE%>'})" id="updateDateEnd" name="updateDateEnd"   />
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_CREATED_DATE%></td>		
 					<td>
 						<input value="<fmt:formatDate value='${query.createdDateBegin}' pattern='<%=Sale.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_CREATED_DATE%>'})" id="createdDateBegin" name="createdDateBegin"   />
 						<input value="<fmt:formatDate value='${query.createdDateEnd}' pattern='<%=Sale.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_CREATED_DATE%>'})" id="createdDateEnd" name="createdDateEnd"   />
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_UPDATE_ID%></td>		
 					<td>
 						<yun:button-edit name="updateIdTxt" hiddenName="updateId" id="sale_updateId" txtVal="${query.updateIdTxt}"  hiddenVal="${query.updateId}" width="130"  profileId="common"/> 
@@ -151,6 +156,7 @@
 				<th sortColumn="profit" ><%=Sale.ALIAS_PROFIT%></th>
 				<th sortColumn="paymentStatus" ><%=Sale.ALIAS_PAYMENT_STATUS%></th>
 				<th sortColumn="createId" ><%=Sale.ALIAS_CREATE_ID%></th>
+				<th sortColumn="transportId" ><%=Sale.ALIAS_TRANSPORT_ID%></th>
 				<th sortColumn="carNumber" ><%=Sale.ALIAS_CAR_NUMBER%></th>
 				<th sortColumn="driver" ><%=Sale.ALIAS_DRIVER%></th>
 				<th sortColumn="driverTel" ><%=Sale.ALIAS_DRIVER_TEL%></th>
@@ -180,6 +186,7 @@
 				<td><c:out value='${item.profit}'/>&nbsp;</td>
 				<td><c:choose><c:when test="${item.paymentStatus==2}">已付款</c:when><c:when test="${item.paymentStatus==0}">未付款</c:when><c:when test="${item.paymentStatus==1}">已付定金</c:when></c:choose></td>
 				<td><c:out value='${item.createIdTxt}'/>&nbsp;</td>
+				<td><c:out value='${item.transportIdTxt}'/>&nbsp;</td>
 				<td><c:out value='${item.carNumber}'/>&nbsp;</td>
 				<td><c:out value='${item.driver}'/>&nbsp;</td>
 				<td><c:out value='${item.driverTel}'/>&nbsp;</td>
@@ -207,6 +214,7 @@
 	 var popupOption={
 		 'sale_custId': {url:'${ctx}/customer/query',title:'选择客户',textColumn:'telephone',valueColumn:'custId'},
 		 'sale_createId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'},
+		 'sale_transportId': {url:'${ctx}/transport/query',title:'选择运输',textColumn:'driverTel',valueColumn:'transportId'},
 		 'sale_updateId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'}
 	 };
 	 PopupSelection.initOption(popupOption); 	

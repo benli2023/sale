@@ -66,6 +66,9 @@ public class SaleQuery extends BaseQuery implements Serializable {
 	/** 创建人ID */
 	private java.lang.Long createId;
 	private String createIdTxt;
+	/** 运输ID */
+	private java.lang.Long transportId;
+	private String transportIdTxt;
 	/** 车牌号 */
 	private java.lang.String carNumber;
 	/** 司机 */
@@ -194,6 +197,23 @@ public class SaleQuery extends BaseQuery implements Serializable {
 	
 	public void setCreateIdTxt(String value) {
 		this.createIdTxt = value;
+	}
+	
+	
+	public java.lang.Long getTransportId() {
+		return this.transportId;
+	}
+	
+	public void setTransportId(java.lang.Long value) {
+		this.transportId = value;
+	}
+	
+	public String getTransportIdTxt() {
+		return this.transportIdTxt;
+	}
+	
+	public void setTransportIdTxt(String value) {
+		this.transportIdTxt = value;
 	}
 	
 	public java.lang.String getCarNumber() {

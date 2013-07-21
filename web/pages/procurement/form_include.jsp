@@ -118,45 +118,12 @@
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Procurement.ALIAS_UPDATE_DATE%>:
+			<%=Procurement.ALIAS_TRANSPORT_ID%>:
 		</td>		
 		<td>
-		<input value="${procurement.updateDateString}" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_UPDATE_DATE%>'})" id="updateDateString" name="updateDateString"  maxlength="0" class="" />
+		<yun:button-edit name="transportIdTxt" hiddenName="transportId" id="procurement_transportId" txtVal="${procurement.transportIdTxt}"  hiddenVal="${procurement.transportId}" width="130"  profileId="common"/> 
 	
-		<font color='red'><form:errors path="updateDate"/></font>
-		</td>
-	</tr>	
-	
-	<tr>	
-		<td class="tdLabel">
-			<%=Procurement.ALIAS_CREATED_DATE%>:
-		</td>		
-		<td>
-		<input value="${procurement.createdDateString}" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_CREATED_DATE%>'})" id="createdDateString" name="createdDateString"  maxlength="0" class="" />
-	
-		<font color='red'><form:errors path="createdDate"/></font>
-		</td>
-	</tr>	
-	
-	<tr>	
-		<td class="tdLabel">
-			<%=Procurement.ALIAS_UPDATE_ID%>:
-		</td>		
-		<td>
-		<yun:button-edit name="updateIdTxt" hiddenName="updateId" id="procurement_updateId" txtVal="${procurement.updateIdTxt}"  hiddenVal="${procurement.updateId}" width="130"  profileId="common"/> 
-	
-		<font color='red'><form:errors path="updateId"/></font>
-		</td>
-	</tr>	
-	
-	<tr>	
-		<td class="tdLabel">
-			<%=Procurement.ALIAS_CREATE_ID%>:
-		</td>		
-		<td>
-		<yun:button-edit name="createIdTxt" hiddenName="createId" id="procurement_createId" txtVal="${procurement.createIdTxt}"  hiddenVal="${procurement.createId}" width="130"  profileId="common"/> 
-	
-		<font color='red'><form:errors path="createId"/></font>
+		<font color='red'><form:errors path="transportId"/></font>
 		</td>
 	</tr>	
 	

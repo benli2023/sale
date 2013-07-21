@@ -26,12 +26,14 @@
         <result property="updateIdTxt" column="use2_username"/>
         <result property="createId" column="createId"/>
         <result property="createIdTxt" column="use3_username"/>
+        <result property="transportId" column="transportId"/>
+        <result property="transportIdTxt" column="tra4_drivertel"/>
     </resultMap>
 
 	<!-- 用于select查询公用抽取的列 -->
 	<sql id="Procurement.columns">
 	    <![CDATA[
-         pro0.procurementId , pro0.procurementName , pro0.prodId , pro0.procurementDate , pro0.amount , pro0.remainedAmount , pro0.unitPrice , pro0.freightage , pro0.loadFee , pro0.carNumber , pro0.driver , pro0.driverTel , pro0.updateDate , pro0.createdDate , pro0.updateId , pro0.createId  , pro1.prodctDesc as pro1_prodctdesc, use2.userName as use2_username, use3.userName as use3_username
+         pro0.procurementId , pro0.procurementName , pro0.prodId , pro0.procurementDate , pro0.amount , pro0.remainedAmount , pro0.unitPrice , pro0.freightage , pro0.loadFee , pro0.carNumber , pro0.driver , pro0.driverTel , pro0.updateDate , pro0.createdDate , pro0.updateId , pro0.createId , pro0.transportId  , pro1.prodctDesc as pro1_prodctdesc, use2.userName as use2_username, use3.userName as use3_username, tra4.driverTel as tra4_drivertel
         
 	    ]]>
 	</sql>
@@ -54,7 +56,8 @@
         	updateDate ,
         	createdDate ,
         	updateId ,
-        	createId 
+        	createId ,
+        	transportId 
         ) VALUES (
         	#procurementId# ,
         	#procurementName# ,
@@ -71,7 +74,8 @@
         	#updateDate# ,
         	#createdDate# ,
         	#updateId# ,
-        	#createId# 
+        	#createId# ,
+        	#transportId# 
         )
     ]]>
     <!--
@@ -102,7 +106,8 @@
 	        updateDate = #updateDate# ,
 	        createdDate = #createdDate# ,
 	        updateId = #updateId# ,
-	        createId = #createId# 
+	        createId = #createId# ,
+	        transportId = #transportId# 
         WHERE 
 	        procurementId = #procurementId# 
     ]]>
@@ -118,7 +123,7 @@
     <select id="Procurement.getById" resultMap="RM.Procurement">
 	    SELECT <include refid="Procurement.columns"/>
 	    <![CDATA[
-	        FROM procurement AS pro0   Left Join product AS pro1 ON pro0.prodId=pro1.prodId  Left Join user AS use2 ON pro0.updateId=use2.userId  Left Join user AS use3 ON pro0.createId=use3.userId
+	        FROM procurement AS pro0   Left Join product AS pro1 ON pro0.prodId=pro1.prodId  Left Join user AS use2 ON pro0.updateId=use2.userId  Left Join user AS use3 ON pro0.createId=use3.userId  Left Join transport AS tra4 ON pro0.transportId=tra4.transportId
 	        WHERE 
 		        pro0.procurementId = #procurementId# 
 	    ]]>
@@ -183,6 +188,9 @@
 		       <isNotEmpty prepend="AND" property="createId">
 		              pro0.createId = #createId#
 		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="transportId">
+		              pro0.transportId = #transportId#
+		       </isNotEmpty>
 	    </dynamic>	
 	</sql>
 	 
@@ -195,7 +203,7 @@
     	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
     -->
     <select id="Procurement.findPage" resultMap="RM.Procurement">
-    	SELECT <include refid="Procurement.columns"/> FROM procurement AS pro0   Left Join product AS pro1 ON pro0.prodId=pro1.prodId  Left Join user AS use2 ON pro0.updateId=use2.userId  Left Join user AS use3 ON pro0.createId=use3.userId
+    	SELECT <include refid="Procurement.columns"/> FROM procurement AS pro0   Left Join product AS pro1 ON pro0.prodId=pro1.prodId  Left Join user AS use2 ON pro0.updateId=use2.userId  Left Join user AS use3 ON pro0.createId=use3.userId  Left Join transport AS tra4 ON pro0.transportId=tra4.transportId
 		<include refid="Procurement.findPage.where"/>
 		<isNotEmpty property="sortColumns">
 			ORDER BY pro0.$sortColumns$

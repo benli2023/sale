@@ -129,6 +129,24 @@ public class Transport extends BaseEntity implements java.io.Serializable {
 	public java.lang.String getDriverTel() {
 		return this.driverTel;
 	}
+	
+	private Set procurements = new HashSet(0);
+	public void setProcurements(Set<Procurement> procurement){
+		this.procurements = procurement;
+	}
+	
+	public Set<Procurement> getProcurements() {
+		return procurements;
+	}
+	
+	private Set sales = new HashSet(0);
+	public void setSales(Set<Sale> sale){
+		this.sales = sale;
+	}
+	
+	public Set<Sale> getSales() {
+		return sales;
+	}
 
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)

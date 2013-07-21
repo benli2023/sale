@@ -4,13 +4,13 @@
 		<column-model>
 			<header>供应商ID</header>
 			<name>providerId</name>
-			<width>50</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 		<column-model>
 			<header>供应商名称</header>
 			<name>provider</name>
-			<width>50</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 	</profile>

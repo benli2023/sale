@@ -101,6 +101,11 @@
 						<yun:button-edit name="createIdTxt" hiddenName="createId" id="procurement_createId" txtVal="${query.createIdTxt}"  hiddenVal="${query.createId}" width="130"  profileId="common"/> 
 						
 					</td>
+					<td class="tdLabel"><%=Procurement.ALIAS_TRANSPORT_ID%></td>		
+					<td>
+						<yun:button-edit name="transportIdTxt" hiddenName="transportId" id="procurement_transportId" txtVal="${query.transportIdTxt}"  hiddenVal="${query.transportId}" width="130"  profileId="common"/> 
+						
+					</td>
 				</tr>	
 			</table>
 		</fieldset>
@@ -141,6 +146,7 @@
 				<th sortColumn="createdDate" ><%=Procurement.ALIAS_CREATED_DATE%></th>
 				<th sortColumn="updateId" ><%=Procurement.ALIAS_UPDATE_ID%></th>
 				<th sortColumn="createId" ><%=Procurement.ALIAS_CREATE_ID%></th>
+				<th sortColumn="transportId" ><%=Procurement.ALIAS_TRANSPORT_ID%></th>
 	
 				<th>操作</th>
 			  </tr>
@@ -168,6 +174,7 @@
 				<td><c:out value='${item.createdDateString}'/>&nbsp;</td>
 				<td><c:out value='${item.updateIdTxt}'/>&nbsp;</td>
 				<td><c:out value='${item.createIdTxt}'/>&nbsp;</td>
+				<td><c:out value='${item.transportIdTxt}'/>&nbsp;</td>
 				<td>
 					<a href="${ctx}/procurement/${item.procurementId}">查看</a>&nbsp;&nbsp;
 					<a href="${ctx}/procurement/${item.procurementId}/edit">修改</a>&nbsp;&nbsp;
@@ -189,7 +196,8 @@
 	 var popupOption={
 		 'procurement_prodId': {url:'${ctx}/product/query',title:'选择产品',textColumn:'prodctDesc',valueColumn:'prodId'},
 		 'procurement_updateId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'},
-		 'procurement_createId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'}
+		 'procurement_createId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'},
+		 'procurement_transportId': {url:'${ctx}/transport/query',title:'选择运输',textColumn:'driverTel',valueColumn:'transportId'}
 	 };
 	 PopupSelection.initOption(popupOption); 	
 	</script>

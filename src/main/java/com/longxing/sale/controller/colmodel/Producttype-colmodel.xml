@@ -4,19 +4,19 @@
 		<column-model>
 			<header>产品类型ID</header>
 			<name>typeId</name>
-			<width>50</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 		<column-model>
 			<header>产品类型编码</header>
 			<name>code</name>
-			<width>50</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 		<column-model>
 			<header>产品类型名称</header>
 			<name>name</name>
-			<width>100</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 	</profile>

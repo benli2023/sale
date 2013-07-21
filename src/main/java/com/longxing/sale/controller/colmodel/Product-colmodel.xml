@@ -4,19 +4,19 @@
 		<column-model>
 			<header>产品ID</header>
 			<name>prodId</name>
-			<width>50</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 		<column-model>
 			<header>产品名称</header>
 			<name>productName</name>
-			<width>50</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 		<column-model>
 			<header>产品描述</header>
 			<name>prodctDesc</name>
-			<width>100</width>
+			<width>150</width>
 			<align>center</align>
 		</column-model>
 	</profile>

@@ -74,6 +74,10 @@
 				<td class="tdLabel"><%=Procurement.ALIAS_CREATE_ID%></td>	
 				<td><c:out value='${procurement.createId}'/></td>
 			</tr>
+			<tr>	
+				<td class="tdLabel"><%=Procurement.ALIAS_TRANSPORT_ID%></td>	
+				<td><c:out value='${procurement.transportId}'/></td>
+			</tr>
 		</table>
 	</form:form>
 </rapid:override>

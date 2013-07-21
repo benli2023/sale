@@ -61,6 +61,7 @@ public class Procurement extends BaseEntity implements java.io.Serializable {
 	public static final String ALIAS_CREATED_DATE = "创建时间";
 	public static final String ALIAS_UPDATE_ID = "更新人ID";
 	public static final String ALIAS_CREATE_ID = "创建人ID";
+	public static final String ALIAS_TRANSPORT_ID = "运输ID";
 	
 	//date formats
 	public static final String FORMAT_PROCUREMENT_DATE = DATE_FORMAT;
@@ -197,6 +198,10 @@ public class Procurement extends BaseEntity implements java.io.Serializable {
 	
 	private java.lang.Long createId;
 	private String createIdTxt;
+	
+	
+	private java.lang.Long transportId;
+	private String transportIdTxt;
 	
 	//columns END
 
@@ -363,6 +368,20 @@ public class Procurement extends BaseEntity implements java.io.Serializable {
 	public void setCreateIdTxt(String value) {
 		this.createIdTxt = value;
 	}
+	public void setTransportId(java.lang.Long value) {
+		this.transportId = value;
+	}
+	
+	public java.lang.Long getTransportId() {
+		return this.transportId;
+	}
+	public String getTransportIdTxt() {
+		return this.transportIdTxt;
+	}
+	
+	public void setTransportIdTxt(String value) {
+		this.transportIdTxt = value;
+	}
 	
 	private Set procurementsales = new HashSet(0);
 	public void setProcurementsales(Set<Procurementsale> procurementsale){
@@ -381,6 +400,16 @@ public class Procurement extends BaseEntity implements java.io.Serializable {
 	
 	public Product getProduct() {
 		return product;
+	}
+	
+	private Transport transport;
+	
+	public void setTransport(Transport transport){
+		this.transport = transport;
+	}
+	
+	public Transport getTransport() {
+		return transport;
 	}
 	
 	private User user;
@@ -411,6 +440,7 @@ public class Procurement extends BaseEntity implements java.io.Serializable {
 			.append("CreatedDate",getCreatedDate())
 			.append("UpdateId",getUpdateId())
 			.append("CreateId",getCreateId())
+			.append("TransportId",getTransportId())
 			.toString();
 	}
 	

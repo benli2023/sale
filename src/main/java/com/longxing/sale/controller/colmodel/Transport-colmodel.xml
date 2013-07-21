@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <column-models id="transport">
-	<profile id="sale" default="true" >
+	<profile id="common" default="true" >
 		<column-model>
 			<header>运输ID</header>
 			<name>transportId</name>
-			<width>50</width>
+			<width>100</width>
 			<align>center</align>
 		</column-model>
 		<column-model>
 			<header>司机</header>
 			<name>driver</name>
-			<width>50</width>
+			<width>100</width>
 			<align>center</align>
 		</column-model>
 		<column-model>
 			<header>车牌号</header>
 			<name>carNumber</name>
-			<width>50</width>
+			<width>100</width>
 			<align>center</align>
 		</column-model>
 		<column-model>
 			<header>电话</header>
 			<name>driverTel</name>
-			<width>50</width>
+			<width>100</width>
 			<align>center</align>
 		</column-model>
 	</profile>

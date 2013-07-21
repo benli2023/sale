@@ -59,6 +59,10 @@
 				<td><c:out value='${sale.createId}'/></td>
 			</tr>
 			<tr>	
+				<td class="tdLabel"><%=Sale.ALIAS_TRANSPORT_ID%></td>	
+				<td><c:out value='${sale.transportId}'/></td>
+			</tr>
+			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_CAR_NUMBER%></td>	
 				<td><c:out value='${sale.carNumber}'/></td>
 			</tr>
