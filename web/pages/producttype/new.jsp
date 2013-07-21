@@ -21,6 +21,32 @@
 		new Validation(document.forms[0],{onSubmit:true,onFormValidate : function(result,form) {
 			var finalResult = result;
 			
+			var ajaxmethod=${ajaxmethod};
+			
+			if(ajaxmethod&&finalResult) {
+				var data = $(form).serialize();
+				$.ajax({
+					  url: "${ctx}/producttype/ajaxpost",
+					  type: "POST",
+					  data: data,
+					  success: function(resp){
+					        if(resp.statusCode=='000') {
+					        	alert("success");
+					        }else if(resp.statusCode=='E001') {
+					        	alert(resp.validationError);
+					        }else if(resp.statusCode=='E001') {
+					        	alert(resp.genericError);
+					        }
+					    }
+				});
+				finalResult=false;
+			
+			}else {
+			
+				alert(ajaxmethod);
+			
+			}
+			
 			//在这里添加自定义验证
 			
 			return disableSubmit(finalResult,'submitButton');

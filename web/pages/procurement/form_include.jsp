@@ -48,6 +48,19 @@
 	
 	<tr>	
 		<td class="tdLabel">
+			<%=Procurement.ALIAS_UNIT%>:
+		</td>		
+		<td>
+		<form:select path="unit" id="unit">
+			<form:option value="1" >吨</form:option>
+			<form:option value="2" >批</form:option>
+		</form:select>
+		<font color='red'><form:errors path="unit"/></font>
+		</td>
+	</tr>	
+	
+	<tr>	
+		<td class="tdLabel">
 			<%=Procurement.ALIAS_REMAINED_AMOUNT%>:
 		</td>		
 		<td>

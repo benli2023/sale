@@ -13,6 +13,7 @@
         <result property="prodIdTxt" column="pro1_prodctdesc"/>
          <result property="procurementDate" column="procurementDate"/>
          <result property="amount" column="amount"/>
+         <result property="unit" column="unit"/>
          <result property="remainedAmount" column="remainedAmount"/>
          <result property="unitPrice" column="unitPrice"/>
          <result property="freightage" column="freightage"/>
@@ -33,7 +34,7 @@
 	<!-- 用于select查询公用抽取的列 -->
 	<sql id="Procurement.columns">
 	    <![CDATA[
-         pro0.procurementId , pro0.procurementName , pro0.prodId , pro0.procurementDate , pro0.amount , pro0.remainedAmount , pro0.unitPrice , pro0.freightage , pro0.loadFee , pro0.carNumber , pro0.driver , pro0.driverTel , pro0.updateDate , pro0.createdDate , pro0.updateId , pro0.createId , pro0.transportId  , pro1.prodctDesc as pro1_prodctdesc, use2.userName as use2_username, use3.userName as use3_username, tra4.driverTel as tra4_drivertel
+         pro0.procurementId , pro0.procurementName , pro0.prodId , pro0.procurementDate , pro0.amount , pro0.unit , pro0.remainedAmount , pro0.unitPrice , pro0.freightage , pro0.loadFee , pro0.carNumber , pro0.driver , pro0.driverTel , pro0.updateDate , pro0.createdDate , pro0.updateId , pro0.createId , pro0.transportId  , pro1.prodctDesc as pro1_prodctdesc, use2.userName as use2_username, use3.userName as use3_username, tra4.driverTel as tra4_drivertel
         
 	    ]]>
 	</sql>
@@ -46,6 +47,7 @@
         	prodId ,
         	procurementDate ,
         	amount ,
+        	unit ,
         	remainedAmount ,
         	unitPrice ,
         	freightage ,
@@ -64,6 +66,7 @@
         	#prodId# ,
         	#procurementDate# ,
         	#amount# ,
+        	#unit# ,
         	#remainedAmount# ,
         	#unitPrice# ,
         	#freightage# ,
@@ -96,6 +99,7 @@
 	        prodId = #prodId# ,
 	        procurementDate = #procurementDate# ,
 	        amount = #amount# ,
+	        unit = #unit# ,
 	        remainedAmount = #remainedAmount# ,
 	        unitPrice = #unitPrice# ,
 	        freightage = #freightage# ,
@@ -149,6 +153,7 @@
 		       <isNotEmpty prepend="AND" property="amount">
 		              pro0.amount = #amount#
 		       </isNotEmpty>
+		       <isNotEqual	prepend="AND" property="unit" compareValue="-1">  pro0.unit = #unit#</isNotEqual>	
 		       <isNotEmpty prepend="AND" property="remainedAmount">
 		              pro0.remainedAmount = #remainedAmount#
 		       </isNotEmpty>

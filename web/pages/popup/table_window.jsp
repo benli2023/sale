@@ -33,6 +33,7 @@
         	var dataGridId='#userGrid';
         	var searchFieldId="#q";
         	var searchButtonId="#query";
+        	var addButtonId="#addRecord";
             $(dataGridId).omGrid({
                 dataSource : dataUrl+'?q=',
                 width : 500,
@@ -54,6 +55,13 @@
                 }
             });
             
+            $(addButtonId).omButton({
+              onClick:function(e) {
+                   openWindow("google","https://www.google.com");
+                }
+            
+            });
+            
         	function onKeyEnter(event) {
         		var searchOnEnter=true;
         		if(searchOnEnter) {
@@ -72,6 +80,12 @@
         	
         	window.onKeyEnter=onKeyEnter;
         });
+        
+        
+        function openWindow(name,url,height,width) {
+              window.open(url,name,'height=700,width=800,menubar=no');
+        }
+        
     </script>
     <table style="width:100%;height:100%">
         <tbody><tr valign="top">
@@ -80,6 +94,7 @@
 			        查询条件(模糊查询)：
 			        <input id="q" onkeyup="onKeyEnter(event)" autocomplete="off"/>
 			       <input id="query" type="submit" value="查询" />
+			       <input id="addRecord" type="submit" value="添加" />
 			    </div>
 				<table id="userGrid"></div>
             </td>

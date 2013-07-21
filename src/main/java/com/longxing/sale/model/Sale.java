@@ -48,6 +48,7 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 	public static final String ALIAS_SALE_ID = "出售ID";
 	public static final String ALIAS_CUST_ID = "客户ID";
 	public static final String ALIAS_AMOUNT = "数量";
+	public static final String ALIAS_UNIT = "单位";
 	public static final String ALIAS_CUST_NAME = "客户名称";
 	public static final String ALIAS_CUST_TEL = "客户电话";
 	public static final String ALIAS_UNIT_PRICE = "售出单价";
@@ -92,6 +93,15 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 	
 	
 	private java.lang.Integer amount;
+	
+	
+    /**
+     * 单位       db_column: unit 
+     */ 	
+	
+	
+	
+	private java.lang.Integer unit;
 	
 	
     /**
@@ -260,6 +270,13 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 	
 	public java.lang.Integer getAmount() {
 		return this.amount;
+	}
+	public void setUnit(java.lang.Integer value) {
+		this.unit = value;
+	}
+	
+	public java.lang.Integer getUnit() {
+		return this.unit;
 	}
 	public void setCustName(java.lang.String value) {
 		this.custName = value;
@@ -453,6 +470,7 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 			.append("SaleId",getSaleId())
 			.append("CustId",getCustId())
 			.append("Amount",getAmount())
+			.append("Unit",getUnit())
 			.append("CustName",getCustName())
 			.append("CustTel",getCustTel())
 			.append("UnitPrice",getUnitPrice())

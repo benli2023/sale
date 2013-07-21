@@ -31,6 +31,10 @@
 				<td><c:out value='${procurement.amount}'/></td>
 			</tr>
 			<tr>	
+				<td class="tdLabel"><%=Procurement.ALIAS_UNIT%></td>	
+				<td><c:out value='${procurement.unit}'/></td>
+			</tr>
+			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_REMAINED_AMOUNT%></td>	
 				<td><c:out value='${procurement.remainedAmount}'/></td>
 			</tr>

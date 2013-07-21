@@ -49,6 +49,14 @@
 					</td>
 				</tr>	
 				<tr>	
+					<td class="tdLabel"><%=Procurement.ALIAS_UNIT%></td>		
+					<td>
+						<select name="unit">
+							<option value="1" <c:if test="${query.unit==1}">selected</c:if>>吨</option>
+							<option value="2" <c:if test="${query.unit==2}">selected</c:if>>批</option>
+							<option value="-1" <c:if test="${query.unit==-1}">selected</c:if>>不限</option>
+						</select>
+					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_REMAINED_AMOUNT%></td>		
 					<td>
 						<input value="${query.remainedAmount}" id="remainedAmount" name="remainedAmount" maxlength="10"  class="validate-integer max-value-2147483647"/>
@@ -61,12 +69,12 @@
 					<td>
 						<input value="${query.freightage}" id="freightage" name="freightage" maxlength="10"  class="validate-number "/>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Procurement.ALIAS_LOAD_FEE%></td>		
 					<td>
 						<input value="${query.loadFee}" id="loadFee" name="loadFee" maxlength="10"  class="validate-number "/>
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Procurement.ALIAS_CAR_NUMBER%></td>		
 					<td>
 						<input value="${query.carNumber}" id="carNumber" name="carNumber" maxlength="32"  class=""/>
@@ -79,13 +87,13 @@
 					<td>
 						<input value="${query.driverTel}" id="driverTel" name="driverTel" maxlength="32"  class=""/>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Procurement.ALIAS_UPDATE_DATE%></td>		
 					<td>
 						<input value="<fmt:formatDate value='${query.updateDateBegin}' pattern='<%=Procurement.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_UPDATE_DATE%>'})" id="updateDateBegin" name="updateDateBegin"   />
 						<input value="<fmt:formatDate value='${query.updateDateEnd}' pattern='<%=Procurement.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_UPDATE_DATE%>'})" id="updateDateEnd" name="updateDateEnd"   />
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Procurement.ALIAS_CREATED_DATE%></td>		
 					<td>
 						<input value="<fmt:formatDate value='${query.createdDateBegin}' pattern='<%=Procurement.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_CREATED_DATE%>'})" id="createdDateBegin" name="createdDateBegin"   />
@@ -101,6 +109,8 @@
 						<yun:button-edit name="createIdTxt" hiddenName="createId" id="procurement_createId" txtVal="${query.createIdTxt}"  hiddenVal="${query.createId}" width="130"  profileId="common"/> 
 						
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Procurement.ALIAS_TRANSPORT_ID%></td>		
 					<td>
 						<yun:button-edit name="transportIdTxt" hiddenName="transportId" id="procurement_transportId" txtVal="${query.transportIdTxt}"  hiddenVal="${query.transportId}" width="130"  profileId="common"/> 
@@ -135,6 +145,7 @@
 				<th sortColumn="prodId" ><%=Procurement.ALIAS_PROD_ID%></th>
 				<th sortColumn="procurementDate" ><%=Procurement.ALIAS_PROCUREMENT_DATE%></th>
 				<th sortColumn="amount" ><%=Procurement.ALIAS_AMOUNT%></th>
+				<th sortColumn="unit" ><%=Procurement.ALIAS_UNIT%></th>
 				<th sortColumn="remainedAmount" ><%=Procurement.ALIAS_REMAINED_AMOUNT%></th>
 				<th sortColumn="unitPrice" ><%=Procurement.ALIAS_UNIT_PRICE%></th>
 				<th sortColumn="freightage" ><%=Procurement.ALIAS_FREIGHTAGE%></th>
@@ -163,6 +174,7 @@
 				<td><c:out value='${item.prodIdTxt}'/>&nbsp;</td>
 				<td><c:out value='${item.procurementDateString}'/>&nbsp;</td>
 				<td><c:out value='${item.amount}'/>&nbsp;</td>
+				<td><c:choose><c:when test="${item.unit==1}">吨</c:when><c:when test="${item.unit==2}">批</c:when></c:choose></td>
 				<td><c:out value='${item.remainedAmount}'/>&nbsp;</td>
 				<td><c:out value='${item.unitPrice}'/>&nbsp;</td>
 				<td><c:out value='${item.freightage}'/>&nbsp;</td>

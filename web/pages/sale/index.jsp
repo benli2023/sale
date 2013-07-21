@@ -38,16 +38,24 @@
 					<td>
 						<input value="${query.amount}" id="amount" name="amount" maxlength="10"  class="validate-integer max-value-2147483647"/>
 					</td>
+					<td class="tdLabel"><%=Sale.ALIAS_UNIT%></td>		
+					<td>
+						<select name="unit">
+							<option value="1" <c:if test="${query.unit==1}">selected</c:if>>吨</option>
+							<option value="2" <c:if test="${query.unit==2}">selected</c:if>>批</option>
+							<option value="-1" <c:if test="${query.unit==-1}">selected</c:if>>不限</option>
+						</select>
+					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_CUST_NAME%></td>		
 					<td>
 						<input value="${query.custName}" id="custName" name="custName" maxlength="64"  class=""/>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_CUST_TEL%></td>		
 					<td>
 						<input value="${query.custTel}" id="custTel" name="custTel" maxlength="128"  class=""/>
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_UNIT_PRICE%></td>		
 					<td>
 						<input value="${query.unitPrice}" id="unitPrice" name="unitPrice" maxlength="10"  class="validate-integer "/>
@@ -60,12 +68,12 @@
 					<td>
 						<input value="${query.unPaid}" id="unPaid" name="unPaid" maxlength="10"  class="validate-number "/>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_OTHER_FEE%></td>		
 					<td>
 						<input value="${query.otherFee}" id="otherFee" name="otherFee" maxlength="10"  class="validate-number "/>
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_PROFIT%></td>		
 					<td>
 						<input value="${query.profit}" id="profit" name="profit" maxlength="10"  class="validate-number "/>
@@ -84,13 +92,13 @@
 						<yun:button-edit name="createIdTxt" hiddenName="createId" id="sale_createId" txtVal="${query.createIdTxt}"  hiddenVal="${query.createId}" width="130"  profileId="common"/> 
 						
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_TRANSPORT_ID%></td>		
 					<td>
 						<yun:button-edit name="transportIdTxt" hiddenName="transportId" id="sale_transportId" txtVal="${query.transportIdTxt}"  hiddenVal="${query.transportId}" width="130"  profileId="common"/> 
 						
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_CAR_NUMBER%></td>		
 					<td>
 						<input value="${query.carNumber}" id="carNumber" name="carNumber" maxlength="32"  class=""/>
@@ -103,13 +111,13 @@
 					<td>
 						<input value="${query.driverTel}" id="driverTel" name="driverTel" maxlength="32"  class=""/>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_UPDATE_DATE%></td>		
 					<td>
 						<input value="<fmt:formatDate value='${query.updateDateBegin}' pattern='<%=Sale.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_UPDATE_DATE%>'})" id="updateDateBegin" name="updateDateBegin"   />
 						<input value="<fmt:formatDate value='${query.updateDateEnd}' pattern='<%=Sale.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_UPDATE_DATE%>'})" id="updateDateEnd" name="updateDateEnd"   />
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_CREATED_DATE%></td>		
 					<td>
 						<input value="<fmt:formatDate value='${query.createdDateBegin}' pattern='<%=Sale.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_CREATED_DATE%>'})" id="createdDateBegin" name="createdDateBegin"   />
@@ -147,6 +155,7 @@
 				<!-- 排序时为th增加sortColumn即可,new SimpleTable('sortColumns')会为tableHeader自动增加排序功能; -->
 				<th sortColumn="custId" ><%=Sale.ALIAS_CUST_ID%></th>
 				<th sortColumn="amount" ><%=Sale.ALIAS_AMOUNT%></th>
+				<th sortColumn="unit" ><%=Sale.ALIAS_UNIT%></th>
 				<th sortColumn="custName" ><%=Sale.ALIAS_CUST_NAME%></th>
 				<th sortColumn="custTel" ><%=Sale.ALIAS_CUST_TEL%></th>
 				<th sortColumn="unitPrice" ><%=Sale.ALIAS_UNIT_PRICE%></th>
@@ -177,6 +186,7 @@
 				
 				<td><c:out value='${item.custIdTxt}'/>&nbsp;</td>
 				<td><c:out value='${item.amount}'/>&nbsp;</td>
+				<td><c:choose><c:when test="${item.unit==1}">吨</c:when><c:when test="${item.unit==2}">批</c:when></c:choose></td>
 				<td><c:out value='${item.custName}'/>&nbsp;</td>
 				<td><c:out value='${item.custTel}'/>&nbsp;</td>
 				<td><c:out value='${item.unitPrice}'/>&nbsp;</td>

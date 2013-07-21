@@ -11,6 +11,7 @@
         <result property="custId" column="custId"/>
         <result property="custIdTxt" column="cus1_telephone"/>
          <result property="amount" column="amount"/>
+         <result property="unit" column="unit"/>
          <result property="custName" column="custName"/>
          <result property="custTel" column="custTel"/>
          <result property="unitPrice" column="unitPrice"/>
@@ -35,7 +36,7 @@
 	<!-- 用于select查询公用抽取的列 -->
 	<sql id="Sale.columns">
 	    <![CDATA[
-         sal0.saleId , sal0.custId , sal0.amount , sal0.custName , sal0.custTel , sal0.unitPrice , sal0.paid , sal0.unPaid , sal0.otherFee , sal0.profit , sal0.paymentStatus , sal0.createId , sal0.transportId , sal0.carNumber , sal0.driver , sal0.driverTel , sal0.updateDate , sal0.createdDate , sal0.updateId  , cus1.telephone as cus1_telephone, use2.userName as use2_username, tra3.driverTel as tra3_drivertel, use4.userName as use4_username
+         sal0.saleId , sal0.custId , sal0.amount , sal0.unit , sal0.custName , sal0.custTel , sal0.unitPrice , sal0.paid , sal0.unPaid , sal0.otherFee , sal0.profit , sal0.paymentStatus , sal0.createId , sal0.transportId , sal0.carNumber , sal0.driver , sal0.driverTel , sal0.updateDate , sal0.createdDate , sal0.updateId  , cus1.telephone as cus1_telephone, use2.userName as use2_username, tra3.driverTel as tra3_drivertel, use4.userName as use4_username
         
 	    ]]>
 	</sql>
@@ -46,6 +47,7 @@
         	saleId ,
         	custId ,
         	amount ,
+        	unit ,
         	custName ,
         	custTel ,
         	unitPrice ,
@@ -66,6 +68,7 @@
         	#saleId# ,
         	#custId# ,
         	#amount# ,
+        	#unit# ,
         	#custName# ,
         	#custTel# ,
         	#unitPrice# ,
@@ -100,6 +103,7 @@
         UPDATE sale SET
 	        custId = #custId# ,
 	        amount = #amount# ,
+	        unit = #unit# ,
 	        custName = #custName# ,
 	        custTel = #custTel# ,
 	        unitPrice = #unitPrice# ,
@@ -148,6 +152,7 @@
 		       <isNotEmpty prepend="AND" property="amount">
 		              sal0.amount = #amount#
 		       </isNotEmpty>
+		       <isNotEqual	prepend="AND" property="unit" compareValue="-1">  sal0.unit = #unit#</isNotEqual>	
 		       <isNotEmpty prepend="AND" property="custName">
 		              sal0.custName = #custName#
 		       </isNotEmpty>

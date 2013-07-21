@@ -47,6 +47,8 @@ public class SaleQuery extends BaseQuery implements Serializable {
 	private String custIdTxt;
 	/** 数量 */
 	private java.lang.Integer amount;
+	/** 单位 */
+	private java.lang.Integer unit=-1;
 	/** 客户名称 */
 	private java.lang.String custName;
 	/** 客户电话 */
@@ -116,6 +118,14 @@ public class SaleQuery extends BaseQuery implements Serializable {
 	
 	public void setAmount(java.lang.Integer value) {
 		this.amount = value;
+	}
+	
+	public java.lang.Integer getUnit() {
+		return this.unit;
+	}
+	
+	public void setUnit(java.lang.Integer value) {
+		this.unit = value;
 	}
 	
 	public java.lang.String getCustName() {

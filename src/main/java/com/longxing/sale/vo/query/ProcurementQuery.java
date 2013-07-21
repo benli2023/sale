@@ -52,6 +52,8 @@ public class ProcurementQuery extends BaseQuery implements Serializable {
 	private java.util.Date procurementDateEnd;
 	/** 数量 */
 	private java.lang.Integer amount;
+	/** 单位 */
+	private java.lang.Integer unit=-1;
 	/** 剩余数量 */
 	private java.lang.Integer remainedAmount;
 	/** 单价 */
@@ -137,6 +139,14 @@ public class ProcurementQuery extends BaseQuery implements Serializable {
 	
 	public void setAmount(java.lang.Integer value) {
 		this.amount = value;
+	}
+	
+	public java.lang.Integer getUnit() {
+		return this.unit;
+	}
+	
+	public void setUnit(java.lang.Integer value) {
+		this.unit = value;
 	}
 	
 	public java.lang.Integer getRemainedAmount() {

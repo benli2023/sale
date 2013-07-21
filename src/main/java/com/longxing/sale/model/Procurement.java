@@ -50,6 +50,7 @@ public class Procurement extends BaseEntity implements java.io.Serializable {
 	public static final String ALIAS_PROD_ID = "产品ID";
 	public static final String ALIAS_PROCUREMENT_DATE = "采购日期";
 	public static final String ALIAS_AMOUNT = "数量";
+	public static final String ALIAS_UNIT = "单位";
 	public static final String ALIAS_REMAINED_AMOUNT = "剩余数量";
 	public static final String ALIAS_UNIT_PRICE = "单价";
 	public static final String ALIAS_FREIGHTAGE = "运费";
@@ -109,6 +110,15 @@ public class Procurement extends BaseEntity implements java.io.Serializable {
 	
 	
 	private java.lang.Integer amount;
+	
+	
+    /**
+     * 单位       db_column: unit 
+     */ 	
+	
+	
+	
+	private java.lang.Integer unit;
 	
 	
     /**
@@ -262,6 +272,13 @@ public class Procurement extends BaseEntity implements java.io.Serializable {
 	
 	public java.lang.Integer getAmount() {
 		return this.amount;
+	}
+	public void setUnit(java.lang.Integer value) {
+		this.unit = value;
+	}
+	
+	public java.lang.Integer getUnit() {
+		return this.unit;
 	}
 	public void setRemainedAmount(java.lang.Integer value) {
 		this.remainedAmount = value;
@@ -429,6 +446,7 @@ public class Procurement extends BaseEntity implements java.io.Serializable {
 			.append("ProdId",getProdId())
 			.append("ProcurementDate",getProcurementDate())
 			.append("Amount",getAmount())
+			.append("Unit",getUnit())
 			.append("RemainedAmount",getRemainedAmount())
 			.append("UnitPrice",getUnitPrice())
 			.append("Freightage",getFreightage())

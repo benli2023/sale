@@ -23,6 +23,10 @@
 				<td><c:out value='${sale.amount}'/></td>
 			</tr>
 			<tr>	
+				<td class="tdLabel"><%=Sale.ALIAS_UNIT%></td>	
+				<td><c:out value='${sale.unit}'/></td>
+			</tr>
+			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_CUST_NAME%></td>	
 				<td><c:out value='${sale.custName}'/></td>
 			</tr>
