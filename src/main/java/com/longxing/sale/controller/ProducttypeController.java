@@ -113,16 +113,17 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 	public String query(ModelMap model, String fieldId,String profileId) throws Exception {
 		model.addAttribute("fieldId", fieldId);
 		model.addAttribute("jsonURL", "/producttype/index.json");
+		model.addAttribute("jsonAddURL", "/producttype/new?postmode=ajax");
 		model.addAttribute("pageTitle",Producttype.TABLE_ALIAS);
 		ColModelProfile colModelProfile=colModelFactory.getColModel("Producttype-colmodel.xml",profileId);
 		model.addAttribute("colModelList", colModelProfile.getColModels());
 		return "/popup/table_window";
 	}
 	
-	@RequestMapping({ "/ajaxpost" })
+	@RequestMapping({ "/save.json" })
 	@ResponseBody
 	public Response ajaxPost(ModelMap model, @Valid Producttype producttype, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return ajaxHelper.save(producttypeManager, producttype, errors);
+		return ajaxHelper.save(producttypeManager, producttype, errors, request, response);
 	}
 	
 	/** 显示 */
@@ -137,11 +138,11 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 	@RequestMapping(value="/new")
 	public String _new(ModelMap model,Producttype producttype,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		model.addAttribute("producttype",producttype);
-		String ajaxMethod = request.getParameter(ControllerConstants.NEW_PAGE_AJAX_INDTR);
-		if (StringUtils.hasLength(ajaxMethod)) {
-			model.addAttribute(ControllerConstants.NEW_PAGE_AJAX_INDTR, ajaxMethod);
+		String postMode = request.getParameter(ControllerConstants.POST_MODE);
+		if (StringUtils.hasLength(postMode)) {
+			model.addAttribute(ControllerConstants.POST_MODE, postMode);
 		} else {
-			model.addAttribute(ControllerConstants.NEW_PAGE_AJAX_INDTR, false);
+			model.addAttribute(ControllerConstants.POST_MODE, false);
 		}
 		return "/producttype/new";
 	}

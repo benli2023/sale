@@ -27,10 +27,10 @@
     </style>
     <!-- view_source_begin -->
     <script type="text/javascript">
+    	var dataGridId='#userGrid';
         $(document).ready(function() {
         	var parentFieldId='${fieldId}';
-        	var dataUrl='${ctx}${jsonURL}'; 
-        	var dataGridId='#userGrid';
+        	var dataUrl='${ctx}${jsonURL}';
         	var searchFieldId="#q";
         	var searchButtonId="#query";
         	var addButtonId="#addRecord";
@@ -57,7 +57,7 @@
             
             $(addButtonId).omButton({
               onClick:function(e) {
-                   openWindow("google","https://www.google.com");
+                   openWindow("Add",'${ctx}${jsonAddURL}');
                 }
             
             });
@@ -78,9 +78,16 @@
         		$(dataGridId).omGrid("setData", encodeURI(dataUrl+'?searchTerm='+$(searchFieldId).val()));
         	}
         	
+	        function  newItemCallback() {
+	         	$(dataGridId).omGrid('reload');
+	        }
+	        
+        	window.newItemCallback=newItemCallback;
         	window.onKeyEnter=onKeyEnter;
         });
         
+        
+     
         
         function openWindow(name,url,height,width) {
               window.open(url,name,'height=700,width=800,menubar=no');

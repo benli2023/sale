@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/commons/taglibs.jsp" %>
+<%@page import="com.github.springrest.constants.*" %>
 
 <rapid:override name="head">
+	<%@ include file="../../commons/noty-bottom-right-import.jsp" %>
 	<title><%=Producttype.TABLE_ALIAS%>新增</title>
 </rapid:override>
 
@@ -17,25 +19,43 @@
 	</form:form>
 	
 	<script>
+			function notify(msg,type) {
+				var n = noty({text: msg,type:type,timeout:3000,layout: 'bottomRight'});
+			}
 		
 		new Validation(document.forms[0],{onSubmit:true,onFormValidate : function(result,form) {
 			var finalResult = result;
-			
-			var ajaxmethod=${ajaxmethod};
-			
-			if(ajaxmethod&&finalResult) {
+			var ajaxmethod='<%=request.getAttribute(ControllerConstants.POST_MODE)%>';
+			if(ajaxmethod=='ajax'&&finalResult) {
 				var data = $(form).serialize();
 				$.ajax({
-					  url: "${ctx}/producttype/ajaxpost",
+					  url: "${ctx}/producttype/save.json",
 					  type: "POST",
 					  data: data,
 					  success: function(resp){
 					        if(resp.statusCode=='000') {
-					        	alert("success");
+					        	notify("success!",'success');
+					        	if(window.opener) {
+					        		if(window.opener.newItemCallback) {
+					        			window.opener.newItemCallback();
+					        		}
+					        		window.close();
+					        	}
 					        }else if(resp.statusCode=='E001') {
-					        	alert(resp.validationError);
+					        	if(resp.validationError) {
+					        		if(resp.validationError.globalError) {
+					        			notify("Object: "+resp.validationError.globalError.objectName+" Error:"+resp.validationError.globalError.errorMessage);
+					        		}
+					        		if(resp.validationError.fieldErrors) {
+					        		    var fieldErrors=resp.validationError.fieldErrors;
+					        			for(var i=0;i<fieldErrors.length;i++) {
+					        				 var fieldError=fieldErrors[i];
+					        				 notify("Field Name: "+fieldError.fieldName+" Error:"+fieldError.errorMessages,'error');
+					        			}
+					        		}
+					        	}
 					        }else if(resp.statusCode=='E001') {
-					        	alert(resp.genericError);
+					        	 notify(resp.genericError,'error');
 					        }
 					    }
 				});
@@ -43,7 +63,7 @@
 			
 			}else {
 			
-				alert(ajaxmethod);
+				//alert(ajaxmethod);
 			
 			}
 			
