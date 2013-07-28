@@ -36,7 +36,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.github.springrest.base.ColModelProfile;
+import com.github.springrest.base.api.Response;
+import com.github.springrest.util.AjaxHelper;
 import com.github.springrest.util.ColModelFactory;
+import com.longxing.sale.model.Producttype;
 
 import cn.org.rapid_framework.page.Page;
 import cn.org.rapid_framework.web.scope.Flash;
@@ -73,6 +76,12 @@ public class TransportController extends BaseRestSpringController<Transport,java
 
 	public void setColModelFactory(ColModelFactory colModelFactory) {
 		this.colModelFactory = colModelFactory;
+	}
+	
+	private AjaxHelper ajaxHelper;
+
+	public void setAjaxHelper(AjaxHelper ajaxHelper) {
+		this.ajaxHelper = ajaxHelper;
 	}
 	
 	private final String LIST_ACTION = "redirect:/transport";
@@ -118,12 +127,24 @@ public class TransportController extends BaseRestSpringController<Transport,java
 	public String query(ModelMap model, String fieldId,String profileId) throws Exception {
 		model.addAttribute("fieldId", fieldId);
 		model.addAttribute("jsonURL", "/transport/index.json");
+		model.addAttribute("jsonAddURL", "/transport/new?postmode=ajax");
 		model.addAttribute("pageTitle",Transport.TABLE_ALIAS);
 		ColModelProfile colModelProfile=colModelFactory.getColModel("Transport-colmodel.xml",profileId);
 		model.addAttribute("colModelList", colModelProfile.getColModels());
 		return "/popup/table_window";
 	}
 	
+	@RequestMapping({"/save.json"})
+	@ResponseBody
+	public Response ajaxSave(ModelMap model, @Valid Transport transport, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return ajaxHelper.save(this.transportManager, transport, errors, request, response);
+	}
+	
+	@RequestMapping({"/update.json"})
+	@ResponseBody
+	public Response ajaxUpdate(ModelMap model, @Valid Transport transport, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return ajaxHelper.update(this.transportManager, transport, errors, request, response);
+	}
 	
 	/** 显示 */
 	@RequestMapping(value="/{id}")

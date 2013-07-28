@@ -8,9 +8,13 @@
 
 package com.longxing.sale.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
+
+import com.github.springrest.base.BaseRestSpringController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +24,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,17 +34,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.org.rapid_framework.page.Page;
-import cn.org.rapid_framework.web.scope.Flash;
 
-import com.github.springrest.base.BaseRestSpringController;
 import com.github.springrest.base.ColModelProfile;
 import com.github.springrest.base.api.Response;
 import com.github.springrest.util.AjaxHelper;
 import com.github.springrest.util.ColModelFactory;
-import com.longxing.sale.model.Product;
-import com.longxing.sale.service.ProductManager;
-import com.longxing.sale.vo.query.ProductQuery;
+import com.longxing.sale.model.Producttype;
+
+import cn.org.rapid_framework.page.Page;
+import cn.org.rapid_framework.web.scope.Flash;
+
+import java.util.*;
+
+import com.github.springrest.base.*;
+import com.github.springrest.util.*;
+import org.codehaus.jackson.annotate.*;
+import cn.org.rapid_framework.util.*;
+import cn.org.rapid_framework.web.util.*;
+import cn.org.rapid_framework.page.*;
+import cn.org.rapid_framework.page.impl.*;
+
+import com.longxing.sale.model.*;
+import com.longxing.sale.dao.*;
+import com.longxing.sale.service.*;
+import com.longxing.sale.vo.query.*;
 
 /**
  * @author badqiu email:badqiu(a)gmail.com
@@ -59,14 +77,13 @@ public class ProductController extends BaseRestSpringController<Product,java.lan
 	public void setColModelFactory(ColModelFactory colModelFactory) {
 		this.colModelFactory = colModelFactory;
 	}
-
+	
 	private AjaxHelper ajaxHelper;
-	
-	
+
 	public void setAjaxHelper(AjaxHelper ajaxHelper) {
 		this.ajaxHelper = ajaxHelper;
 	}
-
+	
 	private final String LIST_ACTION = "redirect:/product";
 	
 	/** 
@@ -117,16 +134,22 @@ public class ProductController extends BaseRestSpringController<Product,java.lan
 		return "/popup/table_window";
 	}
 	
-	@RequestMapping({ "/save.json" })
+	@RequestMapping({"/save.json"})
 	@ResponseBody
-	public Response ajaxPost(ModelMap model, @Valid Product produc, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return ajaxHelper.save(productManager, produc, errors, request, response);
+	public Response ajaxSave(ModelMap model, @Valid Product product, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return ajaxHelper.save(this.productManager, product, errors, request, response);
+	}
+	
+	@RequestMapping({"/update.json"})
+	@ResponseBody
+	public Response ajaxUpdate(ModelMap model, @Valid Product product, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return ajaxHelper.update(this.productManager, product, errors, request, response);
 	}
 	
 	/** 显示 */
 	@RequestMapping(value="/{id}")
 	public String show(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
-		Product product = productManager.getById(id);
+		Product product = (Product)productManager.getById(id);
 		model.addAttribute("product",product);
 		return "/product/show";
 	}
@@ -153,7 +176,7 @@ public class ProductController extends BaseRestSpringController<Product,java.lan
 	/** 编辑 */
 	@RequestMapping(value="/{id}/edit")
 	public String edit(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
-		Product product = productManager.getById(id);
+		Product product = (Product)productManager.getById(id);
 		model.addAttribute("product",product);
 		return "/product/edit";
 	}

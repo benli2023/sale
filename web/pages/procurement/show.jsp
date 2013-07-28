@@ -8,8 +8,16 @@
 
 <rapid:override name="content">
 	<form:form modelAttribute="procurement"  >
-		<input type="button" value="返回列表" onclick="window.location='${ctx}/procurement'"/>
-		<input type="button" value="后退" onclick="history.back();"/>
+		<c:choose>
+			<c:when test="${empty postmode}">
+				<input type="button" value="返回列表" onclick="window.location='${ctx}/procurement'"/>
+				<input type="button" value="后退" onclick="history.back();"/>
+			</c:when>
+			<c:otherwise>
+				<input type="button" value="返回列表" onclick="window.location='${ctx}/procurement?postmode=<c:out value="${postmode}" />'"/>
+				<input type="button" value="关闭" onclick="window.close()"/>
+			</c:otherwise>
+		</c:choose>
 		
 		<input type="hidden" id="procurementId" name="procurementId" value="${procurement.procurementId}"/>
 	

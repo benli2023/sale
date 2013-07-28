@@ -2,6 +2,7 @@
 <%@ include file="/commons/taglibs.jsp" %>
 
 <rapid:override name="head">
+	<%@ include file="../../commons/noty-bottom-right-import.jsp" %>
 	<title><%=Transport.TABLE_ALIAS%>编辑</title>
 </rapid:override>
 
@@ -11,20 +12,32 @@
 		<input type="button" value="返回列表" onclick="window.location='${ctx}/transport'"/>
 		<input type="button" value="后退" onclick="history.back();"/>
 		
+		<c:choose>
+				<c:when test="${empty postmode}">
+					<input type="button" value="返回列表" onclick="window.location='${ctx}/transport'"/>
+					<input type="button" value="后退" onclick="history.back();"/>
+				</c:when>
+				<c:otherwise>
+					<input type="button" value="返回列表" onclick="window.location='${ctx}/transport?postmode=<c:out value="${postmode}" />'"/>
+					<input type="button" value="关闭" onclick="window.close()"/>
+				</c:otherwise>
+		</c:choose>
+		
 		<table class="formTable">
 		<%@ include file="form_include.jsp" %>
 		</table>
 	</form:form>
-	
+	<%@ include file="../../commons/ajaxpost-import.jsp" %>
 	<script>
-		
-		new Validation(document.forms[0],{onSubmit:true,onFormValidate : function(result,form) {
-			var finalResult = result;
-			
-			//在这里添加自定义验证
-			
-			return disableSubmit(finalResult,'submitButton');
-		}});
+			function getJsonUrl() {
+					return '${ctx}/transport/save.json';
+			}
+			function getPostMethod() {
+				return '${postmode}' ;
+			}
+			function validationCallback(form) {
+			   return true;
+			}
 	</script>
 	
 </rapid:override>

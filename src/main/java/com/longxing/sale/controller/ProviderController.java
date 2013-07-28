@@ -36,7 +36,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.github.springrest.base.ColModelProfile;
+import com.github.springrest.base.api.Response;
+import com.github.springrest.util.AjaxHelper;
 import com.github.springrest.util.ColModelFactory;
+import com.longxing.sale.model.Producttype;
 
 import cn.org.rapid_framework.page.Page;
 import cn.org.rapid_framework.web.scope.Flash;
@@ -73,6 +76,12 @@ public class ProviderController extends BaseRestSpringController<Provider,java.l
 
 	public void setColModelFactory(ColModelFactory colModelFactory) {
 		this.colModelFactory = colModelFactory;
+	}
+	
+	private AjaxHelper ajaxHelper;
+
+	public void setAjaxHelper(AjaxHelper ajaxHelper) {
+		this.ajaxHelper = ajaxHelper;
 	}
 	
 	private final String LIST_ACTION = "redirect:/provider";
@@ -118,12 +127,24 @@ public class ProviderController extends BaseRestSpringController<Provider,java.l
 	public String query(ModelMap model, String fieldId,String profileId) throws Exception {
 		model.addAttribute("fieldId", fieldId);
 		model.addAttribute("jsonURL", "/provider/index.json");
+		model.addAttribute("jsonAddURL", "/provider/new?postmode=ajax");
 		model.addAttribute("pageTitle",Provider.TABLE_ALIAS);
 		ColModelProfile colModelProfile=colModelFactory.getColModel("Provider-colmodel.xml",profileId);
 		model.addAttribute("colModelList", colModelProfile.getColModels());
 		return "/popup/table_window";
 	}
 	
+	@RequestMapping({"/save.json"})
+	@ResponseBody
+	public Response ajaxSave(ModelMap model, @Valid Provider provider, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return ajaxHelper.save(this.providerManager, provider, errors, request, response);
+	}
+	
+	@RequestMapping({"/update.json"})
+	@ResponseBody
+	public Response ajaxUpdate(ModelMap model, @Valid Provider provider, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return ajaxHelper.update(this.providerManager, provider, errors, request, response);
+	}
 	
 	/** 显示 */
 	@RequestMapping(value="/{id}")

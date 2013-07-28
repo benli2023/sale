@@ -21,6 +21,9 @@
 
 <rapid:override name="content">
 	<form id="queryForm" name="queryForm" method="get" style="display: inline;">
+	<c:if test="${!empty postmode}">
+		<input type="hidden" name="postmode" value="${postmode}"/>
+	</c:if>
 	<div class="queryPanel">
 		<fieldset>
 			<legend>搜索</legend>
@@ -42,9 +45,18 @@
 			</table>
 		</fieldset>
 		<div class="handleControl">
-			<input type="submit" class="stdButton" style="width:80px" value="查询" onclick="getReferenceForm(this).action='${ctx}/transport'"/>
-			<input type="button" class="stdButton" style="width:80px" value="新增" onclick="window.location = '${ctx}/transport/new'"/>
-			<input type="button" class="stdButton" style="width:80px" value="删除" onclick="doRestBatchDelete('${ctx}/transport','items',document.forms.queryForm)"/>
+			<c:choose>
+			<c:when test="${empty postmode}">
+				<input type="submit" class="stdButton" style="width:80px" value="查询" onclick="getReferenceForm(this).action='${ctx}/transport'"/>
+				<input type="button" class="stdButton" style="width:80px" value="新增" onclick="window.location = '${ctx}/transport/new'"/>
+				<input type="button" class="stdButton" style="width:80px" value="删除" onclick="doRestBatchDelete('${ctx}/transport','items',document.forms.queryForm)"/>
+			</c:when>
+			<c:otherwise>
+				<input type="submit" class="stdButton" style="width:80px" value="查询" onclick="getReferenceForm(this).action='${ctx}/transport?postmode=<c:out value="${postmode}" />'"/>
+				<input type="button" class="stdButton" style="width:80px" value="新增" onclick="window.location = '${ctx}/transport/new?postmode=<c:out value="${postmode}" />'"/>
+				<input type="button" class="stdButton" style="width:80px" value="删除" onclick="doRestBatchDelete('${ctx}/transport?postmode=<c:out value="${postmode}" />','items',document.forms.queryForm)"/>
+			</c:otherwise>
+		</c:choose>
 		<div>
 	
 	</div>
@@ -82,9 +94,19 @@
 				<td><c:out value='${item.carNumber}'/>&nbsp;</td>
 				<td><c:out value='${item.driverTel}'/>&nbsp;</td>
 				<td>
-					<a href="${ctx}/transport/${item.transportId}">查看</a>&nbsp;&nbsp;
-					<a href="${ctx}/transport/${item.transportId}/edit">修改</a>&nbsp;&nbsp;
-					<a href="${ctx}/transport/${item.transportId}" onclick="doRestDelete(this,'你确认删除?');return false;">删除</a>
+				<c:choose>
+					<c:when test="${empty postmode}">
+						<a href="${ctx}/transport/${item.transportId}">查看</a>&nbsp;&nbsp;
+						<a href="${ctx}/transport/${item.transportId}/edit">修改</a>&nbsp;&nbsp;
+						<a href="${ctx}/transport/${item.transportId}" onclick="doRestDelete(this,'你确认删除?');return false;">删除</a>
+					</c:when>
+					<c:otherwise >
+						<a href="${ctx}/transport/${item.transportId}?postmode=<c:out value="${postmode}" />">查看</a>&nbsp;&nbsp;
+						<a href="${ctx}/transport/${item.transportId}/edit?postmode=<c:out value="${postmode}" />">修改</a>&nbsp;&nbsp;
+						<a href="${ctx}/transport/${item.transportId}?postmode=<c:out value="${postmode}" />" onclick="doRestDelete(this,'你确认删除?');return false;">删除</a>
+					</c:otherwise>
+				</c:choose>
+					
 				</td>
 			  </tr>
 			  

@@ -9,6 +9,7 @@
 <rapid:override name="content">
 	<form:form method="post" action="${ctx}/producttype" modelAttribute="producttype" >
 		<input id="submitButton" name="submitButton" type="submit" value="提交" />
+
 		<c:choose>
 			<c:when test="${empty postmode}">
 				<input type="button" value="返回列表" onclick="window.location='${ctx}/producttype'"/>
@@ -19,17 +20,19 @@
 				<input type="button" value="关闭" onclick="window.close()"/>
 			</c:otherwise>
 		</c:choose>
+		
 		<table class="formTable">
 		<%@ include file="form_include.jsp" %>
 		</table>
-</form:form>
+	</form:form>
 	<%@ include file="../../commons/ajaxpost-import.jsp" %>
+	
 	<script>
 			function getJsonUrl() {
 					return '${ctx}/producttype/save.json';
 			}
 			function getPostMethod() {
-				return '${param.postmode}';
+				return '${postmode}' ;
 			}
 			function validationCallback(form) {
 			   return true;

@@ -8,8 +8,16 @@
 
 <rapid:override name="content">
 	<form:form modelAttribute="transport"  >
-		<input type="button" value="返回列表" onclick="window.location='${ctx}/transport'"/>
-		<input type="button" value="后退" onclick="history.back();"/>
+		<c:choose>
+			<c:when test="${empty postmode}">
+				<input type="button" value="返回列表" onclick="window.location='${ctx}/transport'"/>
+				<input type="button" value="后退" onclick="history.back();"/>
+			</c:when>
+			<c:otherwise>
+				<input type="button" value="返回列表" onclick="window.location='${ctx}/transport?postmode=<c:out value="${postmode}" />'"/>
+				<input type="button" value="关闭" onclick="window.close()"/>
+			</c:otherwise>
+		</c:choose>
 		
 		<input type="hidden" id="transportId" name="transportId" value="${transport.transportId}"/>
 	

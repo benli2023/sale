@@ -2,6 +2,7 @@
 <%@ include file="/commons/taglibs.jsp" %>
 
 <rapid:override name="head">
+	<%@ include file="../../commons/noty-bottom-right-import.jsp" %>
 	<%@ include file="../../commons/opera-maskui-dialog-import.jsp" %>
 	<link href="<c:url value="${ctx}/scripts/plugins/popup-input/popup-input.css"/>" type="text/css" rel="stylesheet">
 	<script type="text/javascript" src="${ctx}/scripts/plugins/popup-input/popup_selection.js"></script>
@@ -11,23 +12,34 @@
 <rapid:override name="content">
 	<form:form method="post" action="${ctx}/product" modelAttribute="product" >
 		<input id="submitButton" name="submitButton" type="submit" value="提交" />
-		<input type="button" value="返回列表" onclick="window.location='${ctx}/product'"/>
-		<input type="button" value="后退" onclick="history.back();"/>
+
+		<c:choose>
+			<c:when test="${empty postmode}">
+				<input type="button" value="返回列表" onclick="window.location='${ctx}/product'"/>
+				<input type="button" value="后退" onclick="history.back();"/>
+			</c:when>
+			<c:otherwise>
+				<input type="button" value="返回列表" onclick="window.location='${ctx}/product?postmode=<c:out value="${postmode}" />'"/>
+				<input type="button" value="关闭" onclick="window.close()"/>
+			</c:otherwise>
+		</c:choose>
 		
 		<table class="formTable">
 		<%@ include file="form_include.jsp" %>
 		</table>
 	</form:form>
+	<%@ include file="../../commons/ajaxpost-import.jsp" %>
 	
 	<script>
-		
-		new Validation(document.forms[0],{onSubmit:true,onFormValidate : function(result,form) {
-			var finalResult = result;
-			
-			//在这里添加自定义验证
-			
-			return disableSubmit(finalResult,'submitButton');
-		}});
+			function getJsonUrl() {
+					return '${ctx}/product/save.json';
+			}
+			function getPostMethod() {
+				return '${postmode}' ;
+			}
+			function validationCallback(form) {
+			   return true;
+			}
 	</script>
 	
 	<script type="text/javascript">

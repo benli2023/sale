@@ -36,7 +36,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.github.springrest.base.ColModelProfile;
+import com.github.springrest.base.api.Response;
+import com.github.springrest.util.AjaxHelper;
 import com.github.springrest.util.ColModelFactory;
+import com.longxing.sale.model.Producttype;
 
 import cn.org.rapid_framework.page.Page;
 import cn.org.rapid_framework.web.scope.Flash;
@@ -69,6 +72,12 @@ public class SaleController extends BaseRestSpringController<Sale,java.lang.Long
 	protected static final String DEFAULT_SORT_COLUMNS = null; 
 	
 	private SaleManager saleManager;
+	
+	private AjaxHelper ajaxHelper;
+
+	public void setAjaxHelper(AjaxHelper ajaxHelper) {
+		this.ajaxHelper = ajaxHelper;
+	}
 	
 	private final String LIST_ACTION = "redirect:/sale";
 	
@@ -103,6 +112,17 @@ public class SaleController extends BaseRestSpringController<Sale,java.lang.Long
 	}
 
 	
+	@RequestMapping({"/save.json"})
+	@ResponseBody
+	public Response ajaxSave(ModelMap model, @Valid Sale sale, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return ajaxHelper.save(this.saleManager, sale, errors, request, response);
+	}
+	
+	@RequestMapping({"/update.json"})
+	@ResponseBody
+	public Response ajaxUpdate(ModelMap model, @Valid Sale sale, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return ajaxHelper.update(this.saleManager, sale, errors, request, response);
+	}
 	
 	/** 显示 */
 	@RequestMapping(value="/{id}")

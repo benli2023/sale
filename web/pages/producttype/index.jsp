@@ -41,8 +41,7 @@
 			</table>
 		</fieldset>
 		<div class="handleControl">
-		
-		<c:choose>
+			<c:choose>
 			<c:when test="${empty postmode}">
 				<input type="submit" class="stdButton" style="width:80px" value="查询" onclick="getReferenceForm(this).action='${ctx}/producttype'"/>
 				<input type="button" class="stdButton" style="width:80px" value="新增" onclick="window.location = '${ctx}/producttype/new'"/>
@@ -89,7 +88,7 @@
 				<td><c:out value='${item.name}'/>&nbsp;</td>
 				<td><c:out value='${item.code}'/>&nbsp;</td>
 				<td>
-					<c:choose>
+				<c:choose>
 					<c:when test="${empty postmode}">
 						<a href="${ctx}/producttype/${item.typeId}">查看</a>&nbsp;&nbsp;
 						<a href="${ctx}/producttype/${item.typeId}/edit">修改</a>&nbsp;&nbsp;
@@ -100,8 +99,7 @@
 						<a href="${ctx}/producttype/${item.typeId}/edit?postmode=<c:out value="${postmode}" />">修改</a>&nbsp;&nbsp;
 						<a href="${ctx}/producttype/${item.typeId}?postmode=<c:out value="${postmode}" />" onclick="doRestDelete(this,'你确认删除?');return false;">删除</a>
 					</c:otherwise>
-					</c:choose>
-					
+				</c:choose>
 					
 				</td>
 			  </tr>

@@ -8,9 +8,13 @@
 
 package com.longxing.sale.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
+
+import com.github.springrest.base.BaseRestSpringController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +24,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,17 +34,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.org.rapid_framework.page.Page;
-import cn.org.rapid_framework.web.scope.Flash;
 
-import com.github.springrest.base.BaseRestSpringController;
 import com.github.springrest.base.ColModelProfile;
 import com.github.springrest.base.api.Response;
 import com.github.springrest.util.AjaxHelper;
 import com.github.springrest.util.ColModelFactory;
 import com.longxing.sale.model.Producttype;
-import com.longxing.sale.service.ProducttypeManager;
-import com.longxing.sale.vo.query.ProducttypeQuery;
+
+import cn.org.rapid_framework.page.Page;
+import cn.org.rapid_framework.web.scope.Flash;
+
+import java.util.*;
+
+import com.github.springrest.base.*;
+import com.github.springrest.util.*;
+import org.codehaus.jackson.annotate.*;
+import cn.org.rapid_framework.util.*;
+import cn.org.rapid_framework.web.util.*;
+import cn.org.rapid_framework.page.*;
+import cn.org.rapid_framework.page.impl.*;
+
+import com.longxing.sale.model.*;
+import com.longxing.sale.dao.*;
+import com.longxing.sale.service.*;
+import com.longxing.sale.vo.query.*;
 
 /**
  * @author badqiu email:badqiu(a)gmail.com
@@ -56,19 +74,16 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 	private ProducttypeManager producttypeManager;
 	private ColModelFactory colModelFactory;
 
-	private AjaxHelper ajaxHelper;
-
+	public void setColModelFactory(ColModelFactory colModelFactory) {
+		this.colModelFactory = colModelFactory;
+	}
 	
+	private AjaxHelper ajaxHelper;
 
 	public void setAjaxHelper(AjaxHelper ajaxHelper) {
 		this.ajaxHelper = ajaxHelper;
 	}
-
-	public void setColModelFactory(ColModelFactory colModelFactory) {
-		this.colModelFactory = colModelFactory;
-	}
-
-
+	
 	private final String LIST_ACTION = "redirect:/producttype";
 	
 	/** 
@@ -96,6 +111,7 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 	@RequestMapping
 	public String index(ModelMap model,ProducttypeQuery query,HttpServletRequest request,HttpServletResponse response) {
 		Page page = this.producttypeManager.findPage(query);
+		
 		model.addAllAttributes(toModelMap(page, query));
 		return "/producttype/index";
 	}
@@ -118,22 +134,22 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 		return "/popup/table_window";
 	}
 	
-	@RequestMapping({ "/save.json" })
+	@RequestMapping({"/save.json"})
 	@ResponseBody
 	public Response ajaxSave(ModelMap model, @Valid Producttype producttype, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return ajaxHelper.save(producttypeManager, producttype, errors, request, response);
+		return ajaxHelper.save(this.producttypeManager, producttype, errors, request, response);
 	}
 	
-	@RequestMapping({ "/update.json" })
+	@RequestMapping({"/update.json"})
 	@ResponseBody
 	public Response ajaxUpdate(ModelMap model, @Valid Producttype producttype, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return ajaxHelper.update(producttypeManager, producttype, errors, request, response);
+		return ajaxHelper.update(this.producttypeManager, producttype, errors, request, response);
 	}
-
+	
 	/** 显示 */
 	@RequestMapping(value="/{id}")
 	public String show(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
-		Producttype producttype = producttypeManager.getById(id);
+		Producttype producttype = (Producttype)producttypeManager.getById(id);
 		model.addAttribute("producttype",producttype);
 		return "/producttype/show";
 	}
@@ -160,7 +176,7 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 	/** 编辑 */
 	@RequestMapping(value="/{id}/edit")
 	public String edit(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
-		Producttype producttype = producttypeManager.getById(id);
+		Producttype producttype = (Producttype)producttypeManager.getById(id);
 		model.addAttribute("producttype",producttype);
 		return "/producttype/edit";
 	}
