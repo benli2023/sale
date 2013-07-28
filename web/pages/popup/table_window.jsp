@@ -90,7 +90,7 @@
      
         
         function openWindow(name,url,height,width) {
-              window.open(url,name,'height=700,width=800,menubar=no');
+              window.open(url,'_blank','height=700,width=800,menubar=no');
         }
         
     </script>

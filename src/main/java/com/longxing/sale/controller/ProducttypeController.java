@@ -19,7 +19,6 @@ import javax.validation.Valid;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -36,7 +35,6 @@ import cn.org.rapid_framework.web.scope.Flash;
 import com.github.springrest.base.BaseRestSpringController;
 import com.github.springrest.base.ColModelProfile;
 import com.github.springrest.base.api.Response;
-import com.github.springrest.constants.ControllerConstants;
 import com.github.springrest.util.AjaxHelper;
 import com.github.springrest.util.ColModelFactory;
 import com.longxing.sale.model.Producttype;
@@ -60,14 +58,15 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 
 	private AjaxHelper ajaxHelper;
 
-	public void setColModelFactory(ColModelFactory colModelFactory) {
-		this.colModelFactory = colModelFactory;
-	}
 	
+
 	public void setAjaxHelper(AjaxHelper ajaxHelper) {
 		this.ajaxHelper = ajaxHelper;
 	}
 
+	public void setColModelFactory(ColModelFactory colModelFactory) {
+		this.colModelFactory = colModelFactory;
+	}
 
 
 	private final String LIST_ACTION = "redirect:/producttype";
@@ -97,7 +96,6 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 	@RequestMapping
 	public String index(ModelMap model,ProducttypeQuery query,HttpServletRequest request,HttpServletResponse response) {
 		Page page = this.producttypeManager.findPage(query);
-		
 		model.addAllAttributes(toModelMap(page, query));
 		return "/producttype/index";
 	}
@@ -122,10 +120,16 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 	
 	@RequestMapping({ "/save.json" })
 	@ResponseBody
-	public Response ajaxPost(ModelMap model, @Valid Producttype producttype, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public Response ajaxSave(ModelMap model, @Valid Producttype producttype, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return ajaxHelper.save(producttypeManager, producttype, errors, request, response);
 	}
 	
+	@RequestMapping({ "/update.json" })
+	@ResponseBody
+	public Response ajaxUpdate(ModelMap model, @Valid Producttype producttype, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return ajaxHelper.update(producttypeManager, producttype, errors, request, response);
+	}
+
 	/** 显示 */
 	@RequestMapping(value="/{id}")
 	public String show(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
@@ -138,12 +142,6 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 	@RequestMapping(value="/new")
 	public String _new(ModelMap model,Producttype producttype,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		model.addAttribute("producttype",producttype);
-		String postMode = request.getParameter(ControllerConstants.POST_MODE);
-		if (StringUtils.hasLength(postMode)) {
-			model.addAttribute(ControllerConstants.POST_MODE, postMode);
-		} else {
-			model.addAttribute(ControllerConstants.POST_MODE, false);
-		}
 		return "/producttype/new";
 	}
 	

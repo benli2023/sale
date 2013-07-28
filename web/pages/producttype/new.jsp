@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/commons/taglibs.jsp" %>
-<%@page import="com.github.springrest.constants.*" %>
 
 <rapid:override name="head">
 	<%@ include file="../../commons/noty-bottom-right-import.jsp" %>
@@ -10,67 +9,31 @@
 <rapid:override name="content">
 	<form:form method="post" action="${ctx}/producttype" modelAttribute="producttype" >
 		<input id="submitButton" name="submitButton" type="submit" value="提交" />
-		<input type="button" value="返回列表" onclick="window.location='${ctx}/producttype'"/>
-		<input type="button" value="后退" onclick="history.back();"/>
-		
+		<c:choose>
+			<c:when test="${empty postmode}">
+				<input type="button" value="返回列表" onclick="window.location='${ctx}/producttype'"/>
+				<input type="button" value="后退" onclick="history.back();"/>
+			</c:when>
+			<c:otherwise>
+				<input type="button" value="返回列表" onclick="window.location='${ctx}/producttype?postmode=<c:out value="${postmode}" />'"/>
+				<input type="button" value="关闭" onclick="window.close()"/>
+			</c:otherwise>
+		</c:choose>
 		<table class="formTable">
 		<%@ include file="form_include.jsp" %>
 		</table>
-	</form:form>
-	
+</form:form>
+	<%@ include file="../../commons/ajaxpost-import.jsp" %>
 	<script>
-			function notify(msg,type) {
-				var n = noty({text: msg,type:type,timeout:3000,layout: 'bottomRight'});
+			function getJsonUrl() {
+					return '${ctx}/producttype/save.json';
 			}
-		
-		new Validation(document.forms[0],{onSubmit:true,onFormValidate : function(result,form) {
-			var finalResult = result;
-			var ajaxmethod='<%=request.getAttribute(ControllerConstants.POST_MODE)%>';
-			if(ajaxmethod=='ajax'&&finalResult) {
-				var data = $(form).serialize();
-				$.ajax({
-					  url: "${ctx}/producttype/save.json",
-					  type: "POST",
-					  data: data,
-					  success: function(resp){
-					        if(resp.statusCode=='000') {
-					        	notify("success!",'success');
-					        	if(window.opener) {
-					        		if(window.opener.newItemCallback) {
-					        			window.opener.newItemCallback();
-					        		}
-					        		window.close();
-					        	}
-					        }else if(resp.statusCode=='E001') {
-					        	if(resp.validationError) {
-					        		if(resp.validationError.globalError) {
-					        			notify("Object: "+resp.validationError.globalError.objectName+" Error:"+resp.validationError.globalError.errorMessage);
-					        		}
-					        		if(resp.validationError.fieldErrors) {
-					        		    var fieldErrors=resp.validationError.fieldErrors;
-					        			for(var i=0;i<fieldErrors.length;i++) {
-					        				 var fieldError=fieldErrors[i];
-					        				 notify("Field Name: "+fieldError.fieldName+" Error:"+fieldError.errorMessages,'error');
-					        			}
-					        		}
-					        	}
-					        }else if(resp.statusCode=='E001') {
-					        	 notify(resp.genericError,'error');
-					        }
-					    }
-				});
-				finalResult=false;
-			
-			}else {
-			
-				//alert(ajaxmethod);
-			
+			function getPostMethod() {
+				return '${param.postmode}';
 			}
-			
-			//在这里添加自定义验证
-			
-			return disableSubmit(finalResult,'submitButton');
-		}});
+			function validationCallback(form) {
+			   return true;
+			}
 	</script>
 	
 </rapid:override>
