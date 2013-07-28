@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.github.springrest.base.BaseRestSpringController;
+import com.github.springrest.base.Context;
+import com.github.springrest.base.DefaultWorkContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -111,7 +113,6 @@ public class CustomerController extends BaseRestSpringController<Customer,java.l
 	@RequestMapping
 	public String index(ModelMap model,CustomerQuery query,HttpServletRequest request,HttpServletResponse response) {
 		Page page = this.customerManager.findPage(query);
-		
 		model.addAllAttributes(toModelMap(page, query));
 		return "/customer/index";
 	}
@@ -137,19 +138,22 @@ public class CustomerController extends BaseRestSpringController<Customer,java.l
 	@RequestMapping({"/save.json"})
 	@ResponseBody
 	public Response ajaxSave(ModelMap model, @Valid Customer customer, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return ajaxHelper.save(this.customerManager, customer, errors, request, response);
+		Context context = new DefaultWorkContext(request, response);
+		return ajaxHelper.save(this.customerManager, customer, errors, context);
 	}
 	
 	@RequestMapping({"/update.json"})
 	@ResponseBody
 	public Response ajaxUpdate(ModelMap model, @Valid Customer customer, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return ajaxHelper.update(this.customerManager, customer, errors, request, response);
+		Context context = new DefaultWorkContext(request, response);
+		return ajaxHelper.update(this.customerManager, customer, errors,context);
 	}
 	
 	/** 显示 */
 	@RequestMapping(value="/{id}")
-	public String show(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
-		Customer customer = (Customer)customerManager.getById(id);
+	public String show(ModelMap model,@PathVariable java.lang.Long id,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Context context = new DefaultWorkContext(request, response);
+		Customer customer = (Customer)customerManager.getById(context,id);
 		model.addAttribute("customer",customer);
 		return "/customer/show";
 	}
@@ -167,16 +171,17 @@ public class CustomerController extends BaseRestSpringController<Customer,java.l
 		if(errors.hasErrors()) {
 			return  "/customer/new";
 		}
-		
-		customerManager.save(customer);
+		Context context = new DefaultWorkContext(request, response);
+		customerManager.save(context,customer);
 		Flash.current().success(CREATED_SUCCESS); //存放在Flash中的数据,在下一次http请求中仍然可以读取数据,error()用于显示错误消息
 		return LIST_ACTION;
 	}
 	
 	/** 编辑 */
 	@RequestMapping(value="/{id}/edit")
-	public String edit(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
-		Customer customer = (Customer)customerManager.getById(id);
+	public String edit(ModelMap model,@PathVariable java.lang.Long id,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Context context = new DefaultWorkContext(request, response);
+		Customer customer = (Customer)customerManager.getById(context,id);
 		model.addAttribute("customer",customer);
 		return "/customer/edit";
 	}
@@ -187,25 +192,27 @@ public class CustomerController extends BaseRestSpringController<Customer,java.l
 		if(errors.hasErrors()) {
 			return "/customer/edit";
 		}
-		
-		customerManager.update(customer);
+		Context context = new DefaultWorkContext(request, response);
+		customerManager.update(context,customer);
 		Flash.current().success(UPDATE_SUCCESS);
 		return LIST_ACTION;
 	}
 	
 	/** 删除 */
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-	public String delete(ModelMap model,@PathVariable java.lang.Long id) {
-		customerManager.removeById(id);
+	public String delete(ModelMap model,@PathVariable java.lang.Long id, HttpServletRequest request, HttpServletResponse response) {
+		Context context = new DefaultWorkContext(request, response);
+		customerManager.removeById(context,id);
 		Flash.current().success(DELETE_SUCCESS);
 		return LIST_ACTION;
 	}
 
 	/** 批量删除 */
 	@RequestMapping(method=RequestMethod.DELETE)
-	public String batchDelete(ModelMap model,@RequestParam("items") java.lang.Long[] items) {
+	public String batchDelete(ModelMap model,@RequestParam("items") java.lang.Long[] items, HttpServletRequest request, HttpServletResponse response) {
+		Context context = new DefaultWorkContext(request, response);
 		for(int i = 0; i < items.length; i++) {
-			customerManager.removeById(items[i]);
+			customerManager.removeById(context,items[i]);
 		}
 		Flash.current().success(DELETE_SUCCESS);
 		return LIST_ACTION;

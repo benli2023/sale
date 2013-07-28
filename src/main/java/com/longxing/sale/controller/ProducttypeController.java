@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.github.springrest.base.BaseRestSpringController;
+import com.github.springrest.base.Context;
+import com.github.springrest.base.DefaultWorkContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -111,7 +113,6 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 	@RequestMapping
 	public String index(ModelMap model,ProducttypeQuery query,HttpServletRequest request,HttpServletResponse response) {
 		Page page = this.producttypeManager.findPage(query);
-		
 		model.addAllAttributes(toModelMap(page, query));
 		return "/producttype/index";
 	}
@@ -137,19 +138,22 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 	@RequestMapping({"/save.json"})
 	@ResponseBody
 	public Response ajaxSave(ModelMap model, @Valid Producttype producttype, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return ajaxHelper.save(this.producttypeManager, producttype, errors, request, response);
+		Context context = new DefaultWorkContext(request, response);
+		return ajaxHelper.save(this.producttypeManager, producttype, errors, context);
 	}
 	
 	@RequestMapping({"/update.json"})
 	@ResponseBody
 	public Response ajaxUpdate(ModelMap model, @Valid Producttype producttype, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return ajaxHelper.update(this.producttypeManager, producttype, errors, request, response);
+		Context context = new DefaultWorkContext(request, response);
+		return ajaxHelper.update(this.producttypeManager, producttype, errors,context);
 	}
 	
 	/** 显示 */
 	@RequestMapping(value="/{id}")
-	public String show(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
-		Producttype producttype = (Producttype)producttypeManager.getById(id);
+	public String show(ModelMap model,@PathVariable java.lang.Long id,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Context context = new DefaultWorkContext(request, response);
+		Producttype producttype = (Producttype)producttypeManager.getById(context,id);
 		model.addAttribute("producttype",producttype);
 		return "/producttype/show";
 	}
@@ -167,16 +171,17 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 		if(errors.hasErrors()) {
 			return  "/producttype/new";
 		}
-		
-		producttypeManager.save(producttype);
+		Context context = new DefaultWorkContext(request, response);
+		producttypeManager.save(context,producttype);
 		Flash.current().success(CREATED_SUCCESS); //存放在Flash中的数据,在下一次http请求中仍然可以读取数据,error()用于显示错误消息
 		return LIST_ACTION;
 	}
 	
 	/** 编辑 */
 	@RequestMapping(value="/{id}/edit")
-	public String edit(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
-		Producttype producttype = (Producttype)producttypeManager.getById(id);
+	public String edit(ModelMap model,@PathVariable java.lang.Long id,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Context context = new DefaultWorkContext(request, response);
+		Producttype producttype = (Producttype)producttypeManager.getById(context,id);
 		model.addAttribute("producttype",producttype);
 		return "/producttype/edit";
 	}
@@ -187,25 +192,27 @@ public class ProducttypeController extends BaseRestSpringController<Producttype,
 		if(errors.hasErrors()) {
 			return "/producttype/edit";
 		}
-		
-		producttypeManager.update(producttype);
+		Context context = new DefaultWorkContext(request, response);
+		producttypeManager.update(context,producttype);
 		Flash.current().success(UPDATE_SUCCESS);
 		return LIST_ACTION;
 	}
 	
 	/** 删除 */
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-	public String delete(ModelMap model,@PathVariable java.lang.Long id) {
-		producttypeManager.removeById(id);
+	public String delete(ModelMap model,@PathVariable java.lang.Long id, HttpServletRequest request, HttpServletResponse response) {
+		Context context = new DefaultWorkContext(request, response);
+		producttypeManager.removeById(context,id);
 		Flash.current().success(DELETE_SUCCESS);
 		return LIST_ACTION;
 	}
 
 	/** 批量删除 */
 	@RequestMapping(method=RequestMethod.DELETE)
-	public String batchDelete(ModelMap model,@RequestParam("items") java.lang.Long[] items) {
+	public String batchDelete(ModelMap model,@RequestParam("items") java.lang.Long[] items, HttpServletRequest request, HttpServletResponse response) {
+		Context context = new DefaultWorkContext(request, response);
 		for(int i = 0; i < items.length; i++) {
-			producttypeManager.removeById(items[i]);
+			producttypeManager.removeById(context,items[i]);
 		}
 		Flash.current().success(DELETE_SUCCESS);
 		return LIST_ACTION;

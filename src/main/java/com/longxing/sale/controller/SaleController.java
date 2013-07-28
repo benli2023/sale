@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.github.springrest.base.BaseRestSpringController;
+import com.github.springrest.base.Context;
+import com.github.springrest.base.DefaultWorkContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -106,7 +108,6 @@ public class SaleController extends BaseRestSpringController<Sale,java.lang.Long
 	@RequestMapping
 	public String index(ModelMap model,SaleQuery query,HttpServletRequest request,HttpServletResponse response) {
 		Page page = this.saleManager.findPage(query);
-		
 		model.addAllAttributes(toModelMap(page, query));
 		return "/sale/index";
 	}
@@ -115,19 +116,22 @@ public class SaleController extends BaseRestSpringController<Sale,java.lang.Long
 	@RequestMapping({"/save.json"})
 	@ResponseBody
 	public Response ajaxSave(ModelMap model, @Valid Sale sale, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return ajaxHelper.save(this.saleManager, sale, errors, request, response);
+		Context context = new DefaultWorkContext(request, response);
+		return ajaxHelper.save(this.saleManager, sale, errors, context);
 	}
 	
 	@RequestMapping({"/update.json"})
 	@ResponseBody
 	public Response ajaxUpdate(ModelMap model, @Valid Sale sale, BindingResult errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return ajaxHelper.update(this.saleManager, sale, errors, request, response);
+		Context context = new DefaultWorkContext(request, response);
+		return ajaxHelper.update(this.saleManager, sale, errors,context);
 	}
 	
 	/** 显示 */
 	@RequestMapping(value="/{id}")
-	public String show(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
-		Sale sale = (Sale)saleManager.getById(id);
+	public String show(ModelMap model,@PathVariable java.lang.Long id,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Context context = new DefaultWorkContext(request, response);
+		Sale sale = (Sale)saleManager.getById(context,id);
 		model.addAttribute("sale",sale);
 		return "/sale/show";
 	}
@@ -145,16 +149,17 @@ public class SaleController extends BaseRestSpringController<Sale,java.lang.Long
 		if(errors.hasErrors()) {
 			return  "/sale/new";
 		}
-		
-		saleManager.save(sale);
+		Context context = new DefaultWorkContext(request, response);
+		saleManager.save(context,sale);
 		Flash.current().success(CREATED_SUCCESS); //存放在Flash中的数据,在下一次http请求中仍然可以读取数据,error()用于显示错误消息
 		return LIST_ACTION;
 	}
 	
 	/** 编辑 */
 	@RequestMapping(value="/{id}/edit")
-	public String edit(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
-		Sale sale = (Sale)saleManager.getById(id);
+	public String edit(ModelMap model,@PathVariable java.lang.Long id,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Context context = new DefaultWorkContext(request, response);
+		Sale sale = (Sale)saleManager.getById(context,id);
 		model.addAttribute("sale",sale);
 		return "/sale/edit";
 	}
@@ -165,25 +170,27 @@ public class SaleController extends BaseRestSpringController<Sale,java.lang.Long
 		if(errors.hasErrors()) {
 			return "/sale/edit";
 		}
-		
-		saleManager.update(sale);
+		Context context = new DefaultWorkContext(request, response);
+		saleManager.update(context,sale);
 		Flash.current().success(UPDATE_SUCCESS);
 		return LIST_ACTION;
 	}
 	
 	/** 删除 */
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-	public String delete(ModelMap model,@PathVariable java.lang.Long id) {
-		saleManager.removeById(id);
+	public String delete(ModelMap model,@PathVariable java.lang.Long id, HttpServletRequest request, HttpServletResponse response) {
+		Context context = new DefaultWorkContext(request, response);
+		saleManager.removeById(context,id);
 		Flash.current().success(DELETE_SUCCESS);
 		return LIST_ACTION;
 	}
 
 	/** 批量删除 */
 	@RequestMapping(method=RequestMethod.DELETE)
-	public String batchDelete(ModelMap model,@RequestParam("items") java.lang.Long[] items) {
+	public String batchDelete(ModelMap model,@RequestParam("items") java.lang.Long[] items, HttpServletRequest request, HttpServletResponse response) {
+		Context context = new DefaultWorkContext(request, response);
 		for(int i = 0; i < items.length; i++) {
-			saleManager.removeById(items[i]);
+			saleManager.removeById(context,items[i]);
 		}
 		Flash.current().success(DELETE_SUCCESS);
 		return LIST_ACTION;
