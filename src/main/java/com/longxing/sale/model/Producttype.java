@@ -7,18 +7,31 @@
 
 package com.longxing.sale.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.codehaus.jackson.annotate.JsonProperty;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotBlank;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.github.springrest.base.BaseEntity;
+import com.github.springrest.base.JsonDateSerializer;
+
+import java.util.*;
+
+import com.github.springrest.base.*;
+import com.github.springrest.util.*;
+import org.codehaus.jackson.annotate.*;
+import cn.org.rapid_framework.util.*;
+import cn.org.rapid_framework.web.util.*;
+import cn.org.rapid_framework.page.*;
+import cn.org.rapid_framework.page.impl.*;
+
+import com.longxing.sale.model.*;
+import com.longxing.sale.dao.*;
+import com.longxing.sale.service.*;
+import com.longxing.sale.vo.query.*;
 
 /**
  * @author badqiu email:badqiu(a)gmail.com
@@ -40,32 +53,29 @@ public class Producttype extends BaseEntity implements java.io.Serializable {
 	
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
+	    /**
+	     * 产品类型ID       db_column: typeId 
+	     */ 	
+		
+		
+		
+		private java.lang.Long typeId;
 	
-    /**
-     * 产品类型ID       db_column: typeId 
-     */ 	
+	    /**
+	     * 产品类型名称       db_column: name 
+	     */ 	
+		@Length(max=64)
+		@JsonProperty("name")
+		
+		private java.lang.String name;
 	
-	
-	
-	private java.lang.Long typeId;
-	
-	
-    /**
-     * 产品类型名称       db_column: name 
-     */ 	
-	@Length(max=64)
-	@JsonProperty("name")
-	@NotBlank
-	private java.lang.String name;
-	
-	
-    /**
-     * 产品类型编码       db_column: code 
-     */ 	
-	@Length(max=32)
-	@JsonProperty("code")
-	
-	private java.lang.String code;
+	    /**
+	     * 产品类型编码       db_column: code 
+	     */ 	
+		@Length(max=32)
+		@JsonProperty("code")
+		
+		private java.lang.String code;
 	
 	//columns END
 
@@ -78,27 +88,27 @@ public class Producttype extends BaseEntity implements java.io.Serializable {
 		this.typeId = typeId;
 	}
 
-	public void setTypeId(java.lang.Long value) {
-		this.typeId = value;
-	}
-	
-	public java.lang.Long getTypeId() {
-		return this.typeId;
-	}
-	public void setName(java.lang.String value) {
-		this.name = value;
-	}
-	
-	public java.lang.String getName() {
-		return this.name;
-	}
-	public void setCode(java.lang.String value) {
-		this.code = value;
-	}
-	
-	public java.lang.String getCode() {
-		return this.code;
-	}
+		public void setTypeId(java.lang.Long value) {
+			this.typeId = value;
+		}
+		
+		public java.lang.Long getTypeId() {
+			return this.typeId;
+		}
+		public void setName(java.lang.String value) {
+			this.name = value;
+		}
+		
+		public java.lang.String getName() {
+			return this.name;
+		}
+		public void setCode(java.lang.String value) {
+			this.code = value;
+		}
+		
+		public java.lang.String getCode() {
+			return this.code;
+		}
 	
 	private Set products = new HashSet(0);
 	public void setProducts(Set<Product> product){
@@ -109,7 +119,6 @@ public class Producttype extends BaseEntity implements java.io.Serializable {
 		return products;
 	}
 
-	@Override
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 			.append("TypeId",getTypeId())
@@ -118,14 +127,12 @@ public class Producttype extends BaseEntity implements java.io.Serializable {
 			.toString();
 	}
 	
-	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
 			.append(getTypeId())
 			.toHashCode();
 	}
 	
-	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof Producttype == false) return false;
 		if(this == obj) return true;

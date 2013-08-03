@@ -53,32 +53,29 @@ public class Procurementsale extends BaseEntity implements java.io.Serializable 
 	
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
+	    /**
+	     * 销售记录ID       db_column: id 
+	     */ 	
+		
+		
+		
+		private java.lang.Long id;
 	
-    /**
-     * 销售记录ID       db_column: id 
-     */ 	
+	    /**
+	     * 采购ID       db_column: procurementId 
+	     */ 	
+		
+		
+		
+		private java.lang.Long procurementId;
 	
-	
-	
-	private java.lang.Long id;
-	
-	
-    /**
-     * 采购ID       db_column: procurementId 
-     */ 	
-	
-	
-	
-	private java.lang.Long procurementId;
-	
-	
-    /**
-     * 出售ID       db_column: saleId 
-     */ 	
-	
-	
-	
-	private java.lang.Long saleId;
+	    /**
+	     * 出售ID       db_column: saleId 
+	     */ 	
+		
+		
+		
+		private java.lang.Long saleId;
 	
 	//columns END
 
@@ -91,27 +88,27 @@ public class Procurementsale extends BaseEntity implements java.io.Serializable 
 		this.id = id;
 	}
 
-	public void setId(java.lang.Long value) {
-		this.id = value;
-	}
-	
-	public java.lang.Long getId() {
-		return this.id;
-	}
-	public void setProcurementId(java.lang.Long value) {
-		this.procurementId = value;
-	}
-	
-	public java.lang.Long getProcurementId() {
-		return this.procurementId;
-	}
-	public void setSaleId(java.lang.Long value) {
-		this.saleId = value;
-	}
-	
-	public java.lang.Long getSaleId() {
-		return this.saleId;
-	}
+		public void setId(java.lang.Long value) {
+			this.id = value;
+		}
+		
+		public java.lang.Long getId() {
+			return this.id;
+		}
+		public void setProcurementId(java.lang.Long value) {
+			this.procurementId = value;
+		}
+		
+		public java.lang.Long getProcurementId() {
+			return this.procurementId;
+		}
+		public void setSaleId(java.lang.Long value) {
+			this.saleId = value;
+		}
+		
+		public java.lang.Long getSaleId() {
+			return this.saleId;
+		}
 	
 	private Procurement procurement;
 	

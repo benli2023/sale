@@ -55,40 +55,35 @@ public class Product extends BaseEntity implements java.io.Serializable {
 	
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
+	    /**
+	     * 产品ID       db_column: prodId 
+	     */ 	
+		
+		
+		
+		private java.lang.Long prodId;
 	
-    /**
-     * 产品ID       db_column: prodId 
-     */ 	
+		private java.lang.Long typeId;
+		private String typeIdTxt;
 	
+		private java.lang.Long providerId;
+		private String providerIdTxt;
 	
+	    /**
+	     * 产品名称       db_column: productName 
+	     */ 	
+		@Length(max=128)
+		@JsonProperty("productName")
+		
+		private java.lang.String productName;
 	
-	private java.lang.Long prodId;
-	
-	
-	private java.lang.Long typeId;
-	private String typeIdTxt;
-	
-	
-	private java.lang.Long providerId;
-	private String providerIdTxt;
-	
-	
-    /**
-     * 产品名称       db_column: productName 
-     */ 	
-	@Length(max=128)
-	@JsonProperty("productName")
-	
-	private java.lang.String productName;
-	
-	
-    /**
-     * 产品描述       db_column: prodctDesc 
-     */ 	
-	@Length(max=128)
-	@JsonProperty("prodctDesc")
-	
-	private java.lang.String prodctDesc;
+	    /**
+	     * 产品描述       db_column: prodctDesc 
+	     */ 	
+		@Length(max=128)
+		@JsonProperty("prodctDesc")
+		
+		private java.lang.String prodctDesc;
 	
 	//columns END
 
@@ -101,55 +96,55 @@ public class Product extends BaseEntity implements java.io.Serializable {
 		this.prodId = prodId;
 	}
 
-	public void setProdId(java.lang.Long value) {
-		this.prodId = value;
-	}
-	
-	public java.lang.Long getProdId() {
-		return this.prodId;
-	}
-	public void setTypeId(java.lang.Long value) {
-		this.typeId = value;
-	}
-	
-	public java.lang.Long getTypeId() {
-		return this.typeId;
-	}
-	public String getTypeIdTxt() {
-		return this.typeIdTxt;
-	}
-	
-	public void setTypeIdTxt(String value) {
-		this.typeIdTxt = value;
-	}
-	public void setProviderId(java.lang.Long value) {
-		this.providerId = value;
-	}
-	
-	public java.lang.Long getProviderId() {
-		return this.providerId;
-	}
-	public String getProviderIdTxt() {
-		return this.providerIdTxt;
-	}
-	
-	public void setProviderIdTxt(String value) {
-		this.providerIdTxt = value;
-	}
-	public void setProductName(java.lang.String value) {
-		this.productName = value;
-	}
-	
-	public java.lang.String getProductName() {
-		return this.productName;
-	}
-	public void setProdctDesc(java.lang.String value) {
-		this.prodctDesc = value;
-	}
-	
-	public java.lang.String getProdctDesc() {
-		return this.prodctDesc;
-	}
+		public void setProdId(java.lang.Long value) {
+			this.prodId = value;
+		}
+		
+		public java.lang.Long getProdId() {
+			return this.prodId;
+		}
+		public void setTypeId(java.lang.Long value) {
+			this.typeId = value;
+		}
+		
+		public java.lang.Long getTypeId() {
+			return this.typeId;
+		}
+			public String getTypeIdTxt() {
+				return this.typeIdTxt;
+			}
+			
+			public void setTypeIdTxt(String value) {
+				this.typeIdTxt = value;
+			}
+		public void setProviderId(java.lang.Long value) {
+			this.providerId = value;
+		}
+		
+		public java.lang.Long getProviderId() {
+			return this.providerId;
+		}
+			public String getProviderIdTxt() {
+				return this.providerIdTxt;
+			}
+			
+			public void setProviderIdTxt(String value) {
+				this.providerIdTxt = value;
+			}
+		public void setProductName(java.lang.String value) {
+			this.productName = value;
+		}
+		
+		public java.lang.String getProductName() {
+			return this.productName;
+		}
+		public void setProdctDesc(java.lang.String value) {
+			this.prodctDesc = value;
+		}
+		
+		public java.lang.String getProdctDesc() {
+			return this.prodctDesc;
+		}
 	
 	private Set procurements = new HashSet(0);
 	public void setProcurements(Set<Procurement> procurement){

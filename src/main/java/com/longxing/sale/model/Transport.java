@@ -54,41 +54,37 @@ public class Transport extends BaseEntity implements java.io.Serializable {
 	
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
+	    /**
+	     * 运输ID       db_column: transportId 
+	     */ 	
+		
+		
+		
+		private java.lang.Long transportId;
 	
-    /**
-     * 运输ID       db_column: transportId 
-     */ 	
+	    /**
+	     * 司机       db_column: driver 
+	     */ 	
+		@Length(max=64)
+		@JsonProperty("driver")
+		
+		private java.lang.String driver;
 	
+	    /**
+	     * 车牌号       db_column: carNumber 
+	     */ 	
+		@Length(max=32)
+		@JsonProperty("carNumber")
+		
+		private java.lang.String carNumber;
 	
-	
-	private java.lang.Long transportId;
-	
-	
-    /**
-     * 司机       db_column: driver 
-     */ 	
-	@Length(max=64)
-	@JsonProperty("driver")
-	
-	private java.lang.String driver;
-	
-	
-    /**
-     * 车牌号       db_column: carNumber 
-     */ 	
-	@Length(max=32)
-	@JsonProperty("carNumber")
-	
-	private java.lang.String carNumber;
-	
-	
-    /**
-     * 电话       db_column: driverTel 
-     */ 	
-	@Length(max=32)
-	@JsonProperty("driverTel")
-	
-	private java.lang.String driverTel;
+	    /**
+	     * 电话       db_column: driverTel 
+	     */ 	
+		@Length(max=32)
+		@JsonProperty("driverTel")
+		
+		private java.lang.String driverTel;
 	
 	//columns END
 
@@ -101,34 +97,34 @@ public class Transport extends BaseEntity implements java.io.Serializable {
 		this.transportId = transportId;
 	}
 
-	public void setTransportId(java.lang.Long value) {
-		this.transportId = value;
-	}
-	
-	public java.lang.Long getTransportId() {
-		return this.transportId;
-	}
-	public void setDriver(java.lang.String value) {
-		this.driver = value;
-	}
-	
-	public java.lang.String getDriver() {
-		return this.driver;
-	}
-	public void setCarNumber(java.lang.String value) {
-		this.carNumber = value;
-	}
-	
-	public java.lang.String getCarNumber() {
-		return this.carNumber;
-	}
-	public void setDriverTel(java.lang.String value) {
-		this.driverTel = value;
-	}
-	
-	public java.lang.String getDriverTel() {
-		return this.driverTel;
-	}
+		public void setTransportId(java.lang.Long value) {
+			this.transportId = value;
+		}
+		
+		public java.lang.Long getTransportId() {
+			return this.transportId;
+		}
+		public void setDriver(java.lang.String value) {
+			this.driver = value;
+		}
+		
+		public java.lang.String getDriver() {
+			return this.driver;
+		}
+		public void setCarNumber(java.lang.String value) {
+			this.carNumber = value;
+		}
+		
+		public java.lang.String getCarNumber() {
+			return this.carNumber;
+		}
+		public void setDriverTel(java.lang.String value) {
+			this.driverTel = value;
+		}
+		
+		public java.lang.String getDriverTel() {
+			return this.driverTel;
+		}
 	
 	private Set procurements = new HashSet(0);
 	public void setProcurements(Set<Procurement> procurement){

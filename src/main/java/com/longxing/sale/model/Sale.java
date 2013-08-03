@@ -72,165 +72,127 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 	
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
+	    /**
+	     * 出售ID       db_column: saleId 
+	     */ 	
+		
+		
+		
+		private java.lang.Long saleId;
+	
+		private java.lang.Long custId;
+		private String custIdTxt;
+	
+	    /**
+	     * 数量       db_column: amount 
+	     */ 	
+		
+		
+		
+		private java.lang.Integer amount;
+	
+	    /**
+	     * 单位       db_column: unit 
+	     */ 	
+		
+		
+		
+		private java.lang.Integer unit;
+	
+	    /**
+	     * 客户名称       db_column: custName 
+	     */ 	
+		@Length(max=64)
+		
+		
+		private java.lang.String custName;
+	
+	    /**
+	     * 客户电话       db_column: custTel 
+	     */ 	
+		@Length(max=128)
+		
+		
+		private java.lang.String custTel;
+	
+	    /**
+	     * 售出单价       db_column: unitPrice 
+	     */ 	
+		
+		
+		
+		private Long unitPrice;
+	
+	    /**
+	     * 已付金额       db_column: paid 
+	     */ 	
+		
+		
+		
+		private java.math.BigDecimal paid;
+	
+	    /**
+	     * 未付金额       db_column: unPaid 
+	     */ 	
+		
+		
+		
+		private java.math.BigDecimal unPaid;
+	
+	    /**
+	     * 其它费用       db_column: otherFee 
+	     */ 	
+		
+		
+		
+		private java.math.BigDecimal otherFee;
+	
+	    /**
+	     * 利润       db_column: profit 
+	     */ 	
+		
+		
+		
+		private java.math.BigDecimal profit;
+	
+	    /**
+	     * 状态       db_column: paymentStatus 
+	     */ 	
+		
+		
+		
+		private java.lang.Integer paymentStatus;
+	
+	
+		private java.lang.Long transportId;
+		private String transportIdTxt;
+	
+	    /**
+	     * 车牌号       db_column: carNumber 
+	     */ 	
+		@Length(max=32)
+		
+		
+		private java.lang.String carNumber;
+	
+	    /**
+	     * 司机       db_column: driver 
+	     */ 	
+		@Length(max=64)
+		
+		
+		private java.lang.String driver;
+	
+	    /**
+	     * 司机电话       db_column: driverTel 
+	     */ 	
+		@Length(max=32)
+		
+		
+		private java.lang.String driverTel;
 	
-    /**
-     * 出售ID       db_column: saleId 
-     */ 	
 	
 	
-	
-	private java.lang.Long saleId;
-	
-	
-	private java.lang.Long custId;
-	private String custIdTxt;
-	
-	
-    /**
-     * 数量       db_column: amount 
-     */ 	
-	
-	
-	
-	private java.lang.Integer amount;
-	
-	
-    /**
-     * 单位       db_column: unit 
-     */ 	
-	
-	
-	
-	private java.lang.Integer unit;
-	
-	
-    /**
-     * 客户名称       db_column: custName 
-     */ 	
-	@Length(max=64)
-	
-	
-	private java.lang.String custName;
-	
-	
-    /**
-     * 客户电话       db_column: custTel 
-     */ 	
-	@Length(max=128)
-	
-	
-	private java.lang.String custTel;
-	
-	
-    /**
-     * 售出单价       db_column: unitPrice 
-     */ 	
-	
-	
-	
-	private Long unitPrice;
-	
-	
-    /**
-     * 已付金额       db_column: paid 
-     */ 	
-	
-	
-	
-	private java.math.BigDecimal paid;
-	
-	
-    /**
-     * 未付金额       db_column: unPaid 
-     */ 	
-	
-	
-	
-	private java.math.BigDecimal unPaid;
-	
-	
-    /**
-     * 其它费用       db_column: otherFee 
-     */ 	
-	
-	
-	
-	private java.math.BigDecimal otherFee;
-	
-	
-    /**
-     * 利润       db_column: profit 
-     */ 	
-	
-	
-	
-	private java.math.BigDecimal profit;
-	
-	
-    /**
-     * 状态       db_column: paymentStatus 
-     */ 	
-	
-	
-	
-	private java.lang.Integer paymentStatus;
-	
-	
-	private java.lang.Long createId;
-	private String createIdTxt;
-	
-	
-	private java.lang.Long transportId;
-	private String transportIdTxt;
-	
-	
-    /**
-     * 车牌号       db_column: carNumber 
-     */ 	
-	@Length(max=32)
-	
-	
-	private java.lang.String carNumber;
-	
-	
-    /**
-     * 司机       db_column: driver 
-     */ 	
-	@Length(max=64)
-	
-	
-	private java.lang.String driver;
-	
-	
-    /**
-     * 司机电话       db_column: driverTel 
-     */ 	
-	@Length(max=32)
-	
-	
-	private java.lang.String driverTel;
-	
-	
-    /**
-     * 更新时间       db_column: updateDate 
-     */ 	
-	
-	
-	@JsonSerialize(using = JsonDateSerializer.class)
-	private java.util.Date updateDate;
-	
-	
-    /**
-     * 创建时间       db_column: createdDate 
-     */ 	
-	
-	
-	@JsonSerialize(using = JsonDateSerializer.class)
-	private java.util.Date createdDate;
-	
-	
-	private java.lang.Long updateId;
-	private String updateIdTxt;
 	
 	//columns END
 
@@ -243,188 +205,132 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 		this.saleId = saleId;
 	}
 
-	public void setSaleId(java.lang.Long value) {
-		this.saleId = value;
-	}
-	
-	public java.lang.Long getSaleId() {
-		return this.saleId;
-	}
-	public void setCustId(java.lang.Long value) {
-		this.custId = value;
-	}
-	
-	public java.lang.Long getCustId() {
-		return this.custId;
-	}
-	public String getCustIdTxt() {
-		return this.custIdTxt;
-	}
-	
-	public void setCustIdTxt(String value) {
-		this.custIdTxt = value;
-	}
-	public void setAmount(java.lang.Integer value) {
-		this.amount = value;
-	}
-	
-	public java.lang.Integer getAmount() {
-		return this.amount;
-	}
-	public void setUnit(java.lang.Integer value) {
-		this.unit = value;
-	}
-	
-	public java.lang.Integer getUnit() {
-		return this.unit;
-	}
-	public void setCustName(java.lang.String value) {
-		this.custName = value;
-	}
-	
-	public java.lang.String getCustName() {
-		return this.custName;
-	}
-	public void setCustTel(java.lang.String value) {
-		this.custTel = value;
-	}
-	
-	public java.lang.String getCustTel() {
-		return this.custTel;
-	}
-	public void setUnitPrice(Long value) {
-		this.unitPrice = value;
-	}
-	
-	public Long getUnitPrice() {
-		return this.unitPrice;
-	}
-	public void setPaid(java.math.BigDecimal value) {
-		this.paid = value;
-	}
-	
-	public java.math.BigDecimal getPaid() {
-		return this.paid;
-	}
-	public void setUnPaid(java.math.BigDecimal value) {
-		this.unPaid = value;
-	}
-	
-	public java.math.BigDecimal getUnPaid() {
-		return this.unPaid;
-	}
-	public void setOtherFee(java.math.BigDecimal value) {
-		this.otherFee = value;
-	}
-	
-	public java.math.BigDecimal getOtherFee() {
-		return this.otherFee;
-	}
-	public void setProfit(java.math.BigDecimal value) {
-		this.profit = value;
-	}
-	
-	public java.math.BigDecimal getProfit() {
-		return this.profit;
-	}
-	public void setPaymentStatus(java.lang.Integer value) {
-		this.paymentStatus = value;
-	}
-	
-	public java.lang.Integer getPaymentStatus() {
-		return this.paymentStatus;
-	}
-	public void setCreateId(java.lang.Long value) {
-		this.createId = value;
-	}
-	
-	public java.lang.Long getCreateId() {
-		return this.createId;
-	}
-	public String getCreateIdTxt() {
-		return this.createIdTxt;
-	}
-	
-	public void setCreateIdTxt(String value) {
-		this.createIdTxt = value;
-	}
-	public void setTransportId(java.lang.Long value) {
-		this.transportId = value;
-	}
-	
-	public java.lang.Long getTransportId() {
-		return this.transportId;
-	}
-	public String getTransportIdTxt() {
-		return this.transportIdTxt;
-	}
-	
-	public void setTransportIdTxt(String value) {
-		this.transportIdTxt = value;
-	}
-	public void setCarNumber(java.lang.String value) {
-		this.carNumber = value;
-	}
-	
-	public java.lang.String getCarNumber() {
-		return this.carNumber;
-	}
-	public void setDriver(java.lang.String value) {
-		this.driver = value;
-	}
-	
-	public java.lang.String getDriver() {
-		return this.driver;
-	}
-	public void setDriverTel(java.lang.String value) {
-		this.driverTel = value;
-	}
-	
-	public java.lang.String getDriverTel() {
-		return this.driverTel;
-	}
-	public String getUpdateDateString() {
-		return DateConvertUtils.format(getUpdateDate(), FORMAT_UPDATE_DATE);
-	}
-	public void setUpdateDateString(String value) {
-		setUpdateDate(DateConvertUtils.parse(value, FORMAT_UPDATE_DATE,java.util.Date.class));
-	}
-	
-	public void setUpdateDate(java.util.Date value) {
-		this.updateDate = value;
-	}
-	
-	public java.util.Date getUpdateDate() {
-		return this.updateDate;
-	}
-	public String getCreatedDateString() {
-		return DateConvertUtils.format(getCreatedDate(), FORMAT_CREATED_DATE);
-	}
-	public void setCreatedDateString(String value) {
-		setCreatedDate(DateConvertUtils.parse(value, FORMAT_CREATED_DATE,java.util.Date.class));
-	}
-	
-	public void setCreatedDate(java.util.Date value) {
-		this.createdDate = value;
-	}
-	
-	public java.util.Date getCreatedDate() {
-		return this.createdDate;
-	}
-	public void setUpdateId(java.lang.Long value) {
-		this.updateId = value;
-	}
-	
-	public java.lang.Long getUpdateId() {
-		return this.updateId;
-	}
-	public String getUpdateIdTxt() {
-		return this.updateIdTxt;
-	}
-	
-	public void setUpdateIdTxt(String value) {
-		this.updateIdTxt = value;
-	}
+		public void setSaleId(java.lang.Long value) {
+			this.saleId = value;
+		}
+		
+		public java.lang.Long getSaleId() {
+			return this.saleId;
+		}
+		public void setCustId(java.lang.Long value) {
+			this.custId = value;
+		}
+		
+		public java.lang.Long getCustId() {
+			return this.custId;
+		}
+			public String getCustIdTxt() {
+				return this.custIdTxt;
+			}
+			
+			public void setCustIdTxt(String value) {
+				this.custIdTxt = value;
+			}
+		public void setAmount(java.lang.Integer value) {
+			this.amount = value;
+		}
+		
+		public java.lang.Integer getAmount() {
+			return this.amount;
+		}
+		public void setUnit(java.lang.Integer value) {
+			this.unit = value;
+		}
+		
+		public java.lang.Integer getUnit() {
+			return this.unit;
+		}
+		public void setCustName(java.lang.String value) {
+			this.custName = value;
+		}
+		
+		public java.lang.String getCustName() {
+			return this.custName;
+		}
+		public void setCustTel(java.lang.String value) {
+			this.custTel = value;
+		}
+		
+		public java.lang.String getCustTel() {
+			return this.custTel;
+		}
+		public void setUnitPrice(Long value) {
+			this.unitPrice = value;
+		}
+		
+		public Long getUnitPrice() {
+			return this.unitPrice;
+		}
+		public void setPaid(java.math.BigDecimal value) {
+			this.paid = value;
+		}
+		
+		public java.math.BigDecimal getPaid() {
+			return this.paid;
+		}
+		public void setUnPaid(java.math.BigDecimal value) {
+			this.unPaid = value;
+		}
+		
+		public java.math.BigDecimal getUnPaid() {
+			return this.unPaid;
+		}
+		public void setOtherFee(java.math.BigDecimal value) {
+			this.otherFee = value;
+		}
+		
+		public java.math.BigDecimal getOtherFee() {
+			return this.otherFee;
+		}
+		public void setProfit(java.math.BigDecimal value) {
+			this.profit = value;
+		}
+		
+		public java.math.BigDecimal getProfit() {
+			return this.profit;
+		}
+		public void setPaymentStatus(java.lang.Integer value) {
+			this.paymentStatus = value;
+		}
+		
+		public java.lang.Integer getPaymentStatus() {
+			return this.paymentStatus;
+		}
+		public void setTransportId(java.lang.Long value) {
+			this.transportId = value;
+		}
+		
+		public java.lang.Long getTransportId() {
+			return this.transportId;
+		}
+			public String getTransportIdTxt() {
+				return this.transportIdTxt;
+			}
+			
+			public void setTransportIdTxt(String value) {
+				this.transportIdTxt = value;
+			}
+		public void setCarNumber(java.lang.String value) {
+			this.carNumber = value;
+		}
+		
+		public java.lang.String getCarNumber() {
+			return this.carNumber;
+		}
+		public void setDriver(java.lang.String value) {
+			this.driver = value;
+		}
+		
+		public java.lang.String getDriver() {
+			return this.driver;
+		}
+		public void setDriverTel(java.lang.String value) {
+			this.driverTel = value;
+		}
+		
+		public java.lang.String getDriverTel() {
+			return this.driverTel;
+		}
 	
 	private Set procurementsales = new HashSet(0);
 	public void setProcurementsales(Set<Procurementsale> procurementsale){

@@ -52,23 +52,21 @@ public class Provider extends BaseEntity implements java.io.Serializable {
 	
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
+	    /**
+	     * 供应商ID       db_column: providerId 
+	     */ 	
+		
+		
+		
+		private java.lang.Long providerId;
 	
-    /**
-     * 供应商ID       db_column: providerId 
-     */ 	
-	
-	
-	
-	private java.lang.Long providerId;
-	
-	
-    /**
-     * 供应商名称       db_column: provider 
-     */ 	
-	@Length(max=64)
-	@JsonProperty("provider")
-	
-	private java.lang.String provider;
+	    /**
+	     * 供应商名称       db_column: provider 
+	     */ 	
+		@Length(max=64)
+		@JsonProperty("provider")
+		
+		private java.lang.String provider;
 	
 	//columns END
 
@@ -81,20 +79,20 @@ public class Provider extends BaseEntity implements java.io.Serializable {
 		this.providerId = providerId;
 	}
 
-	public void setProviderId(java.lang.Long value) {
-		this.providerId = value;
-	}
-	
-	public java.lang.Long getProviderId() {
-		return this.providerId;
-	}
-	public void setProvider(java.lang.String value) {
-		this.provider = value;
-	}
-	
-	public java.lang.String getProvider() {
-		return this.provider;
-	}
+		public void setProviderId(java.lang.Long value) {
+			this.providerId = value;
+		}
+		
+		public java.lang.Long getProviderId() {
+			return this.providerId;
+		}
+		public void setProvider(java.lang.String value) {
+			this.provider = value;
+		}
+		
+		public java.lang.String getProvider() {
+			return this.provider;
+		}
 	
 	private Set products = new HashSet(0);
 	public void setProducts(Set<Product> product){
