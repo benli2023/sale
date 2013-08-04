@@ -9,7 +9,7 @@
     <resultMap id="RM.Sale" class="com.longxing.sale.model.Sale">
          <result property="saleId" column="saleId"/>
         <result property="custId" column="custId"/>
-        <result property="custIdTxt" column="cus1_telephone"/>
+        <result property="custIdTxt" column="cus1_custname"/>
          <result property="amount" column="amount"/>
          <result property="unit" column="unit"/>
          <result property="custName" column="custName"/>
@@ -23,7 +23,7 @@
         <result property="createId" column="createId"/>
         <result property="createIdTxt" column="use2_username"/>
         <result property="transportId" column="transportId"/>
-        <result property="transportIdTxt" column="tra3_drivertel"/>
+        <result property="transportIdTxt" column="tra3_driver"/>
          <result property="carNumber" column="carNumber"/>
          <result property="driver" column="driver"/>
          <result property="driverTel" column="driverTel"/>
@@ -36,7 +36,7 @@
 	<!-- 用于select查询公用抽取的列 -->
 	<sql id="Sale.columns">
 	    <![CDATA[
-         sal0.saleId , sal0.custId , sal0.amount , sal0.unit , sal0.custName , sal0.custTel , sal0.unitPrice , sal0.paid , sal0.unPaid , sal0.otherFee , sal0.profit , sal0.paymentStatus , sal0.createId , sal0.transportId , sal0.carNumber , sal0.driver , sal0.driverTel , sal0.updateDate , sal0.createdDate , sal0.updateId  , cus1.telephone as cus1_telephone, use2.userName as use2_username, tra3.driverTel as tra3_drivertel, use4.userName as use4_username
+         sal0.saleId , sal0.custId , sal0.amount , sal0.unit , sal0.custName , sal0.custTel , sal0.unitPrice , sal0.paid , sal0.unPaid , sal0.otherFee , sal0.profit , sal0.paymentStatus , sal0.createId , sal0.transportId , sal0.carNumber , sal0.driver , sal0.driverTel , sal0.updateDate , sal0.createdDate , sal0.updateId  , cus1.custName as cus1_custname, use2.userName as use2_username, tra3.driver as tra3_driver, use4.userName as use4_username
         
 	    ]]>
 	</sql>
@@ -112,13 +112,11 @@
 	        otherFee = #otherFee# ,
 	        profit = #profit# ,
 	        paymentStatus = #paymentStatus# ,
-	        createId = #createId# ,
 	        transportId = #transportId# ,
 	        carNumber = #carNumber# ,
 	        driver = #driver# ,
 	        driverTel = #driverTel# ,
 	        updateDate = #updateDate# ,
-	        createdDate = #createdDate# ,
 	        updateId = #updateId# 
         WHERE 
 	        saleId = #saleId# 

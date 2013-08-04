@@ -10,7 +10,7 @@
          <result property="procurementId" column="procurementId"/>
          <result property="procurementName" column="procurementName"/>
         <result property="prodId" column="prodId"/>
-        <result property="prodIdTxt" column="pro1_prodctdesc"/>
+        <result property="prodIdTxt" column="pro1_productname"/>
          <result property="procurementDate" column="procurementDate"/>
          <result property="amount" column="amount"/>
          <result property="unit" column="unit"/>
@@ -28,13 +28,13 @@
         <result property="createId" column="createId"/>
         <result property="createIdTxt" column="use3_username"/>
         <result property="transportId" column="transportId"/>
-        <result property="transportIdTxt" column="tra4_drivertel"/>
+        <result property="transportIdTxt" column="tra4_driver"/>
     </resultMap>
 
 	<!-- 用于select查询公用抽取的列 -->
 	<sql id="Procurement.columns">
 	    <![CDATA[
-         pro0.procurementId , pro0.procurementName , pro0.prodId , pro0.procurementDate , pro0.amount , pro0.unit , pro0.remainedAmount , pro0.unitPrice , pro0.freightage , pro0.loadFee , pro0.carNumber , pro0.driver , pro0.driverTel , pro0.updateDate , pro0.createdDate , pro0.updateId , pro0.createId , pro0.transportId  , pro1.prodctDesc as pro1_prodctdesc, use2.userName as use2_username, use3.userName as use3_username, tra4.driverTel as tra4_drivertel
+         pro0.procurementId , pro0.procurementName , pro0.prodId , pro0.procurementDate , pro0.amount , pro0.unit , pro0.remainedAmount , pro0.unitPrice , pro0.freightage , pro0.loadFee , pro0.carNumber , pro0.driver , pro0.driverTel , pro0.updateDate , pro0.createdDate , pro0.updateId , pro0.createId , pro0.transportId  , pro1.productName as pro1_productname, use2.userName as use2_username, use3.userName as use3_username, tra4.driver as tra4_driver
         
 	    ]]>
 	</sql>
@@ -108,9 +108,7 @@
 	        driver = #driver# ,
 	        driverTel = #driverTel# ,
 	        updateDate = #updateDate# ,
-	        createdDate = #createdDate# ,
 	        updateId = #updateId# ,
-	        createId = #createId# ,
 	        transportId = #transportId# 
         WHERE 
 	        procurementId = #procurementId# 

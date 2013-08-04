@@ -9,9 +9,6 @@
 <rapid:override name="content">
 	<form:form method="put" action="${ctx}/procurementsale/${procurementsale.id}" modelAttribute="procurementsale">
 		<input id="submitButton" name="submitButton" type="submit" value="提交" />
-		<input type="button" value="返回列表" onclick="window.location='${ctx}/procurementsale'"/>
-		<input type="button" value="后退" onclick="history.back();"/>
-		
 		<c:choose>
 				<c:when test="${empty postmode}">
 					<input type="button" value="返回列表" onclick="window.location='${ctx}/procurementsale'"/>
@@ -30,7 +27,7 @@
 	<%@ include file="../../commons/ajaxpost-import.jsp" %>
 	<script>
 			function getJsonUrl() {
-					return '${ctx}/procurementsale/save.json';
+					return '${ctx}/procurementsale/update.json';
 			}
 			function getPostMethod() {
 				return '${postmode}' ;
