@@ -31,11 +31,11 @@
 				<tr>	
 					<td class="tdLabel"><%=Customer.ALIAS_CUST_NAME%></td>		
 					<td>
-						<input value="${query.custName}" id="custName" name="custName" maxlength="64"  class=""/>
+						<input value="${query.custName}" id="custName" name="custName" maxlength="64"  class="text "/>
 					</td>
 					<td class="tdLabel"><%=Customer.ALIAS_TELEPHONE%></td>		
 					<td>
-						<input value="${query.telephone}" id="telephone" name="telephone" maxlength="128"  class=""/>
+						<input value="${query.telephone}" id="telephone" name="telephone" maxlength="128"  class="text  validate-phone"/>
 					</td>
 				</tr>	
 			</table>

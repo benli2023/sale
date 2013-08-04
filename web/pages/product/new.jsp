@@ -37,8 +37,8 @@
 			function getPostMethod() {
 				return '${postmode}' ;
 			}
-			function validationCallback(form) {
-			   return true;
+			function validationCallback(form,result) {
+			   return result;
 			}
 	</script>
 	

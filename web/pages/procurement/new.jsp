@@ -37,17 +37,17 @@
 			function getPostMethod() {
 				return '${postmode}' ;
 			}
-			function validationCallback(form) {
-			   return true;
+			function validationCallback(form,result) {
+			   return result;
 			}
 	</script>
 	
 	<script type="text/javascript">
 	 var popupOption={
-		 'procurement_prodId': {url:'${ctx}/product/query',title:'选择产品',textColumn:'prodctDesc',valueColumn:'prodId'},
+		 'procurement_prodId': {url:'${ctx}/product/query',title:'选择产品',textColumn:'productName',valueColumn:'prodId'},
 		 'procurement_updateId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'},
 		 'procurement_createId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'},
-		 'procurement_transportId': {url:'${ctx}/transport/query',title:'选择运输',textColumn:'driverTel',valueColumn:'transportId',fields:{"carNumber":"carNumber","driverTel":"driverTel","driver":"driver"}}
+		 'procurement_transportId': {url:'${ctx}/transport/query',title:'选择运输',textColumn:'driver',valueColumn:'transportId',fields:{"carNumber":"carNumber","driverTel":"driverTel","driver":"driver"}}
 	 };
 	 PopupSelection.initOption(popupOption); 	
 	</script>

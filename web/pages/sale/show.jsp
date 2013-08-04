@@ -24,7 +24,7 @@
 		<table class="formTable">
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_CUST_ID%></td>	
-				<td><c:out value='${sale.custId}'/></td>
+				<td><c:out value='${sale.custIdTxt}'/>&nbsp;</td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_AMOUNT%></td>	
@@ -32,7 +32,7 @@
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_UNIT%></td>	
-				<td><c:out value='${sale.unit}'/></td>
+				<td><c:choose><c:when test="${sale.unit==1}">吨</c:when><c:when test="${sale.unit==2}">批</c:when></c:choose></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_CUST_NAME%></td>	
@@ -64,15 +64,15 @@
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_PAYMENT_STATUS%></td>	
-				<td><c:out value='${sale.paymentStatus}'/></td>
+				<td><c:choose><c:when test="${sale.paymentStatus==2}">已付款</c:when><c:when test="${sale.paymentStatus==0}">未付款</c:when><c:when test="${sale.paymentStatus==1}">已付定金</c:when></c:choose></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_CREATE_ID%></td>	
-				<td><c:out value='${sale.createId}'/></td>
+				<td><c:out value='${sale.createIdTxt}'/>&nbsp;</td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_TRANSPORT_ID%></td>	
-				<td><c:out value='${sale.transportId}'/></td>
+				<td><c:out value='${sale.transportIdTxt}'/>&nbsp;</td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_CAR_NUMBER%></td>	
@@ -96,7 +96,7 @@
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_UPDATE_ID%></td>	
-				<td><c:out value='${sale.updateId}'/></td>
+				<td><c:out value='${sale.updateIdTxt}'/>&nbsp;</td>
 			</tr>
 		</table>
 	</form:form>

@@ -44,11 +44,11 @@
 					</td>
 					<td class="tdLabel"><%=Product.ALIAS_PRODUCT_NAME%></td>		
 					<td>
-						<input value="${query.productName}" id="productName" name="productName" maxlength="128"  class=""/>
+						<input value="${query.productName}" id="productName" name="productName" maxlength="128"  class="text "/>
 					</td>
 					<td class="tdLabel"><%=Product.ALIAS_PRODCT_DESC%></td>		
 					<td>
-						<input value="${query.prodctDesc}" id="prodctDesc" name="prodctDesc" maxlength="128"  class=""/>
+						<input value="${query.prodctDesc}" id="prodctDesc" name="prodctDesc" maxlength="128"  class="text "/>
 					</td>
 				</tr>	
 			</table>

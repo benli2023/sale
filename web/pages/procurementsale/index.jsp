@@ -31,11 +31,11 @@
 				<tr>	
 					<td class="tdLabel"><%=Procurementsale.ALIAS_PROCUREMENT_ID%></td>		
 					<td>
-						<input value="${query.procurementId}" id="procurementId" name="procurementId" maxlength="19"  class="validate-integer "/>
+						<input value="${query.procurementId}" id="procurementId" name="procurementId" maxlength="19"  class="text  validate-integer"/>
 					</td>
 					<td class="tdLabel"><%=Procurementsale.ALIAS_SALE_ID%></td>		
 					<td>
-						<input value="${query.saleId}" id="saleId" name="saleId" maxlength="19"  class="validate-integer "/>
+						<input value="${query.saleId}" id="saleId" name="saleId" maxlength="19"  class="text  validate-integer"/>
 					</td>
 				</tr>	
 			</table>

@@ -28,7 +28,7 @@
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_PROD_ID%></td>	
-				<td><c:out value='${procurement.prodId}'/></td>
+				<td><c:out value='${procurement.prodIdTxt}'/>&nbsp;</td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_PROCUREMENT_DATE%></td>	
@@ -40,7 +40,7 @@
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_UNIT%></td>	
-				<td><c:out value='${procurement.unit}'/></td>
+				<td><c:choose><c:when test="${procurement.unit==1}">吨</c:when><c:when test="${procurement.unit==2}">批</c:when></c:choose></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_REMAINED_AMOUNT%></td>	
@@ -80,15 +80,15 @@
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_UPDATE_ID%></td>	
-				<td><c:out value='${procurement.updateId}'/></td>
+				<td><c:out value='${procurement.updateIdTxt}'/>&nbsp;</td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_CREATE_ID%></td>	
-				<td><c:out value='${procurement.createId}'/></td>
+				<td><c:out value='${procurement.createIdTxt}'/>&nbsp;</td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_TRANSPORT_ID%></td>	
-				<td><c:out value='${procurement.transportId}'/></td>
+				<td><c:out value='${procurement.transportIdTxt}'/>&nbsp;</td>
 			</tr>
 		</table>
 	</form:form>

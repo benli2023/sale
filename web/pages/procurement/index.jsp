@@ -34,7 +34,7 @@
 				<tr>	
 					<td class="tdLabel"><%=Procurement.ALIAS_PROCUREMENT_NAME%></td>		
 					<td>
-						<input value="${query.procurementName}" id="procurementName" name="procurementName" maxlength="128"  class=""/>
+						<input value="${query.procurementName}" id="procurementName" name="procurementName" maxlength="128"  class="text "/>
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_PROD_ID%></td>		
 					<td>
@@ -43,12 +43,12 @@
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_PROCUREMENT_DATE%></td>		
 					<td>
-						<input value="<fmt:formatDate value='${query.procurementDateBegin}' pattern='<%=Procurement.FORMAT_PROCUREMENT_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_PROCUREMENT_DATE%>'})" id="procurementDateBegin" name="procurementDateBegin"   />
-						<input value="<fmt:formatDate value='${query.procurementDateEnd}' pattern='<%=Procurement.FORMAT_PROCUREMENT_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_PROCUREMENT_DATE%>'})" id="procurementDateEnd" name="procurementDateEnd"   />
+						<input value="<fmt:formatDate value='${query.procurementDateBegin}' pattern='<%=Procurement.FORMAT_PROCUREMENT_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_PROCUREMENT_DATE%>'})" id="procurementDateBegin" name="procurementDateBegin"   class="text"/>
+						<input value="<fmt:formatDate value='${query.procurementDateEnd}' pattern='<%=Procurement.FORMAT_PROCUREMENT_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_PROCUREMENT_DATE%>'})" id="procurementDateEnd" name="procurementDateEnd"   class="text"/>
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_AMOUNT%></td>		
 					<td>
-						<input value="${query.amount}" id="amount" name="amount" maxlength="10"  class="validate-integer max-value-2147483647"/>
+						<input value="${query.amount}" id="amount" name="amount" maxlength="10"  class="text  validate-integer max-value-2147483647"/>
 					</td>
 				</tr>	
 				<tr>	
@@ -62,45 +62,45 @@
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_REMAINED_AMOUNT%></td>		
 					<td>
-						<input value="${query.remainedAmount}" id="remainedAmount" name="remainedAmount" maxlength="10"  class="validate-integer max-value-2147483647"/>
+						<input value="${query.remainedAmount}" id="remainedAmount" name="remainedAmount" maxlength="10"  class="text  validate-integer max-value-2147483647"/>
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_UNIT_PRICE%></td>		
 					<td>
-						<input value="${query.unitPrice}" id="unitPrice" name="unitPrice" maxlength="10"  class="validate-number "/>
+						<input value="${query.unitPrice}" id="unitPrice" name="unitPrice" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_FREIGHTAGE%></td>		
 					<td>
-						<input value="${query.freightage}" id="freightage" name="freightage" maxlength="10"  class="validate-number "/>
+						<input value="${query.freightage}" id="freightage" name="freightage" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
 					</td>
 				</tr>	
 				<tr>	
 					<td class="tdLabel"><%=Procurement.ALIAS_LOAD_FEE%></td>		
 					<td>
-						<input value="${query.loadFee}" id="loadFee" name="loadFee" maxlength="10"  class="validate-number "/>
+						<input value="${query.loadFee}" id="loadFee" name="loadFee" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_CAR_NUMBER%></td>		
 					<td>
-						<input value="${query.carNumber}" id="carNumber" name="carNumber" maxlength="32"  class=""/>
+						<input value="${query.carNumber}" id="carNumber" name="carNumber" maxlength="32"  class="text  validate-alphanum"/>
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_DRIVER%></td>		
 					<td>
-						<input value="${query.driver}" id="driver" name="driver" maxlength="64"  class=""/>
+						<input value="${query.driver}" id="driver" name="driver" maxlength="64"  class="text "/>
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_DRIVER_TEL%></td>		
 					<td>
-						<input value="${query.driverTel}" id="driverTel" name="driverTel" maxlength="32"  class=""/>
+						<input value="${query.driverTel}" id="driverTel" name="driverTel" maxlength="32"  class="text  validate-mobile-phone"/>
 					</td>
 				</tr>	
 				<tr>	
 					<td class="tdLabel"><%=Procurement.ALIAS_UPDATE_DATE%></td>		
 					<td>
-						<input value="<fmt:formatDate value='${query.updateDateBegin}' pattern='<%=Procurement.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_UPDATE_DATE%>'})" id="updateDateBegin" name="updateDateBegin"   />
-						<input value="<fmt:formatDate value='${query.updateDateEnd}' pattern='<%=Procurement.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_UPDATE_DATE%>'})" id="updateDateEnd" name="updateDateEnd"   />
+						<input value="<fmt:formatDate value='${query.updateDateBegin}' pattern='<%=Procurement.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_UPDATE_DATE%>'})" id="updateDateBegin" name="updateDateBegin"   class="text"/>
+						<input value="<fmt:formatDate value='${query.updateDateEnd}' pattern='<%=Procurement.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_UPDATE_DATE%>'})" id="updateDateEnd" name="updateDateEnd"   class="text"/>
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_CREATED_DATE%></td>		
 					<td>
-						<input value="<fmt:formatDate value='${query.createdDateBegin}' pattern='<%=Procurement.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_CREATED_DATE%>'})" id="createdDateBegin" name="createdDateBegin"   />
-						<input value="<fmt:formatDate value='${query.createdDateEnd}' pattern='<%=Procurement.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_CREATED_DATE%>'})" id="createdDateEnd" name="createdDateEnd"   />
+						<input value="<fmt:formatDate value='${query.createdDateBegin}' pattern='<%=Procurement.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_CREATED_DATE%>'})" id="createdDateBegin" name="createdDateBegin"   class="text"/>
+						<input value="<fmt:formatDate value='${query.createdDateEnd}' pattern='<%=Procurement.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Procurement.FORMAT_CREATED_DATE%>'})" id="createdDateEnd" name="createdDateEnd"   class="text"/>
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_UPDATE_ID%></td>		
 					<td>
@@ -228,10 +228,10 @@
 	
 	<script type="text/javascript">
 	 var popupOption={
-		 'procurement_prodId': {url:'${ctx}/product/query',title:'选择产品',textColumn:'prodctDesc',valueColumn:'prodId'},
+		 'procurement_prodId': {url:'${ctx}/product/query',title:'选择产品',textColumn:'productName',valueColumn:'prodId'},
 		 'procurement_updateId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'},
 		 'procurement_createId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'},
-		 'procurement_transportId': {url:'${ctx}/transport/query',title:'选择运输',textColumn:'driverTel',valueColumn:'transportId'}
+		 'procurement_transportId': {url:'${ctx}/transport/query',title:'选择运输',textColumn:'driver',valueColumn:'transportId'}
 	 };
 	 PopupSelection.initOption(popupOption); 	
 	</script>

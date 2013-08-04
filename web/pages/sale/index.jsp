@@ -39,7 +39,7 @@
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_AMOUNT%></td>		
 					<td>
-						<input value="${query.amount}" id="amount" name="amount" maxlength="10"  class="validate-integer max-value-2147483647"/>
+						<input value="${query.amount}" id="amount" name="amount" maxlength="10"  class="text  validate-integer validate-integer max-value-2147483647"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_UNIT%></td>		
 					<td>
@@ -51,35 +51,35 @@
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_CUST_NAME%></td>		
 					<td>
-						<input value="${query.custName}" id="custName" name="custName" maxlength="64"  class=""/>
+						<input value="${query.custName}" id="custName" name="custName" maxlength="64"  class="text "/>
 					</td>
 				</tr>	
 				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_CUST_TEL%></td>		
 					<td>
-						<input value="${query.custTel}" id="custTel" name="custTel" maxlength="128"  class=""/>
+						<input value="${query.custTel}" id="custTel" name="custTel" maxlength="128"  class="text  validate-mobile-phone"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_UNIT_PRICE%></td>		
 					<td>
-						<input value="${query.unitPrice}" id="unitPrice" name="unitPrice" maxlength="10"  class="validate-integer "/>
+						<input value="${query.unitPrice}" id="unitPrice" name="unitPrice" maxlength="10"  class="text  validate-currency-dollar validate-integer"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_PAID%></td>		
 					<td>
-						<input value="${query.paid}" id="paid" name="paid" maxlength="10"  class="validate-number "/>
+						<input value="${query.paid}" id="paid" name="paid" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_UN_PAID%></td>		
 					<td>
-						<input value="${query.unPaid}" id="unPaid" name="unPaid" maxlength="10"  class="validate-number "/>
+						<input value="${query.unPaid}" id="unPaid" name="unPaid" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
 					</td>
 				</tr>	
 				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_OTHER_FEE%></td>		
 					<td>
-						<input value="${query.otherFee}" id="otherFee" name="otherFee" maxlength="10"  class="validate-number "/>
+						<input value="${query.otherFee}" id="otherFee" name="otherFee" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_PROFIT%></td>		
 					<td>
-						<input value="${query.profit}" id="profit" name="profit" maxlength="10"  class="validate-number "/>
+						<input value="${query.profit}" id="profit" name="profit" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_PAYMENT_STATUS%></td>		
 					<td>
@@ -104,27 +104,27 @@
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_CAR_NUMBER%></td>		
 					<td>
-						<input value="${query.carNumber}" id="carNumber" name="carNumber" maxlength="32"  class=""/>
+						<input value="${query.carNumber}" id="carNumber" name="carNumber" maxlength="32"  class="text  validate-alphanum"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_DRIVER%></td>		
 					<td>
-						<input value="${query.driver}" id="driver" name="driver" maxlength="64"  class=""/>
+						<input value="${query.driver}" id="driver" name="driver" maxlength="64"  class="text "/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_DRIVER_TEL%></td>		
 					<td>
-						<input value="${query.driverTel}" id="driverTel" name="driverTel" maxlength="32"  class=""/>
+						<input value="${query.driverTel}" id="driverTel" name="driverTel" maxlength="32"  class="text  validate-mobile-phone"/>
 					</td>
 				</tr>	
 				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_UPDATE_DATE%></td>		
 					<td>
-						<input value="<fmt:formatDate value='${query.updateDateBegin}' pattern='<%=Sale.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_UPDATE_DATE%>'})" id="updateDateBegin" name="updateDateBegin"   />
-						<input value="<fmt:formatDate value='${query.updateDateEnd}' pattern='<%=Sale.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_UPDATE_DATE%>'})" id="updateDateEnd" name="updateDateEnd"   />
+						<input value="<fmt:formatDate value='${query.updateDateBegin}' pattern='<%=Sale.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_UPDATE_DATE%>'})" id="updateDateBegin" name="updateDateBegin"   class="text"/>
+						<input value="<fmt:formatDate value='${query.updateDateEnd}' pattern='<%=Sale.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_UPDATE_DATE%>'})" id="updateDateEnd" name="updateDateEnd"   class="text"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_CREATED_DATE%></td>		
 					<td>
-						<input value="<fmt:formatDate value='${query.createdDateBegin}' pattern='<%=Sale.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_CREATED_DATE%>'})" id="createdDateBegin" name="createdDateBegin"   />
-						<input value="<fmt:formatDate value='${query.createdDateEnd}' pattern='<%=Sale.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_CREATED_DATE%>'})" id="createdDateEnd" name="createdDateEnd"   />
+						<input value="<fmt:formatDate value='${query.createdDateBegin}' pattern='<%=Sale.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_CREATED_DATE%>'})" id="createdDateBegin" name="createdDateBegin"   class="text"/>
+						<input value="<fmt:formatDate value='${query.createdDateEnd}' pattern='<%=Sale.FORMAT_CREATED_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_CREATED_DATE%>'})" id="createdDateEnd" name="createdDateEnd"   class="text"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_UPDATE_ID%></td>		
 					<td>
@@ -244,9 +244,9 @@
 	
 	<script type="text/javascript">
 	 var popupOption={
-		 'sale_custId': {url:'${ctx}/customer/query',title:'选择客户',textColumn:'telephone',valueColumn:'custId'},
+		 'sale_custId': {url:'${ctx}/customer/query',title:'选择客户',textColumn:'custName',valueColumn:'custId'},
 		 'sale_createId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'},
-		 'sale_transportId': {url:'${ctx}/transport/query',title:'选择运输',textColumn:'driverTel',valueColumn:'transportId'},
+		 'sale_transportId': {url:'${ctx}/transport/query',title:'选择运输',textColumn:'driver',valueColumn:'transportId'},
 		 'sale_updateId': {url:'${ctx}/user/query',title:'选择用户',textColumn:'userName',valueColumn:'userId'}
 	 };
 	 PopupSelection.initOption(popupOption); 	

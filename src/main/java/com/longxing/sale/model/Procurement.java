@@ -71,111 +71,89 @@ public class Procurement extends BaseEntity implements java.io.Serializable {
 	
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
-	    /**
-	     * 采购ID       db_column: procurementId 
-	     */ 	
-		
-		
-		
-		private java.lang.Long procurementId;
+    /**
+     * 采购ID       db_column: procurementId 
+     */
+     
+	private java.lang.Long procurementId;
 	
-	    /**
-	     * 采购名称       db_column: procurementName 
-	     */ 	
-		@Length(max=128)
-		
-		
-		private java.lang.String procurementName;
+    /**
+     * 采购名称       db_column: procurementName 
+     */
+    @Length(max=128) 
+	private java.lang.String procurementName;
 	
-		private java.lang.Long prodId;
-		private String prodIdTxt;
+    @NotNull  
+	private java.lang.Long prodId;
+	private String prodIdTxt;
 	
-	    /**
-	     * 采购日期       db_column: procurementDate 
-	     */ 	
-		
-		
-		@JsonSerialize(using = JsonDateSerializer.class)
-		private java.util.Date procurementDate;
+    /**
+     * 采购日期       db_column: procurementDate 
+     */
+    @NotNull  @JsonSerialize(using = JsonDateSerializer.class) 
+	private java.util.Date procurementDate;
 	
-	    /**
-	     * 数量       db_column: amount 
-	     */ 	
-		
-		
-		
-		private java.lang.Integer amount;
+    /**
+     * 数量       db_column: amount 
+     */
+    @NotNull  
+	private java.lang.Integer amount;
 	
-	    /**
-	     * 单位       db_column: unit 
-	     */ 	
-		
-		
-		
-		private java.lang.Integer unit;
+    /**
+     * 单位       db_column: unit 
+     */
+    @NotNull  
+	private java.lang.Integer unit;
 	
-	    /**
-	     * 剩余数量       db_column: remainedAmount 
-	     */ 	
-		
-		
-		
-		private java.lang.Integer remainedAmount;
+    /**
+     * 剩余数量       db_column: remainedAmount 
+     */
+     
+	private java.lang.Integer remainedAmount;
 	
-	    /**
-	     * 单价       db_column: unitPrice 
-	     */ 	
-		
-		
-		
-		private java.math.BigDecimal unitPrice;
+    /**
+     * 单价       db_column: unitPrice 
+     */
+    @NotNull  
+	private java.math.BigDecimal unitPrice;
 	
-	    /**
-	     * 运费       db_column: freightage 
-	     */ 	
-		
-		
-		
-		private java.math.BigDecimal freightage;
+    /**
+     * 运费       db_column: freightage 
+     */
+    @NotNull  
+	private java.math.BigDecimal freightage;
 	
-	    /**
-	     * 卸费       db_column: loadFee 
-	     */ 	
-		
-		
-		
-		private java.math.BigDecimal loadFee;
+    /**
+     * 卸费       db_column: loadFee 
+     */
+     
+	private java.math.BigDecimal loadFee;
 	
-	    /**
-	     * 车牌号       db_column: carNumber 
-	     */ 	
-		@Length(max=32)
-		
-		
-		private java.lang.String carNumber;
+    /**
+     * 车牌号       db_column: carNumber 
+     */
+    @NotBlank @Length(max=32) 
+	private java.lang.String carNumber;
 	
-	    /**
-	     * 司机       db_column: driver 
-	     */ 	
-		@Length(max=64)
-		
-		
-		private java.lang.String driver;
+    /**
+     * 司机       db_column: driver 
+     */
+    @NotBlank @Length(max=64) 
+	private java.lang.String driver;
 	
-	    /**
-	     * 司机电话       db_column: driverTel 
-	     */ 	
-		@Length(max=32)
-		
-		
-		private java.lang.String driverTel;
+    /**
+     * 司机电话       db_column: driverTel 
+     */
+    @NotBlank @Length(max=32) 
+	private java.lang.String driverTel;
 	
 	
 	
 	
 	
-		private java.lang.Long transportId;
-		private String transportIdTxt;
+     
+	private java.lang.Long transportId;
+	private String transportIdTxt;
 	
 	//columns END
 
@@ -188,125 +166,125 @@ public class Procurement extends BaseEntity implements java.io.Serializable {
 		this.procurementId = procurementId;
 	}
 
-		public void setProcurementId(java.lang.Long value) {
-			this.procurementId = value;
-		}
-		
-		public java.lang.Long getProcurementId() {
-			return this.procurementId;
-		}
-		public void setProcurementName(java.lang.String value) {
-			this.procurementName = value;
-		}
-		
-		public java.lang.String getProcurementName() {
-			return this.procurementName;
-		}
-		public void setProdId(java.lang.Long value) {
-			this.prodId = value;
-		}
-		
-		public java.lang.Long getProdId() {
-			return this.prodId;
-		}
-			public String getProdIdTxt() {
-				return this.prodIdTxt;
-			}
-			
-			public void setProdIdTxt(String value) {
-				this.prodIdTxt = value;
-			}
-			public String getProcurementDateString() {
-				return DateConvertUtils.format(getProcurementDate(), FORMAT_PROCUREMENT_DATE);
-			}
-			public void setProcurementDateString(String value) {
-				setProcurementDate(DateConvertUtils.parse(value, FORMAT_PROCUREMENT_DATE,java.util.Date.class));
-			}
+	public void setProcurementId(java.lang.Long value) {
+		this.procurementId = value;
+	}
 	
-		public void setProcurementDate(java.util.Date value) {
-			this.procurementDate = value;
-		}
-		
-		public java.util.Date getProcurementDate() {
-			return this.procurementDate;
-		}
-		public void setAmount(java.lang.Integer value) {
-			this.amount = value;
-		}
-		
-		public java.lang.Integer getAmount() {
-			return this.amount;
-		}
-		public void setUnit(java.lang.Integer value) {
-			this.unit = value;
-		}
-		
-		public java.lang.Integer getUnit() {
-			return this.unit;
-		}
-		public void setRemainedAmount(java.lang.Integer value) {
-			this.remainedAmount = value;
-		}
-		
-		public java.lang.Integer getRemainedAmount() {
-			return this.remainedAmount;
-		}
-		public void setUnitPrice(java.math.BigDecimal value) {
-			this.unitPrice = value;
-		}
-		
-		public java.math.BigDecimal getUnitPrice() {
-			return this.unitPrice;
-		}
-		public void setFreightage(java.math.BigDecimal value) {
-			this.freightage = value;
-		}
-		
-		public java.math.BigDecimal getFreightage() {
-			return this.freightage;
-		}
-		public void setLoadFee(java.math.BigDecimal value) {
-			this.loadFee = value;
-		}
-		
-		public java.math.BigDecimal getLoadFee() {
-			return this.loadFee;
-		}
-		public void setCarNumber(java.lang.String value) {
-			this.carNumber = value;
-		}
-		
-		public java.lang.String getCarNumber() {
-			return this.carNumber;
-		}
-		public void setDriver(java.lang.String value) {
-			this.driver = value;
-		}
-		
-		public java.lang.String getDriver() {
-			return this.driver;
-		}
-		public void setDriverTel(java.lang.String value) {
-			this.driverTel = value;
-		}
-		
-		public java.lang.String getDriverTel() {
-			return this.driverTel;
-		}
-		public void setTransportId(java.lang.Long value) {
-			this.transportId = value;
-		}
-		
-		public java.lang.Long getTransportId() {
-			return this.transportId;
-		}
-			public String getTransportIdTxt() {
-				return this.transportIdTxt;
-			}
-			
-			public void setTransportIdTxt(String value) {
-				this.transportIdTxt = value;
-			}
+	public java.lang.Long getProcurementId() {
+		return this.procurementId;
+	}
+	public void setProcurementName(java.lang.String value) {
+		this.procurementName = value;
+	}
+	
+	public java.lang.String getProcurementName() {
+		return this.procurementName;
+	}
+	public void setProdId(java.lang.Long value) {
+		this.prodId = value;
+	}
+	
+	public java.lang.Long getProdId() {
+		return this.prodId;
+	}
+	public String getProdIdTxt() {
+		return this.prodIdTxt;
+	}
+	
+	public void setProdIdTxt(String value) {
+		this.prodIdTxt = value;
+	}
+	public String getProcurementDateString() {
+		return DateConvertUtils.format(getProcurementDate(), FORMAT_PROCUREMENT_DATE);
+	}
+	public void setProcurementDateString(String value) {
+		setProcurementDate(DateConvertUtils.parse(value, FORMAT_PROCUREMENT_DATE,java.util.Date.class));
+	}
+
+	public void setProcurementDate(java.util.Date value) {
+		this.procurementDate = value;
+	}
+	
+	public java.util.Date getProcurementDate() {
+		return this.procurementDate;
+	}
+	public void setAmount(java.lang.Integer value) {
+		this.amount = value;
+	}
+	
+	public java.lang.Integer getAmount() {
+		return this.amount;
+	}
+	public void setUnit(java.lang.Integer value) {
+		this.unit = value;
+	}
+	
+	public java.lang.Integer getUnit() {
+		return this.unit;
+	}
+	public void setRemainedAmount(java.lang.Integer value) {
+		this.remainedAmount = value;
+	}
+	
+	public java.lang.Integer getRemainedAmount() {
+		return this.remainedAmount;
+	}
+	public void setUnitPrice(java.math.BigDecimal value) {
+		this.unitPrice = value;
+	}
+	
+	public java.math.BigDecimal getUnitPrice() {
+		return this.unitPrice;
+	}
+	public void setFreightage(java.math.BigDecimal value) {
+		this.freightage = value;
+	}
+	
+	public java.math.BigDecimal getFreightage() {
+		return this.freightage;
+	}
+	public void setLoadFee(java.math.BigDecimal value) {
+		this.loadFee = value;
+	}
+	
+	public java.math.BigDecimal getLoadFee() {
+		return this.loadFee;
+	}
+	public void setCarNumber(java.lang.String value) {
+		this.carNumber = value;
+	}
+	
+	public java.lang.String getCarNumber() {
+		return this.carNumber;
+	}
+	public void setDriver(java.lang.String value) {
+		this.driver = value;
+	}
+	
+	public java.lang.String getDriver() {
+		return this.driver;
+	}
+	public void setDriverTel(java.lang.String value) {
+		this.driverTel = value;
+	}
+	
+	public java.lang.String getDriverTel() {
+		return this.driverTel;
+	}
+	public void setTransportId(java.lang.Long value) {
+		this.transportId = value;
+	}
+	
+	public java.lang.Long getTransportId() {
+		return this.transportId;
+	}
+	public String getTransportIdTxt() {
+		return this.transportIdTxt;
+	}
+	
+	public void setTransportIdTxt(String value) {
+		this.transportIdTxt = value;
+	}
 	
 	private Set procurementsales = new HashSet(0);
 	public void setProcurementsales(Set<Procurementsale> procurementsale){

@@ -6,11 +6,12 @@
 
 	<tr>	
 		<td class="tdLabel">
-			<%=Provider.ALIAS_PROVIDER%>:
+			<span class="required">*</span><%=Provider.ALIAS_PROVIDER%>:
 		</td>		
 		<td>
-		<form:input path="provider" id="provider" cssClass="" maxlength="64" />
-		<font color='red'><form:errors path="provider"/></font>
+		<form:input path="provider" id="provider" cssClass="text required" maxlength="64" />
+		<font color='red' ><form:errors path="provider"/></font>
+		
 		</td>
 	</tr>	
 	

@@ -31,15 +31,15 @@
 				<tr>	
 					<td class="tdLabel"><%=Transport.ALIAS_DRIVER%></td>		
 					<td>
-						<input value="${query.driver}" id="driver" name="driver" maxlength="64"  class=""/>
+						<input value="${query.driver}" id="driver" name="driver" maxlength="64"  class="text "/>
 					</td>
 					<td class="tdLabel"><%=Transport.ALIAS_CAR_NUMBER%></td>		
 					<td>
-						<input value="${query.carNumber}" id="carNumber" name="carNumber" maxlength="32"  class=""/>
+						<input value="${query.carNumber}" id="carNumber" name="carNumber" maxlength="32"  class="text "/>
 					</td>
 					<td class="tdLabel"><%=Transport.ALIAS_DRIVER_TEL%></td>		
 					<td>
-						<input value="${query.driverTel}" id="driverTel" name="driverTel" maxlength="32"  class=""/>
+						<input value="${query.driverTel}" id="driverTel" name="driverTel" maxlength="32"  class="text  validate-mobile-phone"/>
 					</td>
 				</tr>	
 			</table>

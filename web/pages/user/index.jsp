@@ -31,15 +31,15 @@
 				<tr>	
 					<td class="tdLabel"><%=User.ALIAS_USER_NAME%></td>		
 					<td>
-						<input value="${query.userName}" id="userName" name="userName" maxlength="64"  class=""/>
+						<input value="${query.userName}" id="userName" name="userName" maxlength="64"  class="text  validate-alphanum"/>
 					</td>
 					<td class="tdLabel"><%=User.ALIAS_PASSWORD%></td>		
 					<td>
-						<input value="${query.password}" id="password" name="password" maxlength="128"  class=""/>
+						<input value="${query.password}" id="password" name="password" maxlength="128"  class="text  validate-alphanum"/>
 					</td>
 					<td class="tdLabel"><%=User.ALIAS_GROUP_LEVEL%></td>		
 					<td>
-						<input value="${query.groupLevel}" id="groupLevel" name="groupLevel" maxlength="10"  class="validate-integer max-value-2147483647"/>
+						<input value="${query.groupLevel}" id="groupLevel" name="groupLevel" maxlength="10"  class="text  validate-integer max-value-2147483647"/>
 					</td>
 				</tr>	
 			</table>

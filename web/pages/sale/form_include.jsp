@@ -6,65 +6,70 @@
 
 	<tr>	
 		<td class="tdLabel">
-			<%=Sale.ALIAS_CUST_ID%>:
+			<span class="required">*</span><%=Sale.ALIAS_CUST_ID%>:
 		</td>		
 		<td>
-		<yun:button-edit name="custIdTxt" hiddenName="custId" id="sale_custId" txtVal="${sale.custIdTxt}"  hiddenVal="${sale.custId}" width="130"  profileId="sale"/> 
-	
-		<font color='red'><form:errors path="custId"/></font>
+		<yun:button-edit name="custIdTxt" hiddenName="custId" id="sale_custId" txtVal="${sale.custIdTxt}"  hiddenVal="${sale.custId}" width="130"  profileId="sale" cssClass=" required"/> 
+		<font color='red' style="margin-left:5px"><form:errors path="custId"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Sale.ALIAS_AMOUNT%>:
+			<span class="required">*</span><%=Sale.ALIAS_AMOUNT%>:
 		</td>		
 		<td>
-		<form:input path="amount" id="amount" cssClass="validate-integer max-value-2147483647" maxlength="10" />
-		<font color='red'><form:errors path="amount"/></font>
+		<form:input path="amount" id="amount" cssClass="text required validate-integer validate-integer max-value-2147483647" maxlength="10" />
+		<font color='red' ><form:errors path="amount"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Sale.ALIAS_UNIT%>:
+			<span class="required">*</span><%=Sale.ALIAS_UNIT%>:
 		</td>		
 		<td>
 		<form:select path="unit" id="unit">
 			<form:option value="1" >吨</form:option>
 			<form:option value="2" >批</form:option>
 		</form:select>
-		<font color='red'><form:errors path="unit"/></font>
+		<font color='red' ><form:errors path="unit"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Sale.ALIAS_CUST_NAME%>:
+			<span class="required">*</span><%=Sale.ALIAS_CUST_NAME%>:
 		</td>		
 		<td>
-		<form:input path="custName" id="custName" cssClass="" maxlength="64" />
-		<font color='red'><form:errors path="custName"/></font>
+		<form:input path="custName" id="custName" cssClass="text required" maxlength="64" />
+		<font color='red' ><form:errors path="custName"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Sale.ALIAS_CUST_TEL%>:
+			<span class="required">*</span><%=Sale.ALIAS_CUST_TEL%>:
 		</td>		
 		<td>
-		<form:input path="custTel" id="custTel" cssClass="" maxlength="128" />
-		<font color='red'><form:errors path="custTel"/></font>
+		<form:input path="custTel" id="custTel" cssClass="text required validate-mobile-phone" maxlength="128" />
+		<font color='red' ><form:errors path="custTel"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Sale.ALIAS_UNIT_PRICE%>:
+			<span class="required">*</span><%=Sale.ALIAS_UNIT_PRICE%>:
 		</td>		
 		<td>
-		<form:input path="unitPrice" id="unitPrice" cssClass="validate-integer " maxlength="10" />
-		<font color='red'><form:errors path="unitPrice"/></font>
+		<form:input path="unitPrice" id="unitPrice" cssClass="text required validate-currency-dollar validate-integer" maxlength="10" />
+		<font color='red' ><form:errors path="unitPrice"/></font>
+		
 		</td>
 	</tr>	
 	
@@ -73,8 +78,9 @@
 			<%=Sale.ALIAS_PAID%>:
 		</td>		
 		<td>
-		<form:input path="paid" id="paid" cssClass="validate-number " maxlength="10" />
-		<font color='red'><form:errors path="paid"/></font>
+		<form:input path="paid" id="paid" cssClass="text validate-currency-dollar validate-number" maxlength="10" />
+		<font color='red' ><form:errors path="paid"/></font>
+		
 		</td>
 	</tr>	
 	
@@ -83,8 +89,9 @@
 			<%=Sale.ALIAS_UN_PAID%>:
 		</td>		
 		<td>
-		<form:input path="unPaid" id="unPaid" cssClass="validate-number " maxlength="10" />
-		<font color='red'><form:errors path="unPaid"/></font>
+		<form:input path="unPaid" id="unPaid" cssClass="text validate-currency-dollar validate-number" maxlength="10" />
+		<font color='red' ><form:errors path="unPaid"/></font>
+		
 		</td>
 	</tr>	
 	
@@ -93,8 +100,9 @@
 			<%=Sale.ALIAS_OTHER_FEE%>:
 		</td>		
 		<td>
-		<form:input path="otherFee" id="otherFee" cssClass="validate-number " maxlength="10" />
-		<font color='red'><form:errors path="otherFee"/></font>
+		<form:input path="otherFee" id="otherFee" cssClass="text validate-currency-dollar validate-number" maxlength="10" />
+		<font color='red' ><form:errors path="otherFee"/></font>
+		
 		</td>
 	</tr>	
 	
@@ -103,14 +111,15 @@
 			<%=Sale.ALIAS_PROFIT%>:
 		</td>		
 		<td>
-		<form:input path="profit" id="profit" cssClass="validate-number " maxlength="10" />
-		<font color='red'><form:errors path="profit"/></font>
+		<form:input path="profit" id="profit" cssClass="text validate-currency-dollar validate-number" maxlength="10" />
+		<font color='red' ><form:errors path="profit"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Sale.ALIAS_PAYMENT_STATUS%>:
+			<span class="required">*</span><%=Sale.ALIAS_PAYMENT_STATUS%>:
 		</td>		
 		<td>
 		<form:select path="paymentStatus" id="paymentStatus">
@@ -118,7 +127,8 @@
 			<form:option value="0" >未付款</form:option>
 			<form:option value="1" >已付定金</form:option>
 		</form:select>
-		<font color='red'><form:errors path="paymentStatus"/></font>
+		<font color='red' ><form:errors path="paymentStatus"/></font>
+		
 		</td>
 	</tr>	
 	
@@ -127,39 +137,42 @@
 			<%=Sale.ALIAS_TRANSPORT_ID%>:
 		</td>		
 		<td>
-		<yun:button-edit name="transportIdTxt" hiddenName="transportId" id="sale_transportId" txtVal="${sale.transportIdTxt}"  hiddenVal="${sale.transportId}" width="130"  profileId="common"/> 
-	
-		<font color='red'><form:errors path="transportId"/></font>
+		<yun:button-edit name="transportIdTxt" hiddenName="transportId" id="sale_transportId" txtVal="${sale.transportIdTxt}"  hiddenVal="${sale.transportId}" width="130"  profileId="common" cssClass=""/> 
+		<font color='red' style="margin-left:5px"><form:errors path="transportId"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Sale.ALIAS_CAR_NUMBER%>:
+			<span class="required">*</span><%=Sale.ALIAS_CAR_NUMBER%>:
 		</td>		
 		<td>
-		<form:input path="carNumber" id="carNumber" cssClass="" maxlength="32" />
-		<font color='red'><form:errors path="carNumber"/></font>
+		<form:input path="carNumber" id="carNumber" cssClass="text required validate-alphanum" maxlength="32" />
+		<font color='red' ><form:errors path="carNumber"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Sale.ALIAS_DRIVER%>:
+			<span class="required">*</span><%=Sale.ALIAS_DRIVER%>:
 		</td>		
 		<td>
-		<form:input path="driver" id="driver" cssClass="" maxlength="64" />
-		<font color='red'><form:errors path="driver"/></font>
+		<form:input path="driver" id="driver" cssClass="text required" maxlength="64" />
+		<font color='red' ><form:errors path="driver"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Sale.ALIAS_DRIVER_TEL%>:
+			<span class="required">*</span><%=Sale.ALIAS_DRIVER_TEL%>:
 		</td>		
 		<td>
-		<form:input path="driverTel" id="driverTel" cssClass="" maxlength="32" />
-		<font color='red'><form:errors path="driverTel"/></font>
+		<form:input path="driverTel" id="driverTel" cssClass="text required validate-mobile-phone" maxlength="32" />
+		<font color='red' ><form:errors path="driverTel"/></font>
+		
 		</td>
 	</tr>	
 	

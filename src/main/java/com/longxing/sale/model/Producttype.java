@@ -53,29 +53,23 @@ public class Producttype extends BaseEntity implements java.io.Serializable {
 	
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
-	    /**
-	     * 产品类型ID       db_column: typeId 
-	     */ 	
-		
-		
-		
-		private java.lang.Long typeId;
+    /**
+     * 产品类型ID       db_column: typeId 
+     */
+     
+	private java.lang.Long typeId;
 	
-	    /**
-	     * 产品类型名称       db_column: name 
-	     */ 	
-		@Length(max=64)
-		@JsonProperty("name")
-		
-		private java.lang.String name;
+    /**
+     * 产品类型名称       db_column: name 
+     */
+    @NotBlank  @JsonProperty("name") @Length(max=64) 
+	private java.lang.String name;
 	
-	    /**
-	     * 产品类型编码       db_column: code 
-	     */ 	
-		@Length(max=32)
-		@JsonProperty("code")
-		
-		private java.lang.String code;
+    /**
+     * 产品类型编码       db_column: code 
+     */
+     @JsonProperty("code") @Length(max=32) 
+	private java.lang.String code;
 	
 	//columns END
 
@@ -88,27 +82,27 @@ public class Producttype extends BaseEntity implements java.io.Serializable {
 		this.typeId = typeId;
 	}
 
-		public void setTypeId(java.lang.Long value) {
-			this.typeId = value;
-		}
-		
-		public java.lang.Long getTypeId() {
-			return this.typeId;
-		}
-		public void setName(java.lang.String value) {
-			this.name = value;
-		}
-		
-		public java.lang.String getName() {
-			return this.name;
-		}
-		public void setCode(java.lang.String value) {
-			this.code = value;
-		}
-		
-		public java.lang.String getCode() {
-			return this.code;
-		}
+	public void setTypeId(java.lang.Long value) {
+		this.typeId = value;
+	}
+	
+	public java.lang.Long getTypeId() {
+		return this.typeId;
+	}
+	public void setName(java.lang.String value) {
+		this.name = value;
+	}
+	
+	public java.lang.String getName() {
+		return this.name;
+	}
+	public void setCode(java.lang.String value) {
+		this.code = value;
+	}
+	
+	public java.lang.String getCode() {
+		return this.code;
+	}
 	
 	private Set products = new HashSet(0);
 	public void setProducts(Set<Product> product){

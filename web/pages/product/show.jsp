@@ -24,11 +24,11 @@
 		<table class="formTable">
 			<tr>	
 				<td class="tdLabel"><%=Product.ALIAS_TYPE_ID%></td>	
-				<td><c:out value='${product.typeId}'/></td>
+				<td><c:out value='${product.typeIdTxt}'/>&nbsp;</td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Product.ALIAS_PROVIDER_ID%></td>	
-				<td><c:out value='${product.providerId}'/></td>
+				<td><c:out value='${product.providerIdTxt}'/>&nbsp;</td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Product.ALIAS_PRODUCT_NAME%></td>	

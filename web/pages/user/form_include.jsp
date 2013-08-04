@@ -6,31 +6,34 @@
 
 	<tr>	
 		<td class="tdLabel">
-			<%=User.ALIAS_USER_NAME%>:
+			<span class="required">*</span><%=User.ALIAS_USER_NAME%>:
 		</td>		
 		<td>
-		<form:input path="userName" id="userName" cssClass="" maxlength="64" />
-		<font color='red'><form:errors path="userName"/></font>
+		<form:input path="userName" id="userName" cssClass="text required validate-alphanum" maxlength="64" />
+		<font color='red' ><form:errors path="userName"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=User.ALIAS_PASSWORD%>:
+			<span class="required">*</span><%=User.ALIAS_PASSWORD%>:
 		</td>		
 		<td>
-		<form:input path="password" id="password" cssClass="" maxlength="128" />
-		<font color='red'><form:errors path="password"/></font>
+		<form:input path="password" id="password" cssClass="text required validate-alphanum" maxlength="128" />
+		<font color='red' ><form:errors path="password"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=User.ALIAS_GROUP_LEVEL%>:
+			<span class="required">*</span><%=User.ALIAS_GROUP_LEVEL%>:
 		</td>		
 		<td>
-		<form:input path="groupLevel" id="groupLevel" cssClass="validate-integer max-value-2147483647" maxlength="10" />
-		<font color='red'><form:errors path="groupLevel"/></font>
+		<form:input path="groupLevel" id="groupLevel" cssClass="text required validate-integer max-value-2147483647" maxlength="10" />
+		<font color='red' ><form:errors path="groupLevel"/></font>
+		
 		</td>
 	</tr>	
 	

@@ -31,7 +31,7 @@
 				<tr>	
 					<td class="tdLabel"><%=Provider.ALIAS_PROVIDER%></td>		
 					<td>
-						<input value="${query.provider}" id="provider" name="provider" maxlength="64"  class=""/>
+						<input value="${query.provider}" id="provider" name="provider" maxlength="64"  class="text "/>
 					</td>
 				</tr>	
 			</table>

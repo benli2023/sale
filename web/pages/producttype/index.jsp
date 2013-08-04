@@ -31,11 +31,11 @@
 				<tr>	
 					<td class="tdLabel"><%=Producttype.ALIAS_NAME%></td>		
 					<td>
-						<input value="${query.name}" id="name" name="name" maxlength="64"  class=""/>
+						<input value="${query.name}" id="name" name="name" maxlength="64"  class="text "/>
 					</td>
 					<td class="tdLabel"><%=Producttype.ALIAS_CODE%></td>		
 					<td>
-						<input value="${query.code}" id="code" name="code" maxlength="32"  class=""/>
+						<input value="${query.code}" id="code" name="code" maxlength="32"  class="text "/>
 					</td>
 				</tr>	
 			</table>

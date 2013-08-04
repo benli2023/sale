@@ -54,37 +54,29 @@ public class User extends BaseEntity implements java.io.Serializable {
 	
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
-	    /**
-	     * 用户ID       db_column: userId 
-	     */ 	
-		
-		
-		
-		private java.lang.Long userId;
+    /**
+     * 用户ID       db_column: userId 
+     */
+     
+	private java.lang.Long userId;
 	
-	    /**
-	     * 用户名称       db_column: userName 
-	     */ 	
-		@Length(max=64)
-		@JsonProperty("userName")
-		
-		private java.lang.String userName;
+    /**
+     * 用户名称       db_column: userName 
+     */
+    @NotBlank  @JsonProperty("userName") @Length(max=64) 
+	private java.lang.String userName;
 	
-	    /**
-	     * 密码       db_column: password 
-	     */ 	
-		@Length(max=128)
-		
-		
-		private java.lang.String password;
+    /**
+     * 密码       db_column: password 
+     */
+    @NotBlank @Length(max=128) 
+	private java.lang.String password;
 	
-	    /**
-	     * 所属用户组       db_column: groupLevel 
-	     */ 	
-		
-		
-		
-		private java.lang.Integer groupLevel;
+    /**
+     * 所属用户组       db_column: groupLevel 
+     */
+    @NotNull  
+	private java.lang.Integer groupLevel;
 	
 	//columns END
 
@@ -97,34 +89,34 @@ public class User extends BaseEntity implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-		public void setUserId(java.lang.Long value) {
-			this.userId = value;
-		}
-		
-		public java.lang.Long getUserId() {
-			return this.userId;
-		}
-		public void setUserName(java.lang.String value) {
-			this.userName = value;
-		}
-		
-		public java.lang.String getUserName() {
-			return this.userName;
-		}
-		public void setPassword(java.lang.String value) {
-			this.password = value;
-		}
-		
-		public java.lang.String getPassword() {
-			return this.password;
-		}
-		public void setGroupLevel(java.lang.Integer value) {
-			this.groupLevel = value;
-		}
-		
-		public java.lang.Integer getGroupLevel() {
-			return this.groupLevel;
-		}
+	public void setUserId(java.lang.Long value) {
+		this.userId = value;
+	}
+	
+	public java.lang.Long getUserId() {
+		return this.userId;
+	}
+	public void setUserName(java.lang.String value) {
+		this.userName = value;
+	}
+	
+	public java.lang.String getUserName() {
+		return this.userName;
+	}
+	public void setPassword(java.lang.String value) {
+		this.password = value;
+	}
+	
+	public java.lang.String getPassword() {
+		return this.password;
+	}
+	public void setGroupLevel(java.lang.Integer value) {
+		this.groupLevel = value;
+	}
+	
+	public java.lang.Integer getGroupLevel() {
+		return this.groupLevel;
+	}
 	
 	private Set procurements = new HashSet(0);
 	public void setProcurements(Set<Procurement> procurement){

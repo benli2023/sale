@@ -6,21 +6,23 @@
 
 	<tr>	
 		<td class="tdLabel">
-			<%=Customer.ALIAS_CUST_NAME%>:
+			<span class="required">*</span><%=Customer.ALIAS_CUST_NAME%>:
 		</td>		
 		<td>
-		<form:input path="custName" id="custName" cssClass="" maxlength="64" />
-		<font color='red'><form:errors path="custName"/></font>
+		<form:input path="custName" id="custName" cssClass="text required" maxlength="64" />
+		<font color='red' ><form:errors path="custName"/></font>
+		
 		</td>
 	</tr>	
 	
 	<tr>	
 		<td class="tdLabel">
-			<%=Customer.ALIAS_TELEPHONE%>:
+			<span class="required">*</span><%=Customer.ALIAS_TELEPHONE%>:
 		</td>		
 		<td>
-		<form:input path="telephone" id="telephone" cssClass="" maxlength="128" />
-		<font color='red'><form:errors path="telephone"/></font>
+		<form:input path="telephone" id="telephone" cssClass="text required validate-phone" maxlength="128" />
+		<font color='red' ><form:errors path="telephone"/></font>
+		
 		</td>
 	</tr>	
 	
