@@ -46,6 +46,10 @@ public class ProcurementsaleQuery extends BaseQuery implements Serializable {
 	private java.lang.Long procurementId;
 	/** 出售ID */
 	private java.lang.Long saleId;
+	/** 出售数量 */
+	private java.lang.Integer amount;
+	/** 出售单价 */
+	private java.math.BigDecimal unitPrice;
 
 	public java.lang.Long getId() {
 		return this.id;
@@ -69,6 +73,22 @@ public class ProcurementsaleQuery extends BaseQuery implements Serializable {
 	
 	public void setSaleId(java.lang.Long value) {
 		this.saleId = value;
+	}
+	
+	public java.lang.Integer getAmount() {
+		return this.amount;
+	}
+	
+	public void setAmount(java.lang.Integer value) {
+		this.amount = value;
+	}
+	
+	public java.math.BigDecimal getUnitPrice() {
+		return this.unitPrice;
+	}
+	
+	public void setUnitPrice(java.math.BigDecimal value) {
+		this.unitPrice = value;
 	}
 	
 

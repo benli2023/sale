@@ -26,4 +26,26 @@
 		</td>
 	</tr>	
 	
+	<tr>	
+		<td class="tdLabel">
+			<span class="required">*</span><%=Procurementsale.ALIAS_AMOUNT%>:
+		</td>		
+		<td>
+		<form:input path="amount" id="amount" cssClass="text required validate-integer max-value-2147483647" maxlength="10" />
+		<font color='red' ><form:errors path="amount"/></font>
+		
+		</td>
+	</tr>	
+	
+	<tr>	
+		<td class="tdLabel">
+			<span class="required">*</span><%=Procurementsale.ALIAS_UNIT_PRICE%>:
+		</td>		
+		<td>
+		<form:input path="unitPrice" id="unitPrice" cssClass="text required validate-currency-dollar validate-number" maxlength="10" />
+		<font color='red' ><form:errors path="unitPrice"/></font>
+		
+		</td>
+	</tr>	
+	
 		

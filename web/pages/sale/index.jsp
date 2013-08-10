@@ -37,42 +37,24 @@
 						<yun:button-edit name="custIdTxt" hiddenName="custId" id="sale_custId" txtVal="${query.custIdTxt}"  hiddenVal="${query.custId}" width="130"  profileId="sale"/> 
 						
 					</td>
-					<td class="tdLabel"><%=Sale.ALIAS_AMOUNT%></td>		
-					<td>
-						<input value="${query.amount}" id="amount" name="amount" maxlength="10"  class="text  validate-integer validate-integer max-value-2147483647"/>
-					</td>
-					<td class="tdLabel"><%=Sale.ALIAS_UNIT%></td>		
-					<td>
-						<select name="unit">
-							<option value="1" <c:if test="${query.unit==1}">selected</c:if>>吨</option>
-							<option value="2" <c:if test="${query.unit==2}">selected</c:if>>批</option>
-							<option value="-1" <c:if test="${query.unit==-1}">selected</c:if>>不限</option>
-						</select>
-					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_CUST_NAME%></td>		
 					<td>
 						<input value="${query.custName}" id="custName" name="custName" maxlength="64"  class="text "/>
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_CUST_TEL%></td>		
 					<td>
 						<input value="${query.custTel}" id="custTel" name="custTel" maxlength="128"  class="text  validate-mobile-phone"/>
-					</td>
-					<td class="tdLabel"><%=Sale.ALIAS_UNIT_PRICE%></td>		
-					<td>
-						<input value="${query.unitPrice}" id="unitPrice" name="unitPrice" maxlength="10"  class="text  validate-currency-dollar validate-integer"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_PAID%></td>		
 					<td>
 						<input value="${query.paid}" id="paid" name="paid" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_UN_PAID%></td>		
 					<td>
 						<input value="${query.unPaid}" id="unPaid" name="unPaid" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_OTHER_FEE%></td>		
 					<td>
 						<input value="${query.otherFee}" id="otherFee" name="otherFee" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
@@ -90,13 +72,13 @@
 							<option value="-1" <c:if test="${query.paymentStatus==-1}">selected</c:if>>不限</option>
 						</select>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_CREATE_ID%></td>		
 					<td>
 						<yun:button-edit name="createIdTxt" hiddenName="createId" id="sale_createId" txtVal="${query.createIdTxt}"  hiddenVal="${query.createId}" width="130"  profileId="common"/> 
 						
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_TRANSPORT_ID%></td>		
 					<td>
 						<yun:button-edit name="transportIdTxt" hiddenName="transportId" id="sale_transportId" txtVal="${query.transportIdTxt}"  hiddenVal="${query.transportId}" width="130"  profileId="common"/> 
@@ -110,12 +92,12 @@
 					<td>
 						<input value="${query.driver}" id="driver" name="driver" maxlength="64"  class="text "/>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_DRIVER_TEL%></td>		
 					<td>
 						<input value="${query.driverTel}" id="driverTel" name="driverTel" maxlength="32"  class="text  validate-mobile-phone"/>
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_UPDATE_DATE%></td>		
 					<td>
 						<input value="<fmt:formatDate value='${query.updateDateBegin}' pattern='<%=Sale.FORMAT_UPDATE_DATE%>'/>" onclick="WdatePicker({dateFmt:'<%=Sale.FORMAT_UPDATE_DATE%>'})" id="updateDateBegin" name="updateDateBegin"   class="text"/>
@@ -166,11 +148,8 @@
 				
 				<!-- 排序时为th增加sortColumn即可,new SimpleTable('sortColumns')会为tableHeader自动增加排序功能; -->
 				<th sortColumn="custId" ><%=Sale.ALIAS_CUST_ID%></th>
-				<th sortColumn="amount" ><%=Sale.ALIAS_AMOUNT%></th>
-				<th sortColumn="unit" ><%=Sale.ALIAS_UNIT%></th>
 				<th sortColumn="custName" ><%=Sale.ALIAS_CUST_NAME%></th>
 				<th sortColumn="custTel" ><%=Sale.ALIAS_CUST_TEL%></th>
-				<th sortColumn="unitPrice" ><%=Sale.ALIAS_UNIT_PRICE%></th>
 				<th sortColumn="paid" ><%=Sale.ALIAS_PAID%></th>
 				<th sortColumn="unPaid" ><%=Sale.ALIAS_UN_PAID%></th>
 				<th sortColumn="otherFee" ><%=Sale.ALIAS_OTHER_FEE%></th>
@@ -197,11 +176,8 @@
 				<td><input type="checkbox" name="items" value="${item.saleId}"></td>
 				
 				<td><c:out value='${item.custIdTxt}'/>&nbsp;</td>
-				<td><c:out value='${item.amount}'/>&nbsp;</td>
-				<td><c:choose><c:when test="${item.unit==1}">吨</c:when><c:when test="${item.unit==2}">批</c:when></c:choose></td>
 				<td><c:out value='${item.custName}'/>&nbsp;</td>
 				<td><c:out value='${item.custTel}'/>&nbsp;</td>
-				<td><fmt:formatNumber value='${item.unitPrice}' type="currency" pattern="###,#0.00"/></td>
 				<td><fmt:formatNumber value='${item.paid}' type="currency" pattern="###,#0.00"/></td>
 				<td><fmt:formatNumber value='${item.unPaid}' type="currency" pattern="###,#0.00"/></td>
 				<td><fmt:formatNumber value='${item.otherFee}' type="currency" pattern="###,#0.00"/></td>

@@ -37,6 +37,14 @@
 					<td>
 						<input value="${query.saleId}" id="saleId" name="saleId" maxlength="19"  class="text  validate-integer"/>
 					</td>
+					<td class="tdLabel"><%=Procurementsale.ALIAS_AMOUNT%></td>		
+					<td>
+						<input value="${query.amount}" id="amount" name="amount" maxlength="10"  class="text  validate-integer max-value-2147483647"/>
+					</td>
+					<td class="tdLabel"><%=Procurementsale.ALIAS_UNIT_PRICE%></td>		
+					<td>
+						<input value="${query.unitPrice}" id="unitPrice" name="unitPrice" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
+					</td>
 				</tr>	
 			</table>
 		</fieldset>
@@ -73,6 +81,8 @@
 				<!-- 排序时为th增加sortColumn即可,new SimpleTable('sortColumns')会为tableHeader自动增加排序功能; -->
 				<th sortColumn="procurementId" ><%=Procurementsale.ALIAS_PROCUREMENT_ID%></th>
 				<th sortColumn="saleId" ><%=Procurementsale.ALIAS_SALE_ID%></th>
+				<th sortColumn="amount" ><%=Procurementsale.ALIAS_AMOUNT%></th>
+				<th sortColumn="unitPrice" ><%=Procurementsale.ALIAS_UNIT_PRICE%></th>
 	
 				<th>操作</th>
 			  </tr>
@@ -87,6 +97,8 @@
 				
 				<td><c:out value='${item.procurementId}'/>&nbsp;</td>
 				<td><c:out value='${item.saleId}'/>&nbsp;</td>
+				<td><c:out value='${item.amount}'/>&nbsp;</td>
+				<td><fmt:formatNumber value='${item.unitPrice}' type="currency" pattern="###,#0.00"/></td>
 				<td>
 				<c:choose>
 					<c:when test="${empty postmode}">

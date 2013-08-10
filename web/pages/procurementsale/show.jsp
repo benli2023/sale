@@ -30,6 +30,14 @@
 				<td class="tdLabel"><%=Procurementsale.ALIAS_SALE_ID%></td>	
 				<td><c:out value='${procurementsale.saleId}'/></td>
 			</tr>
+			<tr>	
+				<td class="tdLabel"><%=Procurementsale.ALIAS_AMOUNT%></td>	
+				<td><c:out value='${procurementsale.amount}'/></td>
+			</tr>
+			<tr>	
+				<td class="tdLabel"><%=Procurementsale.ALIAS_UNIT_PRICE%></td>	
+				<td><fmt:formatNumber value='${procurementsale.unitPrice}' type="currency" pattern="###,#0.00"/></td>
+			</tr>
 		</table>
 	</form:form>
 </rapid:override>

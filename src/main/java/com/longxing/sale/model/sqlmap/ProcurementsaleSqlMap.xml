@@ -10,12 +10,14 @@
          <result property="id" column="id"/>
          <result property="procurementId" column="procurementId"/>
          <result property="saleId" column="saleId"/>
+         <result property="amount" column="amount"/>
+         <result property="unitPrice" column="unitPrice"/>
     </resultMap>
 
 	<!-- 用于select查询公用抽取的列 -->
 	<sql id="Procurementsale.columns">
 	    <![CDATA[
-         pro0.id , pro0.procurementId , pro0.saleId  
+         pro0.id , pro0.procurementId , pro0.saleId , pro0.amount , pro0.unitPrice  
         
 	    ]]>
 	</sql>
@@ -25,11 +27,15 @@
         INSERT INTO procurementsale (
         	id ,
         	procurementId ,
-        	saleId 
+        	saleId ,
+        	amount ,
+        	unitPrice 
         ) VALUES (
         	#id# ,
         	#procurementId# ,
-        	#saleId# 
+        	#saleId# ,
+        	#amount# ,
+        	#unitPrice# 
         )
     ]]>
     <!--
@@ -47,7 +53,9 @@
     <![CDATA[
         UPDATE procurementsale SET
 	        procurementId = #procurementId# ,
-	        saleId = #saleId# 
+	        saleId = #saleId# ,
+	        amount = #amount# ,
+	        unitPrice = #unitPrice# 
         WHERE 
 	        id = #id# 
     ]]>
@@ -79,6 +87,12 @@
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="saleId">
 		              pro0.saleId = #saleId#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="amount">
+		              pro0.amount = #amount#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="unitPrice">
+		              pro0.unitPrice = #unitPrice#
 		       </isNotEmpty>
 	    </dynamic>	
 	</sql>

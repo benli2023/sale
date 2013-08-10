@@ -45,16 +45,10 @@ public class SaleQuery extends BaseQuery implements Serializable {
 	/** 客户ID */
 	private java.lang.Long custId;
 	private String custIdTxt;
-	/** 数量 */
-	private java.lang.Integer amount;
-	/** 单位 */
-	private java.lang.Integer unit=-1;
 	/** 客户名称 */
 	private java.lang.String custName;
 	/** 客户电话 */
 	private java.lang.String custTel;
-	/** 售出单价 */
-	private Long unitPrice;
 	/** 已付金额 */
 	private java.math.BigDecimal paid;
 	/** 未付金额 */
@@ -112,22 +106,6 @@ public class SaleQuery extends BaseQuery implements Serializable {
 		this.custIdTxt = value;
 	}
 	
-	public java.lang.Integer getAmount() {
-		return this.amount;
-	}
-	
-	public void setAmount(java.lang.Integer value) {
-		this.amount = value;
-	}
-	
-	public java.lang.Integer getUnit() {
-		return this.unit;
-	}
-	
-	public void setUnit(java.lang.Integer value) {
-		this.unit = value;
-	}
-	
 	public java.lang.String getCustName() {
 		return this.custName;
 	}
@@ -142,14 +120,6 @@ public class SaleQuery extends BaseQuery implements Serializable {
 	
 	public void setCustTel(java.lang.String value) {
 		this.custTel = value;
-	}
-	
-	public Long getUnitPrice() {
-		return this.unitPrice;
-	}
-	
-	public void setUnitPrice(Long value) {
-		this.unitPrice = value;
 	}
 	
 	public java.math.BigDecimal getPaid() {

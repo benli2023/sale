@@ -17,31 +17,6 @@
 	
 	<tr>	
 		<td class="tdLabel">
-			<span class="required">*</span><%=Sale.ALIAS_AMOUNT%>:
-		</td>		
-		<td>
-		<form:input path="amount" id="amount" cssClass="text required validate-integer validate-integer max-value-2147483647" maxlength="10" />
-		<font color='red' ><form:errors path="amount"/></font>
-		
-		</td>
-	</tr>	
-	
-	<tr>	
-		<td class="tdLabel">
-			<span class="required">*</span><%=Sale.ALIAS_UNIT%>:
-		</td>		
-		<td>
-		<form:select path="unit" id="unit">
-			<form:option value="1" >吨</form:option>
-			<form:option value="2" >批</form:option>
-		</form:select>
-		<font color='red' ><form:errors path="unit"/></font>
-		
-		</td>
-	</tr>	
-	
-	<tr>	
-		<td class="tdLabel">
 			<span class="required">*</span><%=Sale.ALIAS_CUST_NAME%>:
 		</td>		
 		<td>
@@ -64,21 +39,10 @@
 	
 	<tr>	
 		<td class="tdLabel">
-			<span class="required">*</span><%=Sale.ALIAS_UNIT_PRICE%>:
+			<span class="required">*</span><%=Sale.ALIAS_PAID%>:
 		</td>		
 		<td>
-		<form:input path="unitPrice" id="unitPrice" cssClass="text required validate-currency-dollar validate-integer" maxlength="10" />
-		<font color='red' ><form:errors path="unitPrice"/></font>
-		
-		</td>
-	</tr>	
-	
-	<tr>	
-		<td class="tdLabel">
-			<%=Sale.ALIAS_PAID%>:
-		</td>		
-		<td>
-		<form:input path="paid" id="paid" cssClass="text validate-currency-dollar validate-number" maxlength="10" />
+		<form:input path="paid" id="paid" cssClass="text required validate-currency-dollar validate-number" maxlength="10" />
 		<font color='red' ><form:errors path="paid"/></font>
 		
 		</td>

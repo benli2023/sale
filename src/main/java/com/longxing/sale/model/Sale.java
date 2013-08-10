@@ -47,11 +47,8 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 	public static final String TABLE_ALIAS = "Sale";
 	public static final String ALIAS_SALE_ID = "出售ID";
 	public static final String ALIAS_CUST_ID = "客户ID";
-	public static final String ALIAS_AMOUNT = "数量";
-	public static final String ALIAS_UNIT = "单位";
 	public static final String ALIAS_CUST_NAME = "客户名称";
 	public static final String ALIAS_CUST_TEL = "客户电话";
-	public static final String ALIAS_UNIT_PRICE = "售出单价";
 	public static final String ALIAS_PAID = "已付金额";
 	public static final String ALIAS_UN_PAID = "未付金额";
 	public static final String ALIAS_OTHER_FEE = "其它费用";
@@ -83,39 +80,21 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 	private String custIdTxt;
 	
     /**
-     * 数量       db_column: amount 
-     */
-    @NotNull  
-	private java.lang.Integer amount;
-	
-    /**
-     * 单位       db_column: unit 
-     */
-    @NotNull  
-	private java.lang.Integer unit;
-	
-    /**
      * 客户名称       db_column: custName 
      */
-    @NotBlank @Length(max=64) 
+    @NotBlank @Length(max=64)  
 	private java.lang.String custName;
 	
     /**
      * 客户电话       db_column: custTel 
      */
-    @NotBlank @Length(max=128) 
+    @NotBlank @Length(max=128)  
 	private java.lang.String custTel;
-	
-    /**
-     * 售出单价       db_column: unitPrice 
-     */
-    @NotNull  
-	private Long unitPrice;
 	
     /**
      * 已付金额       db_column: paid 
      */
-     
+    @NotNull  
 	private java.math.BigDecimal paid;
 	
     /**
@@ -150,19 +129,19 @@ public class Sale extends BaseEntity implements java.io.Serializable {
     /**
      * 车牌号       db_column: carNumber 
      */
-    @NotBlank @Length(max=32) 
+    @NotBlank @Length(max=32)  
 	private java.lang.String carNumber;
 	
     /**
      * 司机       db_column: driver 
      */
-    @NotBlank @Length(max=64) 
+    @NotBlank @Length(max=64)  
 	private java.lang.String driver;
 	
     /**
      * 司机电话       db_column: driverTel 
      */
-    @NotBlank @Length(max=32) 
+    @NotBlank @Length(max=32)  
 	private java.lang.String driverTel;
 	
 	
@@ -200,20 +179,6 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 	public void setCustIdTxt(String value) {
 		this.custIdTxt = value;
 	}
-	public void setAmount(java.lang.Integer value) {
-		this.amount = value;
-	}
-	
-	public java.lang.Integer getAmount() {
-		return this.amount;
-	}
-	public void setUnit(java.lang.Integer value) {
-		this.unit = value;
-	}
-	
-	public java.lang.Integer getUnit() {
-		return this.unit;
-	}
 	public void setCustName(java.lang.String value) {
 		this.custName = value;
 	}
@@ -227,13 +192,6 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 	
 	public java.lang.String getCustTel() {
 		return this.custTel;
-	}
-	public void setUnitPrice(Long value) {
-		this.unitPrice = value;
-	}
-	
-	public Long getUnitPrice() {
-		return this.unitPrice;
 	}
 	public void setPaid(java.math.BigDecimal value) {
 		this.paid = value;
@@ -306,15 +264,6 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 		return this.driverTel;
 	}
 	
-	private Set procurementsales = new HashSet(0);
-	public void setProcurementsales(Set<Procurementsale> procurementsale){
-		this.procurementsales = procurementsale;
-	}
-	
-	public Set<Procurementsale> getProcurementsales() {
-		return procurementsales;
-	}
-	
 	private Transport transport;
 	
 	public void setTransport(Transport transport){
@@ -349,11 +298,8 @@ public class Sale extends BaseEntity implements java.io.Serializable {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 			.append("SaleId",getSaleId())
 			.append("CustId",getCustId())
-			.append("Amount",getAmount())
-			.append("Unit",getUnit())
 			.append("CustName",getCustName())
 			.append("CustTel",getCustTel())
-			.append("UnitPrice",getUnitPrice())
 			.append("Paid",getPaid())
 			.append("UnPaid",getUnPaid())
 			.append("OtherFee",getOtherFee())

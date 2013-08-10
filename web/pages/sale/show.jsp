@@ -27,24 +27,12 @@
 				<td><c:out value='${sale.custIdTxt}'/>&nbsp;</td>
 			</tr>
 			<tr>	
-				<td class="tdLabel"><%=Sale.ALIAS_AMOUNT%></td>	
-				<td><c:out value='${sale.amount}'/></td>
-			</tr>
-			<tr>	
-				<td class="tdLabel"><%=Sale.ALIAS_UNIT%></td>	
-				<td><c:choose><c:when test="${sale.unit==1}">吨</c:when><c:when test="${sale.unit==2}">批</c:when></c:choose></td>
-			</tr>
-			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_CUST_NAME%></td>	
 				<td><c:out value='${sale.custName}'/></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_CUST_TEL%></td>	
 				<td><c:out value='${sale.custTel}'/></td>
-			</tr>
-			<tr>	
-				<td class="tdLabel"><%=Sale.ALIAS_UNIT_PRICE%></td>	
-				<td><fmt:formatNumber value='${sale.unitPrice}' type="currency" pattern="###,#0.00"/></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_PAID%></td>	

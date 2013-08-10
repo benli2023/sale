@@ -48,6 +48,8 @@ public class Procurementsale extends BaseEntity implements java.io.Serializable 
 	public static final String ALIAS_ID = "销售记录ID";
 	public static final String ALIAS_PROCUREMENT_ID = "采购ID";
 	public static final String ALIAS_SALE_ID = "出售ID";
+	public static final String ALIAS_AMOUNT = "出售数量";
+	public static final String ALIAS_UNIT_PRICE = "出售单价";
 	
 	//date formats
 	
@@ -70,6 +72,18 @@ public class Procurementsale extends BaseEntity implements java.io.Serializable 
      */
     @NotNull  
 	private java.lang.Long saleId;
+	
+    /**
+     * 出售数量       db_column: amount 
+     */
+    @NotNull   @Min(1)
+	private java.lang.Integer amount;
+	
+    /**
+     * 出售单价       db_column: unitPrice 
+     */
+    @NotNull  
+	private java.math.BigDecimal unitPrice;
 	
 	//columns END
 
@@ -103,25 +117,19 @@ public class Procurementsale extends BaseEntity implements java.io.Serializable 
 	public java.lang.Long getSaleId() {
 		return this.saleId;
 	}
-	
-	private Procurement procurement;
-	
-	public void setProcurement(Procurement procurement){
-		this.procurement = procurement;
+	public void setAmount(java.lang.Integer value) {
+		this.amount = value;
 	}
 	
-	public Procurement getProcurement() {
-		return procurement;
+	public java.lang.Integer getAmount() {
+		return this.amount;
+	}
+	public void setUnitPrice(java.math.BigDecimal value) {
+		this.unitPrice = value;
 	}
 	
-	private Sale sale;
-	
-	public void setSale(Sale sale){
-		this.sale = sale;
-	}
-	
-	public Sale getSale() {
-		return sale;
+	public java.math.BigDecimal getUnitPrice() {
+		return this.unitPrice;
 	}
 
 	public String toString() {
@@ -129,6 +137,8 @@ public class Procurementsale extends BaseEntity implements java.io.Serializable 
 			.append("Id",getId())
 			.append("ProcurementId",getProcurementId())
 			.append("SaleId",getSaleId())
+			.append("Amount",getAmount())
+			.append("UnitPrice",getUnitPrice())
 			.toString();
 	}
 	
