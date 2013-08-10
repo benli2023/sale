@@ -20,7 +20,7 @@
 			<span class="required">*</span><%=Customer.ALIAS_TELEPHONE%>:
 		</td>		
 		<td>
-		<form:input path="telephone" id="telephone" cssClass="text required validate-phone" maxlength="128" />
+		<form:input path="telephone" id="telephone" cssClass="text required validate-mobile-phone" maxlength="128" />
 		<font color='red' ><form:errors path="telephone"/></font>
 		
 		</td>

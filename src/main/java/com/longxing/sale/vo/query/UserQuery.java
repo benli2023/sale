@@ -7,13 +7,27 @@
 
 package com.longxing.sale.vo.query;
 
-import java.io.Serializable;
-
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import org.hibernate.validator.constraints.NotBlank;
 
-import com.github.springrest.base.BaseQuery;
+import java.io.Serializable;
+
+import java.util.*;
+
+import com.github.springrest.base.*;
+import com.github.springrest.util.*;
+import org.codehaus.jackson.annotate.*;
+import cn.org.rapid_framework.util.*;
+import cn.org.rapid_framework.web.util.*;
+import cn.org.rapid_framework.page.*;
+import cn.org.rapid_framework.page.impl.*;
+
+import com.longxing.sale.model.*;
+import com.longxing.sale.dao.*;
+import com.longxing.sale.service.*;
+import com.longxing.sale.vo.query.*;
 
 /**
  * @author badqiu email:badqiu(a)gmail.com
@@ -29,10 +43,8 @@ public class UserQuery extends BaseQuery implements Serializable {
 	/** 用户ID */
 	private java.lang.Long userId;
 	/** 用户名称 */
-	@NotBlank
 	private java.lang.String userName;
 	/** 密码 */
-	@NotBlank
 	private java.lang.String password;
 	/** 所属用户组 */
 	private java.lang.Integer groupLevel;
@@ -70,7 +82,6 @@ public class UserQuery extends BaseQuery implements Serializable {
 	}
 	
 
-	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this,ToStringStyle.MULTI_LINE_STYLE);
 	}

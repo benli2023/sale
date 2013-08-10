@@ -48,15 +48,15 @@
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_UNIT_PRICE%></td>	
-				<td><c:out value='${procurement.unitPrice}'/></td>
+				<td><fmt:formatNumber value='${procurement.unitPrice}' type="currency" pattern="###,#0.00"/></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_FREIGHTAGE%></td>	
-				<td><c:out value='${procurement.freightage}'/></td>
+				<td><fmt:formatNumber value='${procurement.freightage}' type="currency" pattern="###,#0.00"/></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_LOAD_FEE%></td>	
-				<td><c:out value='${procurement.loadFee}'/></td>
+				<td><fmt:formatNumber value='${procurement.loadFee}' type="currency" pattern="###,#0.00"/></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurement.ALIAS_CAR_NUMBER%></td>	

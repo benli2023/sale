@@ -201,11 +201,11 @@
 				<td><c:choose><c:when test="${item.unit==1}">吨</c:when><c:when test="${item.unit==2}">批</c:when></c:choose></td>
 				<td><c:out value='${item.custName}'/>&nbsp;</td>
 				<td><c:out value='${item.custTel}'/>&nbsp;</td>
-				<td><c:out value='${item.unitPrice}'/>&nbsp;</td>
-				<td><c:out value='${item.paid}'/>&nbsp;</td>
-				<td><c:out value='${item.unPaid}'/>&nbsp;</td>
-				<td><c:out value='${item.otherFee}'/>&nbsp;</td>
-				<td><c:out value='${item.profit}'/>&nbsp;</td>
+				<td><fmt:formatNumber value='${item.unitPrice}' type="currency" pattern="###,#0.00"/></td>
+				<td><fmt:formatNumber value='${item.paid}' type="currency" pattern="###,#0.00"/></td>
+				<td><fmt:formatNumber value='${item.unPaid}' type="currency" pattern="###,#0.00"/></td>
+				<td><fmt:formatNumber value='${item.otherFee}' type="currency" pattern="###,#0.00"/></td>
+				<td><fmt:formatNumber value='${item.profit}' type="currency" pattern="###,#0.00"/></td>
 				<td><c:choose><c:when test="${item.paymentStatus==2}">已付款</c:when><c:when test="${item.paymentStatus==0}">未付款</c:when><c:when test="${item.paymentStatus==1}">已付定金</c:when></c:choose></td>
 				<td><c:out value='${item.createIdTxt}'/>&nbsp;</td>
 				<td><c:out value='${item.transportIdTxt}'/>&nbsp;</td>

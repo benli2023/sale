@@ -11,6 +11,8 @@ package com.longxing.sale.controller;
 import java.util.List;
 import java.util.Map;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -93,7 +96,7 @@ public class ProcurementsaleController extends BaseRestSpringController<Procurem
 	/** binder用于bean属性的设置 */
 	@InitBinder  
 	public void initBinder(WebDataBinder binder) {  
-	        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));  
+	        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
 	}
 	   
 	/**

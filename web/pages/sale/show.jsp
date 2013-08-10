@@ -44,23 +44,23 @@
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_UNIT_PRICE%></td>	
-				<td><c:out value='${sale.unitPrice}'/></td>
+				<td><fmt:formatNumber value='${sale.unitPrice}' type="currency" pattern="###,#0.00"/></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_PAID%></td>	
-				<td><c:out value='${sale.paid}'/></td>
+				<td><fmt:formatNumber value='${sale.paid}' type="currency" pattern="###,#0.00"/></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_UN_PAID%></td>	
-				<td><c:out value='${sale.unPaid}'/></td>
+				<td><fmt:formatNumber value='${sale.unPaid}' type="currency" pattern="###,#0.00"/></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_OTHER_FEE%></td>	
-				<td><c:out value='${sale.otherFee}'/></td>
+				<td><fmt:formatNumber value='${sale.otherFee}' type="currency" pattern="###,#0.00"/></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_PROFIT%></td>	
-				<td><c:out value='${sale.profit}'/></td>
+				<td><fmt:formatNumber value='${sale.profit}' type="currency" pattern="###,#0.00"/></td>
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Sale.ALIAS_PAYMENT_STATUS%></td>	

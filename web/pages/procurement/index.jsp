@@ -188,9 +188,9 @@
 				<td><c:out value='${item.amount}'/>&nbsp;</td>
 				<td><c:choose><c:when test="${item.unit==1}">吨</c:when><c:when test="${item.unit==2}">批</c:when></c:choose></td>
 				<td><c:out value='${item.remainedAmount}'/>&nbsp;</td>
-				<td><c:out value='${item.unitPrice}'/>&nbsp;</td>
-				<td><c:out value='${item.freightage}'/>&nbsp;</td>
-				<td><c:out value='${item.loadFee}'/>&nbsp;</td>
+				<td><fmt:formatNumber value='${item.unitPrice}' type="currency" pattern="###,#0.00"/></td>
+				<td><fmt:formatNumber value='${item.freightage}' type="currency" pattern="###,#0.00"/></td>
+				<td><fmt:formatNumber value='${item.loadFee}' type="currency" pattern="###,#0.00"/></td>
 				<td><c:out value='${item.carNumber}'/>&nbsp;</td>
 				<td><c:out value='${item.driver}'/>&nbsp;</td>
 				<td><c:out value='${item.driverTel}'/>&nbsp;</td>

@@ -35,7 +35,7 @@
 					</td>
 					<td class="tdLabel"><%=Customer.ALIAS_TELEPHONE%></td>		
 					<td>
-						<input value="${query.telephone}" id="telephone" name="telephone" maxlength="128"  class="text  validate-phone"/>
+						<input value="${query.telephone}" id="telephone" name="telephone" maxlength="128"  class="text  validate-mobile-phone"/>
 					</td>
 				</tr>	
 			</table>
