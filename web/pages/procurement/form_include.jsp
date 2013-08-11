@@ -78,7 +78,7 @@
 			<span class="required">*</span><%=Procurement.ALIAS_UNIT_PRICE%>:
 		</td>		
 		<td>
-		<form:input path="unitPrice" id="unitPrice" cssClass="text required validate-currency-dollar validate-number" maxlength="10" />
+		<form:input path="unitPrice" id="unitPrice" cssClass="text required validate-currency-dollar" maxlength="10" />
 		<font color='red' ><form:errors path="unitPrice"/></font>
 		
 		</td>
@@ -89,7 +89,7 @@
 			<span class="required">*</span><%=Procurement.ALIAS_FREIGHTAGE%>:
 		</td>		
 		<td>
-		<form:input path="freightage" id="freightage" cssClass="text required validate-currency-dollar validate-number" maxlength="10" />
+		<form:input path="freightage" id="freightage" cssClass="text required validate-currency-dollar" maxlength="10" />
 		<font color='red' ><form:errors path="freightage"/></font>
 		
 		</td>
@@ -100,7 +100,7 @@
 			<%=Procurement.ALIAS_LOAD_FEE%>:
 		</td>		
 		<td>
-		<form:input path="loadFee" id="loadFee" cssClass="text validate-currency-dollar validate-number" maxlength="10" />
+		<form:input path="loadFee" id="loadFee" cssClass="text validate-currency-dollar" maxlength="10" />
 		<font color='red' ><form:errors path="loadFee"/></font>
 		
 		</td>

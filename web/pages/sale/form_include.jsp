@@ -42,7 +42,7 @@
 			<span class="required">*</span><%=Sale.ALIAS_PAID%>:
 		</td>		
 		<td>
-		<form:input path="paid" id="paid" cssClass="text required validate-currency-dollar validate-number" maxlength="10" />
+		<form:input path="paid" id="paid" cssClass="text required validate-currency-dollar" maxlength="10" />
 		<font color='red' ><form:errors path="paid"/></font>
 		
 		</td>
@@ -53,7 +53,7 @@
 			<%=Sale.ALIAS_UN_PAID%>:
 		</td>		
 		<td>
-		<form:input path="unPaid" id="unPaid" cssClass="text validate-currency-dollar validate-number" maxlength="10" />
+		<form:input path="unPaid" id="unPaid" cssClass="text validate-currency-dollar" maxlength="10" />
 		<font color='red' ><form:errors path="unPaid"/></font>
 		
 		</td>
@@ -64,7 +64,7 @@
 			<%=Sale.ALIAS_OTHER_FEE%>:
 		</td>		
 		<td>
-		<form:input path="otherFee" id="otherFee" cssClass="text validate-currency-dollar validate-number" maxlength="10" />
+		<form:input path="otherFee" id="otherFee" cssClass="text validate-currency-dollar" maxlength="10" />
 		<font color='red' ><form:errors path="otherFee"/></font>
 		
 		</td>
@@ -75,7 +75,7 @@
 			<%=Sale.ALIAS_PROFIT%>:
 		</td>		
 		<td>
-		<form:input path="profit" id="profit" cssClass="text validate-currency-dollar validate-number" maxlength="10" />
+		<form:input path="profit" id="profit" cssClass="text validate-currency-dollar" maxlength="10" />
 		<font color='red' ><form:errors path="profit"/></font>
 		
 		</td>

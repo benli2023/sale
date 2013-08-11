@@ -47,21 +47,21 @@
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_PAID%></td>		
 					<td>
-						<input value="${query.paid}" id="paid" name="paid" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
+						<input value="${query.paid}" id="paid" name="paid" maxlength="10"  class="text  validate-currency-dollar"/>
 					</td>
 				</tr>	
 				<tr>	
 					<td class="tdLabel"><%=Sale.ALIAS_UN_PAID%></td>		
 					<td>
-						<input value="${query.unPaid}" id="unPaid" name="unPaid" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
+						<input value="${query.unPaid}" id="unPaid" name="unPaid" maxlength="10"  class="text  validate-currency-dollar"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_OTHER_FEE%></td>		
 					<td>
-						<input value="${query.otherFee}" id="otherFee" name="otherFee" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
+						<input value="${query.otherFee}" id="otherFee" name="otherFee" maxlength="10"  class="text  validate-currency-dollar"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_PROFIT%></td>		
 					<td>
-						<input value="${query.profit}" id="profit" name="profit" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
+						<input value="${query.profit}" id="profit" name="profit" maxlength="10"  class="text  validate-currency-dollar"/>
 					</td>
 					<td class="tdLabel"><%=Sale.ALIAS_PAYMENT_STATUS%></td>		
 					<td>
@@ -178,10 +178,10 @@
 				<td><c:out value='${item.custIdTxt}'/>&nbsp;</td>
 				<td><c:out value='${item.custName}'/>&nbsp;</td>
 				<td><c:out value='${item.custTel}'/>&nbsp;</td>
-				<td><fmt:formatNumber value='${item.paid}' type="currency" pattern="###,#0.00"/></td>
-				<td><fmt:formatNumber value='${item.unPaid}' type="currency" pattern="###,#0.00"/></td>
-				<td><fmt:formatNumber value='${item.otherFee}' type="currency" pattern="###,#0.00"/></td>
-				<td><fmt:formatNumber value='${item.profit}' type="currency" pattern="###,#0.00"/></td>
+				<td><fmt:formatNumber value='${item.paid}' type="currency" pattern="###,##0.00;-###,##0.00"/></td>
+				<td><fmt:formatNumber value='${item.unPaid}' type="currency" pattern="###,##0.00;-###,##0.00"/></td>
+				<td><fmt:formatNumber value='${item.otherFee}' type="currency" pattern="###,##0.00;-###,##0.00"/></td>
+				<td><fmt:formatNumber value='${item.profit}' type="currency" pattern="###,##0.00;-###,##0.00"/></td>
 				<td><c:choose><c:when test="${item.paymentStatus==2}">已付款</c:when><c:when test="${item.paymentStatus==0}">未付款</c:when><c:when test="${item.paymentStatus==1}">已付定金</c:when></c:choose></td>
 				<td><c:out value='${item.createIdTxt}'/>&nbsp;</td>
 				<td><c:out value='${item.transportIdTxt}'/>&nbsp;</td>

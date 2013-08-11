@@ -97,7 +97,7 @@ public class ProcurementsaleController extends BaseRestSpringController<Procurem
 	@InitBinder  
 	public void initBinder(WebDataBinder binder) {  
 	        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
-	        binder.registerCustomEditor(BigDecimal.class, new CustomNumberEditor(BigDecimal.class, new DecimalFormat("###,#0.00;-###,#0.00"), true));
+	        binder.registerCustomEditor(BigDecimal.class, new CustomNumberEditor(BigDecimal.class, new DecimalFormat("###,##0.00;-###,##0.00"), true));
 	}
 	   
 	/**

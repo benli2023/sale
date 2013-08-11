@@ -43,7 +43,7 @@
 					</td>
 					<td class="tdLabel"><%=Procurementsale.ALIAS_UNIT_PRICE%></td>		
 					<td>
-						<input value="${query.unitPrice}" id="unitPrice" name="unitPrice" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
+						<input value="${query.unitPrice}" id="unitPrice" name="unitPrice" maxlength="10"  class="text  validate-currency-dollar"/>
 					</td>
 				</tr>	
 			</table>
@@ -98,7 +98,7 @@
 				<td><c:out value='${item.procurementId}'/>&nbsp;</td>
 				<td><c:out value='${item.saleId}'/>&nbsp;</td>
 				<td><c:out value='${item.amount}'/>&nbsp;</td>
-				<td><fmt:formatNumber value='${item.unitPrice}' type="currency" pattern="###,#0.00"/></td>
+				<td><fmt:formatNumber value='${item.unitPrice}' type="currency" pattern="###,##0.00;-###,##0.00"/></td>
 				<td>
 				<c:choose>
 					<c:when test="${empty postmode}">

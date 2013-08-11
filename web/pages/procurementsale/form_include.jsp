@@ -42,7 +42,7 @@
 			<span class="required">*</span><%=Procurementsale.ALIAS_UNIT_PRICE%>:
 		</td>		
 		<td>
-		<form:input path="unitPrice" id="unitPrice" cssClass="text required validate-currency-dollar validate-number" maxlength="10" />
+		<form:input path="unitPrice" id="unitPrice" cssClass="text required validate-currency-dollar" maxlength="10" />
 		<font color='red' ><form:errors path="unitPrice"/></font>
 		
 		</td>

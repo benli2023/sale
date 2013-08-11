@@ -36,7 +36,7 @@
 			</tr>
 			<tr>	
 				<td class="tdLabel"><%=Procurementsale.ALIAS_UNIT_PRICE%></td>	
-				<td><fmt:formatNumber value='${procurementsale.unitPrice}' type="currency" pattern="###,#0.00"/></td>
+				<td><fmt:formatNumber value='${procurementsale.unitPrice}' type="currency" pattern="###,##0.00;-###,##0.00"/></td>
 			</tr>
 		</table>
 	</form:form>

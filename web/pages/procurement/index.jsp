@@ -66,17 +66,17 @@
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_UNIT_PRICE%></td>		
 					<td>
-						<input value="${query.unitPrice}" id="unitPrice" name="unitPrice" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
+						<input value="${query.unitPrice}" id="unitPrice" name="unitPrice" maxlength="10"  class="text  validate-currency-dollar"/>
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_FREIGHTAGE%></td>		
 					<td>
-						<input value="${query.freightage}" id="freightage" name="freightage" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
+						<input value="${query.freightage}" id="freightage" name="freightage" maxlength="10"  class="text  validate-currency-dollar"/>
 					</td>
 				</tr>	
 				<tr>	
 					<td class="tdLabel"><%=Procurement.ALIAS_LOAD_FEE%></td>		
 					<td>
-						<input value="${query.loadFee}" id="loadFee" name="loadFee" maxlength="10"  class="text  validate-currency-dollar validate-number"/>
+						<input value="${query.loadFee}" id="loadFee" name="loadFee" maxlength="10"  class="text  validate-currency-dollar"/>
 					</td>
 					<td class="tdLabel"><%=Procurement.ALIAS_CAR_NUMBER%></td>		
 					<td>
@@ -188,9 +188,9 @@
 				<td><c:out value='${item.amount}'/>&nbsp;</td>
 				<td><c:choose><c:when test="${item.unit==1}">吨</c:when><c:when test="${item.unit==2}">批</c:when></c:choose></td>
 				<td><c:out value='${item.remainedAmount}'/>&nbsp;</td>
-				<td><fmt:formatNumber value='${item.unitPrice}' type="currency" pattern="###,#0.00"/></td>
-				<td><fmt:formatNumber value='${item.freightage}' type="currency" pattern="###,#0.00"/></td>
-				<td><fmt:formatNumber value='${item.loadFee}' type="currency" pattern="###,#0.00"/></td>
+				<td><fmt:formatNumber value='${item.unitPrice}' type="currency" pattern="###,##0.00;-###,##0.00"/></td>
+				<td><fmt:formatNumber value='${item.freightage}' type="currency" pattern="###,##0.00;-###,##0.00"/></td>
+				<td><fmt:formatNumber value='${item.loadFee}' type="currency" pattern="###,##0.00;-###,##0.00"/></td>
 				<td><c:out value='${item.carNumber}'/>&nbsp;</td>
 				<td><c:out value='${item.driver}'/>&nbsp;</td>
 				<td><c:out value='${item.driverTel}'/>&nbsp;</td>
